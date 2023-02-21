@@ -161,4 +161,5 @@ chrome() {
 alias vim="lvim"
 alias stop="tmuxinator stop dev"
 alias r="ranger"
-
+alias em="emacs -nw"
+alias emc="emacsclient -nw"
