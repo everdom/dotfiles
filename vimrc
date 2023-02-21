@@ -20,8 +20,8 @@ if exists('+termguicolors')
     set termguicolors
 endif
 set cursorline
-colorscheme onehalfdark
-let g:lightline = { 'colorscheme': 'onehalfdark' }
+colorscheme desert
+let g:lightline = { 'colorscheme': 'desert' }
 
 
 filetype plugin indent on " enable file type detection
