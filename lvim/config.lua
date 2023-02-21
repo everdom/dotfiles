@@ -562,9 +562,6 @@ lvim.plugins = {
     end,
   },
   {
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-  },
-  {
     'ethanholz/nvim-lastplace'
   },
   -- { -- json parser for dap launch.json
