@@ -14,7 +14,7 @@ package.path = home .. "/.dotfiles/lvim/?.lua"
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false -- lvim.colorscheme = "lunar"
 -- themes: https://vimcolorschemes.com/
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "gruvbox"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -23,6 +23,8 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.timeoutlen = 0
+vim.opt.guifont = ""
+
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -53,10 +55,14 @@ lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.keys.visual_mode["<leader>lf"] = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
 lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
-lvim.keys.normal_mode["gh"] = ":lua vim.lsp.buf.hover()<cr>"
+lvim.keys.normal_mode["gh"] = "<cmd>Lspsaga lsp_finder<CR>"
+lvim.keys.normal_mode["ga"] = "<cmd>Lspsaga code_action<CR>"
 
 -- telescope
 lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
+
+-- test
+-- lvim.keys.normal_mode["<leader>ia"] = "<ESC><cmd>lua print('test')<cr>"
 
 -- orverwirte old 's'
 lvim.builtin.which_key.mappings.f   = nil
@@ -102,17 +108,6 @@ lvim.builtin.which_key.mappings.d = {
   q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
   U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
 }
-
--- dap custom keymaps
-lvim.keys.normal_mode["<F7>"] = "<cmd>lua require'dap'.step_into()<cr>"
-lvim.keys.normal_mode["<F8>"] = "<cmd>lua require'dap'.step_over()<cr>"
-lvim.keys.normal_mode["<F4>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
-lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
-lvim.keys.normal_mode["<A-F5>"] = "<cmd>lua require'dap'.step_out()<cr>"
-lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.terminate()<cr>"
-lvim.keys.normal_mode["<F2>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
-lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
-lvim.keys.normal_mode["<S-F12>"] = "<cmd>lua require'dap'.repl.toggle()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
@@ -562,6 +557,9 @@ lvim.plugins = {
     end,
   },
   {
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+  },
+  {
     'ethanholz/nvim-lastplace'
   },
   -- { -- json parser for dap launch.json
@@ -575,20 +573,19 @@ lvim.plugins = {
       require("telescope").load_extension('dap')
     end
   },
+  -- {
+  --   'codota/tabnine-nvim', 
+  --   run = "./dl_binaries.sh" 
+  -- },
+  {
+    "tzachar/cmp-tabnine", run = "./install.sh"
+  },
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-      require("lspsaga").setup({
-      })
+        require('lspsaga').setup({})
     end,
-  },
-  {
-    "kaicataldo/material.vim",
-    branch = "main"
-  },
-  {
-    "cdelledonne/vim-cmake"
   }
 }
 

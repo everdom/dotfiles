@@ -3,6 +3,9 @@
 # Others: $HOME/.config/alacritty/alacritty.yml
 # Colors (One Darker)
 # Note I am using alacritty-ligatures until ligatures make it upstream
+env: 
+  TERM: xterm-256color
+
 colors:
   # Default colors
   primary:
@@ -75,10 +78,12 @@ cursor:
   style:
     blinking: Never
 
+
 font:
   # The normal (roman) font face to use.
   normal:
-    family: JetBrainsMono NF
+    # family: FuraCode Nerd Font
+    family: IosevkaTerm Nerd Font Mono
     # Style can be specified to pick a specific face.
     style: Regular
 
@@ -94,7 +99,7 @@ font:
   #   # Style can be specified to pick a specific face.
     style: Italic
 
-  size: 10.0
+  size: 14.0
 
   ligatures: true
 
@@ -108,6 +113,9 @@ window:
   padding:
     x: 2
     y: 2
+  dimensions:
+    columns: 140
+    lines: 46
   # scrolling:
   #   # Maximum number of lines in the scrollback buffer.
   #   # Specifying "0" will disable scrolling.
@@ -119,13 +127,30 @@ window:
 # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
 
+  startup_mode: Maximized
+
+  # background
+  opacity: 0.8
+
   # # If `true`, bold text is drawn using the bright color variants.
   # draw_bold_text_with_bright_colors: true
 
   # selection:
-  semantic_escape_chars: ",│`|:""" ()[]{}<>"
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
   live_config_reload: true
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+    - -c
+    - "tmuxinator dev"
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+  - { mouse: Right, action: Paste }
+
 key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
@@ -135,3 +160,4 @@ key_bindings:
   # - { key: Add, mods: Control, action: IncreaseFontSize }
   # - { key: Subtract, mods: Control, action: DecreaseFontSize }
   # - { key: N, mods: Control, action: SpawnNewInstance }
+

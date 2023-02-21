@@ -159,6 +159,21 @@ chrome() {
 # alias img="Honeyview.exe"
 # alias typora="Typora.exe"
 alias vim="lvim"
+# alias nvim="lvim"
+alias vi="lvim"
+
+alias px="export http_proxy=http://127.0.0.1:7890 && 
+    export https_proxy=http://127.0.0.1:7890"
+alias pxu="unset http_proxy && unset https_proxy"
+alias pxt="curl ipinfo.io"
+  
+
+#alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  --cache=$HOME/.npm/.cache/cnpm \
+  --disturl=https://npm.taobao.org/dist \
+  --userconfig=$HOME/.cnpmrc"
+
 alias stop="tmuxinator stop dev"
 alias r="ranger"
 alias em="emacs -nw"
