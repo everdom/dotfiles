@@ -390,39 +390,23 @@ _h_ decrease width    _l_ increase width
   )
 (define-key rime-active-mode-map (kbd "M-j") 'rime-inline-ascii)
 (define-key rime-mode-map (kbd "M-j") 'rime-force-enable)
-(defun rime-commit1-and-evil-normal ()
-  "Commit the 1st item if exists, then go to evil normal state."
-  (interactive)
-  (rime-commit1)
-  (evil-normal-state))
-(define-key rime-active-mode-map (kbd "<escape>") 'rime-commit1-and-evil-normal)
+;; (defun rime-commit1-and-evil-normal ()
+;;   "Commit the 1st item if exists, then go to evil normal state."
+;;   (interactive)
+;;   (rime-commit1)
+;;   (evil-normal-state))
+;; (define-key rime-active-mode-map (kbd "<escape>") 'rime-commit1-and-evil-normal)
 
-;;
-;; (use-package! pyim
-;;   :demand t
-;;   :diminish pyim-isearch-mode
-;;   :init
-;;   (setq default-input-method "pyim"
-;;         pyim-title "ㄓ"
-;;         pyim-page-length 7
-;;         pyim-page-tooltip 'posframe)
-;;   (when (modulep! +rime)
-;;     (setq pyim-default-scheme 'rime))
-;;   :config
-;;   (setq-default pyim-english-input-switch-functions
-;;                 '(pyim-probe-dynamic-english
-;;                   pyim-probe-evil-normal-mode
-;;                   pyim-probe-program-mode
-;;                   pyim-probe-org-structure-template))
-;; ;;;
-;;   (setq-default pyim-punctuation-half-width-functions
-;;                 '(pyim-probe-punctuation-line-beginning
-;;                   pyim-probe-punctuation-after-punctuation))
-;;   (pyim-isearch-mode t)
-;;   :bind ("M-j" . pyim-convert-string-at-point)
-;;   (:map pyim-mode-map
-;;         ("]" . pyim-page-next-page)
-;;         ("[" . pyim-page-previous-page)
-;;         ("-" . pyim-self-insert-command)
-;;         ("=" . pyim-self-insert-command))
-;;   )
+(defun evil-toggle-input-method ()
+  "when toggle on input method, switch to evil-insert-state if possible.
+when toggle off input method, switch to evil-normal-state if current state is evil-insert-state"
+  (interactive)
+  (setq default-input-method "rime")
+  (if (not current-input-method)
+      (if (not (string= evil-state "insert"))
+          (evil-insert-state))
+    (if (string= evil-state "insert")
+        (evil-normal-state)))
+  (toggle-input-method))
+
+(global-set-key (kbd "C-\\") 'evil-toggle-input-method)
