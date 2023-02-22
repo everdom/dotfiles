@@ -204,7 +204,7 @@
 
 ;; Choose some fonts
  ;; (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono")
-;; (set-face-attribute 'default nil :family "体 Mono SC Nerd")
+;; (set-face-attribute 'default nil :family "Sarasa Mono SC Nerd")
 ;; (set-face-attribute 'org-modern-symbol nil :family "Sarasa Mono SC Nerd")
 ;; (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
 ;; (set-face-attribute 'org-modern-symbol nil :family "Iosevka")

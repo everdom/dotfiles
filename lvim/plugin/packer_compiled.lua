@@ -182,7 +182,7 @@ _G.packer_plugins = {
     url = "https://github.com/christianchiarulli/lir.nvim"
   },
   ["litee-calltree.nvim"] = {
-    config = { "\27LJ\2\nš\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\fkeymaps\1\0\15\rjump_tab\6t\16jump_vsplit\6v\15jump_split\6s\thide\6H\17collapse_all\azM\fdetails\6d\rcollapse\azc\tjump\t<CR>\nclose\6X\vexpand\6o\vswitch\6S\nhover\6i\thelp\6?\nfocus\6f\24close_panel_pop_out\n<C-c>\1\0\2\fon_open\vpannel\16hide_cursor\1\nsetup\19litee.calltree\frequire\0" },
+    config = { "\27LJ\2\nš\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\fkeymaps\1\0\15\rjump_tab\6t\16jump_vsplit\6v\15jump_split\6s\tjump\t<CR>\17collapse_all\azM\rcollapse\azc\nhover\6i\vexpand\6o\nclose\6X\fdetails\6d\thide\6H\thelp\6?\nfocus\6f\vswitch\6S\24close_panel_pop_out\n<C-c>\1\0\2\16hide_cursor\1\fon_open\vpannel\nsetup\19litee.calltree\frequire\0" },
     loaded = true,
     path = "/Users/everdom/.local/share/lunarvim/site/pack/packer/start/litee-calltree.nvim",
     url = "https://github.com/ldelossa/litee-calltree.nvim"
@@ -285,7 +285,7 @@ _G.packer_plugins = {
     url = "https://github.com/SmiteshP/nvim-navic"
   },
   ["nvim-neoclip.lua"] = {
-    config = { "\27LJ\2\n³\2\0\0\a\0\14\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\v\0005\3\t\0005\4\5\0005\5\3\0004\6\0\0=\6\4\5=\5\6\0045\5\a\0004\6\0\0=\6\4\5=\5\b\4=\4\n\3=\3\f\2B\0\2\0016\0\0\0'\2\n\0B\0\2\0029\0\r\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\tkeys\1\0\0\14telescope\1\0\0\6n\1\0\5\17paste_behind\6P\vselect\t<cr>\npaste\6p\vdelete\6d\vreplay\6q\6i\1\0\0\vcustom\1\0\5\17paste_behind\n<c-P>\vselect\t<cr>\npaste\n<c-p>\vdelete\n<c-d>\vreplay\n<c-q>\nsetup\fneoclip\frequire\0" },
+    config = { "\27LJ\2\n³\2\0\0\a\0\14\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\v\0005\3\t\0005\4\5\0005\5\3\0004\6\0\0=\6\4\5=\5\6\0045\5\a\0004\6\0\0=\6\4\5=\5\b\4=\4\n\3=\3\f\2B\0\2\0016\0\0\0'\2\n\0B\0\2\0029\0\r\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\tkeys\1\0\0\14telescope\1\0\0\6n\1\0\5\vdelete\6d\npaste\6p\vreplay\6q\17paste_behind\6P\vselect\t<cr>\6i\1\0\0\vcustom\1\0\5\vdelete\n<c-d>\npaste\n<c-p>\vreplay\n<c-q>\17paste_behind\n<c-P>\vselect\t<cr>\nsetup\fneoclip\frequire\0" },
     loaded = true,
     path = "/Users/everdom/.local/share/lunarvim/site/pack/packer/start/nvim-neoclip.lua",
     url = "https://github.com/AckslD/nvim-neoclip.lua"
@@ -303,7 +303,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
-    config = { "\27LJ\2\në\5\0\0\a\0\28\0\0316\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\26\0005\3\n\0005\4\3\0005\5\4\0005\6\5\0=\6\6\5=\5\a\0045\5\b\0=\5\t\4=\4\v\0035\4\f\0005\5\r\0=\5\14\0045\5\15\0=\5\16\0045\5\17\0=\5\18\0045\5\19\0=\5\20\4=\4\21\0035\4\22\0005\5\23\0=\5\24\4=\4\25\3=\3\27\2B\0\2\1K\0\1\0\16textobjects\1\0\0\16lsp_interop\25peek_definition_code\1\0\2\15<leader>pf\20@function.outer\15<leader>pF\17@class.outer\1\0\2\vborder\tnone\venable\2\tmove\22goto_previous_end\1\0\1\a[]\20@function.outer\24goto_previous_start\1\0\1\a[[\20@function.outer\18goto_next_end\1\0\1\a][\20@function.outer\20goto_next_start\1\0\1\a]]\20@function.outer\1\0\2\venable\2\14set_jumps\1\vselect\1\0\0\20selection_modes\1\0\3\17@class.outer\n<c-v>\20@function.outer\6V\21@parameter.outer\6v\fkeymaps\aic\1\0\2\nquery\17@class.inner\tdesc(Select inner part of a class region\1\0\3\aif\20@function.inner\aaf\20@function.outer\aac\17@class.outer\1\0\3#include_surrounding_whitespace\2\venable\2\14lookahead\2\nsetup\28nvim-treesitter.configs\frequire\0" },
+    config = { "\27LJ\2\në\5\0\0\a\0\28\0\0316\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\26\0005\3\n\0005\4\3\0005\5\4\0005\6\5\0=\6\6\5=\5\a\0045\5\b\0=\5\t\4=\4\v\0035\4\f\0005\5\r\0=\5\14\0045\5\15\0=\5\16\0045\5\17\0=\5\18\0045\5\19\0=\5\20\4=\4\21\0035\4\22\0005\5\23\0=\5\24\4=\4\25\3=\3\27\2B\0\2\1K\0\1\0\16textobjects\1\0\0\16lsp_interop\25peek_definition_code\1\0\2\15<leader>pf\20@function.outer\15<leader>pF\17@class.outer\1\0\2\vborder\tnone\venable\2\tmove\22goto_previous_end\1\0\1\a[]\20@function.outer\24goto_previous_start\1\0\1\a[[\20@function.outer\18goto_next_end\1\0\1\a][\20@function.outer\20goto_next_start\1\0\1\a]]\20@function.outer\1\0\2\14set_jumps\1\venable\2\vselect\1\0\0\20selection_modes\1\0\3\17@class.outer\n<c-v>\20@function.outer\6V\21@parameter.outer\6v\fkeymaps\aic\1\0\2\nquery\17@class.inner\tdesc(Select inner part of a class region\1\0\3\aac\17@class.outer\aaf\20@function.outer\aif\20@function.inner\1\0\3#include_surrounding_whitespace\2\14lookahead\2\venable\2\nsetup\28nvim-treesitter.configs\frequire\0" },
     loaded = true,
     path = "/Users/everdom/.local/share/lunarvim/site/pack/packer/start/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
@@ -477,26 +477,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
--- Config for: litee.nvim
-time([[Config for litee.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14litee.lib\frequire\0", "config", "litee.nvim")
-time([[Config for litee.nvim]], false)
--- Config for: nvim-dap-ui
-time([[Config for nvim-dap-ui]], true)
-try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\rsetup_ui\18lvim.core.dap\frequire\0", "config", "nvim-dap-ui")
-time([[Config for nvim-dap-ui]], false)
--- Config for: litee-calltree.nvim
-time([[Config for litee-calltree.nvim]], true)
-try_loadstring("\27LJ\2\nš\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\fkeymaps\1\0\15\rjump_tab\6t\16jump_vsplit\6v\15jump_split\6s\thide\6H\17collapse_all\azM\fdetails\6d\rcollapse\azc\tjump\t<CR>\nclose\6X\vexpand\6o\vswitch\6S\nhover\6i\thelp\6?\nfocus\6f\24close_panel_pop_out\n<C-c>\1\0\2\fon_open\vpannel\16hide_cursor\1\nsetup\19litee.calltree\frequire\0", "config", "litee-calltree.nvim")
-time([[Config for litee-calltree.nvim]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.mason\frequire\0", "config", "mason.nvim")
-time([[Config for mason.nvim]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+try_loadstring("\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
+time([[Config for hop.nvim]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.indentlines\frequire\0", "config", "indent-blankline.nvim")
@@ -505,86 +489,102 @@ time([[Config for indent-blankline.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\23lvim.core.nvimtree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-try_loadstring("\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
-time([[Config for hop.nvim]], false)
 -- Config for: lir.nvim
 time([[Config for lir.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18lvim.core.lir\frequire\0", "config", "lir.nvim")
 time([[Config for lir.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-treesitter-textobjects
-time([[Config for nvim-treesitter-textobjects]], true)
-try_loadstring("\27LJ\2\në\5\0\0\a\0\28\0\0316\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\26\0005\3\n\0005\4\3\0005\5\4\0005\6\5\0=\6\6\5=\5\a\0045\5\b\0=\5\t\4=\4\v\0035\4\f\0005\5\r\0=\5\14\0045\5\15\0=\5\16\0045\5\17\0=\5\18\0045\5\19\0=\5\20\4=\4\21\0035\4\22\0005\5\23\0=\5\24\4=\4\25\3=\3\27\2B\0\2\1K\0\1\0\16textobjects\1\0\0\16lsp_interop\25peek_definition_code\1\0\2\15<leader>pf\20@function.outer\15<leader>pF\17@class.outer\1\0\2\vborder\tnone\venable\2\tmove\22goto_previous_end\1\0\1\a[]\20@function.outer\24goto_previous_start\1\0\1\a[[\20@function.outer\18goto_next_end\1\0\1\a][\20@function.outer\20goto_next_start\1\0\1\a]]\20@function.outer\1\0\2\venable\2\14set_jumps\1\vselect\1\0\0\20selection_modes\1\0\3\17@class.outer\n<c-v>\20@function.outer\6V\21@parameter.outer\6v\fkeymaps\aic\1\0\2\nquery\17@class.inner\tdesc(Select inner part of a class region\1\0\3\aif\20@function.inner\aaf\20@function.outer\aac\17@class.outer\1\0\3#include_surrounding_whitespace\2\venable\2\14lookahead\2\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter-textobjects")
-time([[Config for nvim-treesitter-textobjects]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.alpha\frequire\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
--- Config for: nvim-navic
-time([[Config for nvim-navic]], true)
-try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.breadcrumbs\frequire\0", "config", "nvim-navic")
-time([[Config for nvim-navic]], false)
--- Config for: nvim-bqf
-time([[Config for nvim-bqf]], true)
-try_loadstring("\27LJ\2\nn\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rfunc_map\1\0\0\1\0\2\14pscrollup\n<C-u>\16pscrolldown\n<C-d>\nsetup\bbqf\frequire\0", "config", "nvim-bqf")
-time([[Config for nvim-bqf]], false)
--- Config for: vim-clipper
-time([[Config for vim-clipper]], true)
-try_loadstring("\27LJ\2\nÅ\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¥\1      let g:ClipperAddress=\"127.0.0.1\"\n      let g:ClipperPort=8377\n      let g:ClipperAuto=1\n      call clipper#set_invocation('netcat -c 127.0.0.1 8377')\n    \bcmd\bvim\0", "config", "vim-clipper")
-time([[Config for vim-clipper]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 -- Config for: nvim-dap
 time([[Config for nvim-dap]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18lvim.core.dap\frequire\0", "config", "nvim-dap")
 time([[Config for nvim-dap]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.project\frequire\0", "config", "project.nvim")
-time([[Config for project.nvim]], false)
+-- Config for: nvim-navic
+time([[Config for nvim-navic]], true)
+try_loadstring("\27LJ\2\nC\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\26lvim.core.breadcrumbs\frequire\0", "config", "nvim-navic")
+time([[Config for nvim-navic]], false)
 -- Config for: nvim-neoclip.lua
 time([[Config for nvim-neoclip.lua]], true)
-try_loadstring("\27LJ\2\n³\2\0\0\a\0\14\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\v\0005\3\t\0005\4\5\0005\5\3\0004\6\0\0=\6\4\5=\5\6\0045\5\a\0004\6\0\0=\6\4\5=\5\b\4=\4\n\3=\3\f\2B\0\2\0016\0\0\0'\2\n\0B\0\2\0029\0\r\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\tkeys\1\0\0\14telescope\1\0\0\6n\1\0\5\17paste_behind\6P\vselect\t<cr>\npaste\6p\vdelete\6d\vreplay\6q\6i\1\0\0\vcustom\1\0\5\17paste_behind\n<c-P>\vselect\t<cr>\npaste\n<c-p>\vdelete\n<c-d>\vreplay\n<c-q>\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
+try_loadstring("\27LJ\2\n³\2\0\0\a\0\14\0\0256\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\v\0005\3\t\0005\4\5\0005\5\3\0004\6\0\0=\6\4\5=\5\6\0045\5\a\0004\6\0\0=\6\4\5=\5\b\4=\4\n\3=\3\f\2B\0\2\0016\0\0\0'\2\n\0B\0\2\0029\0\r\0'\2\1\0B\0\2\1K\0\1\0\19load_extension\tkeys\1\0\0\14telescope\1\0\0\6n\1\0\5\vdelete\6d\npaste\6p\vreplay\6q\17paste_behind\6P\vselect\t<cr>\6i\1\0\0\vcustom\1\0\5\vdelete\n<c-d>\npaste\n<c-p>\vreplay\n<c-q>\17paste_behind\n<c-P>\vselect\t<cr>\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
 time([[Config for nvim-neoclip.lua]], false)
 -- Config for: LuaSnip
 time([[Config for LuaSnip]], true)
 try_loadstring("\27LJ\2\nñ\3\0\0\v\0\23\00166\0\0\0'\2\1\0B\0\2\0024\1\0\0006\2\2\0009\2\3\0029\2\4\0029\2\5\0029\2\6\2\15\0\2\0X\3\f€\21\2\1\0\22\2\0\0029\3\a\0006\5\b\0B\5\1\2'\6\t\0'\a\n\0'\b\v\0'\t\f\0'\n\r\0B\3\a\2<\3\2\0019\2\a\0006\4\14\0B\4\1\2'\5\15\0B\2\3\0029\3\16\0\18\5\2\0B\3\2\2\15\0\3\0X\4\3€\21\3\1\0\22\3\0\3<\2\3\0016\3\0\0'\5\17\0B\3\2\0029\3\18\3B\3\1\0016\3\0\0'\5\19\0B\3\2\0029\3\18\0035\5\20\0=\1\21\5B\3\2\0016\3\0\0'\5\22\0B\3\2\0029\3\18\3B\3\1\1K\0\1\0\"luasnip.loaders.from_snipmate\npaths\1\0\0 luasnip.loaders.from_vscode\14lazy_load\29luasnip.loaders.from_lua\17is_directory\rsnippets\19get_config_dir\22friendly-snippets\nstart\vpacker\tpack\tsite\20get_runtime_dir\15join_paths\22friendly_snippets\fsources\fluasnip\fbuiltin\tlvim\15lvim.utils\frequire\2\0", "config", "LuaSnip")
 time([[Config for LuaSnip]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
-time([[Config for todo-comments.nvim]], false)
--- Config for: vim-illuminate
-time([[Config for vim-illuminate]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.illuminate\frequire\0", "config", "vim-illuminate")
-time([[Config for vim-illuminate]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.treesitter\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\2\n`\0\0\3\0\6\0\v6\0\0\0009\0\1\0009\0\2\0\15\0\0\0X\1\5€6\0\3\0'\2\4\0B\0\2\0029\0\5\0B\0\1\1K\0\1\0\nsetup\18lvim.core.cmp\frequire\bcmp\fbuiltin\tlvim\0", "config", "nvim-cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: telescope-dap.nvim
-time([[Config for telescope-dap.nvim]], true)
-try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bdap\19load_extension\14telescope\frequire\0", "config", "telescope-dap.nvim")
-time([[Config for telescope-dap.nvim]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
 time([[Config for lspsaga.nvim]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\25lvim.core.illuminate\frequire\0", "config", "vim-illuminate")
+time([[Config for vim-illuminate]], false)
 -- Config for: vista.vim
 time([[Config for vista.vim]], true)
 try_loadstring("\27LJ\2\n—\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0x \n      let g:vista_sidebar_position = 'vertical topleft' \n      let g:vista_default_executive = 'nvim_lsp' \n      \bcmd\bvim\0", "config", "vista.vim")
 time([[Config for vista.vim]], false)
+-- Config for: litee.nvim
+time([[Config for litee.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14litee.lib\frequire\0", "config", "litee.nvim")
+time([[Config for litee.nvim]], false)
+-- Config for: telescope-dap.nvim
+time([[Config for telescope-dap.nvim]], true)
+try_loadstring("\27LJ\2\nH\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\bdap\19load_extension\14telescope\frequire\0", "config", "telescope-dap.nvim")
+time([[Config for telescope-dap.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: litee-calltree.nvim
+time([[Config for litee-calltree.nvim]], true)
+try_loadstring("\27LJ\2\nš\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\fkeymaps\1\0\15\rjump_tab\6t\16jump_vsplit\6v\15jump_split\6s\tjump\t<CR>\17collapse_all\azM\rcollapse\azc\nhover\6i\vexpand\6o\nclose\6X\fdetails\6d\thide\6H\thelp\6?\nfocus\6f\vswitch\6S\24close_panel_pop_out\n<C-c>\1\0\2\16hide_cursor\1\fon_open\vpannel\nsetup\19litee.calltree\frequire\0", "config", "litee-calltree.nvim")
+time([[Config for litee-calltree.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22lvim.core.project\frequire\0", "config", "project.nvim")
+time([[Config for project.nvim]], false)
+-- Config for: nvim-bqf
+time([[Config for nvim-bqf]], true)
+try_loadstring("\27LJ\2\nn\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rfunc_map\1\0\0\1\0\2\14pscrollup\n<C-u>\16pscrolldown\n<C-d>\nsetup\bbqf\frequire\0", "config", "nvim-bqf")
+time([[Config for nvim-bqf]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20lvim.core.mason\frequire\0", "config", "mason.nvim")
+time([[Config for mason.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lvim.core.telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\2\n`\0\0\3\0\6\0\v6\0\0\0009\0\1\0009\0\2\0\15\0\0\0X\1\5€6\0\3\0'\2\4\0B\0\2\0029\0\5\0B\0\1\1K\0\1\0\nsetup\18lvim.core.cmp\frequire\bcmp\fbuiltin\tlvim\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-dap-ui
+time([[Config for nvim-dap-ui]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\rsetup_ui\18lvim.core.dap\frequire\0", "config", "nvim-dap-ui")
+time([[Config for nvim-dap-ui]], false)
+-- Config for: nvim-treesitter-textobjects
+time([[Config for nvim-treesitter-textobjects]], true)
+try_loadstring("\27LJ\2\në\5\0\0\a\0\28\0\0316\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\26\0005\3\n\0005\4\3\0005\5\4\0005\6\5\0=\6\6\5=\5\a\0045\5\b\0=\5\t\4=\4\v\0035\4\f\0005\5\r\0=\5\14\0045\5\15\0=\5\16\0045\5\17\0=\5\18\0045\5\19\0=\5\20\4=\4\21\0035\4\22\0005\5\23\0=\5\24\4=\4\25\3=\3\27\2B\0\2\1K\0\1\0\16textobjects\1\0\0\16lsp_interop\25peek_definition_code\1\0\2\15<leader>pf\20@function.outer\15<leader>pF\17@class.outer\1\0\2\vborder\tnone\venable\2\tmove\22goto_previous_end\1\0\1\a[]\20@function.outer\24goto_previous_start\1\0\1\a[[\20@function.outer\18goto_next_end\1\0\1\a][\20@function.outer\20goto_next_start\1\0\1\a]]\20@function.outer\1\0\2\14set_jumps\1\venable\2\vselect\1\0\0\20selection_modes\1\0\3\17@class.outer\n<c-v>\20@function.outer\6V\21@parameter.outer\6v\fkeymaps\aic\1\0\2\nquery\17@class.inner\tdesc(Select inner part of a class region\1\0\3\aac\17@class.outer\aaf\20@function.outer\aif\20@function.inner\1\0\3#include_surrounding_whitespace\2\14lookahead\2\venable\2\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter-textobjects")
+time([[Config for nvim-treesitter-textobjects]], false)
+-- Config for: vim-clipper
+time([[Config for vim-clipper]], true)
+try_loadstring("\27LJ\2\nÅ\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0¥\1      let g:ClipperAddress=\"127.0.0.1\"\n      let g:ClipperPort=8377\n      let g:ClipperAuto=1\n      call clipper#set_invocation('netcat -c 127.0.0.1 8377')\n    \bcmd\bvim\0", "config", "vim-clipper")
+time([[Config for vim-clipper]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd mason-lspconfig.nvim ]]
@@ -604,9 +604,9 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
 vim.cmd [[au BufRead * ++once lua require("packer.load")({'Comment.nvim', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'bufferline.nvim', 'toggleterm.nvim', 'which-key.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufReadPost * ++once lua require("packer.load")({'nvim-ts-context-commentstring'}, { event = "BufReadPost *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'toggleterm.nvim', 'bufferline.nvim', 'which-key.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

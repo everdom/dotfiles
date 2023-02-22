@@ -24,7 +24,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.timeoutlen = 0
-vim.opt.guifont = "Sarasa Nerd Font Mono"
+vim.opt.guifont = "Sarasa Mono SC Nerd"
 
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
