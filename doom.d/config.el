@@ -102,17 +102,17 @@
 (setq which-key-idle-secondary-delay 0.1)
 
 ;; font setting
-;; (setq doom-font (font-spec :family "更纱黑体 Mono SC Nerd" :size 16.0))
-(setq doom-font (font-spec :family "更纱黑体 Mono SC Nerd" :size 16)
-      doom-serif-font (font-spec :family "更纱黑体 Mono SC Nerd")
-      doom-variable-pitch-font (font-spec :family "更纱黑体 Mono SC Nerd")
-      doom-unicode-font (font-spec :family "更纱黑体 Mono SC Nerd"))
-      ;; doom-big-font (font-spec :family "更纱黑体 Mono SC Nerd" :size 24))
+;; (setq doom-font (font-spec :family "Sarasa Mono SC Nerd" :size 16.0))
+(setq doom-font (font-spec :family "Sarasa Mono SC Nerd" :size 16)
+      doom-serif-font (font-spec :family "Sarasa Mono SC Nerd")
+      doom-variable-pitch-font (font-spec :family "Sarasa Mono SC Nerd")
+      doom-unicode-font (font-spec :family "Sarasa Mono SC Nerd"))
+      ;; doom-big-font (font-spec :family "Sarasa Mono SC Nerd" :size 24))
 (defun set-fonts ()
   (interactive)
-  (set-face-attribute 'default nil :font (font-spec :family "更纱黑体 Mono SC Nerd" :size 16))
+  (set-face-attribute 'default nil :font (font-spec :family "Sarasa Mono SC Nerd" :size 16))
   (set-fontset-font t 'unicode (font-spec :family "Apple Color Emoji" :size 14) nil 'prepend)
-  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "更纱黑体 Mono SC Nerd" :size 16) nil 'prepend)
+  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Sarasa Mono SC Nerd" :size 16) nil 'prepend)
   )
 (add-hook! 'window-setup-hook :append 'set-fonts) ;;言
 ;; (setq line-spacing 1.1)
@@ -204,8 +204,8 @@
 
 ;; Choose some fonts
  ;; (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono")
-;; (set-face-attribute 'default nil :family "更纱黑体 Mono SC Nerd")
-;; (set-face-attribute 'org-modern-symbol nil :family "更纱黑体 Mono SC Nerd")
+;; (set-face-attribute 'default nil :family "体 Mono SC Nerd")
+;; (set-face-attribute 'org-modern-symbol nil :family "Sarasa Mono SC Nerd")
 ;; (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
 ;; (set-face-attribute 'org-modern-symbol nil :family "Iosevka")
 
@@ -258,9 +258,8 @@ _h_ decrease width    _l_ increase width
   ("l" evil-window-increase-width)
   ("q" nil))
 
-(map!
-    (:prefix "SPC"
-      :desc "Hydra resize" :n "w SPC" #'doom-window-resize-hydra/body))
+(map! (:prefix "SPC"
+       :desc "Hydra resize" :n "w SPC" #'doom-window-resize-hydra/body))
 
   ;; 标题栏显示文件全路径
   (setq frame-title-format
@@ -378,7 +377,7 @@ _h_ decrease width    _l_ increase width
   (setq rime-inline-ascii-trigger 'shift-l)
   (setq mode-line-mule-info '((:eval (rime-lighter))))
   (setq rime-posframe-properties
-        (list :font "更纱黑体 Mono SC Nerd"
+        (list :font "Sarasa Mono SC Nerd"
               :internal-border-width 10))
   :custom
   (rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
@@ -408,5 +407,4 @@ when toggle off input method, switch to evil-normal-state if current state is ev
     (if (string= evil-state "insert")
         (evil-normal-state)))
   (toggle-input-method))
-
-(global-set-key (kbd "C-\\") 'evil-toggle-input-method)
+(map! "C-\\" 'evil-toggle-input-method)
