@@ -80,9 +80,9 @@
 ;; they are implemented.
 
 
-;; (setq package-archives '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;;                          ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-;;                          ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(setq package-archives '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+                         ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 ;; (package-initialize) ;; You might already have this line
 
 ;; proxy settings(uncomment when required)
@@ -344,28 +344,6 @@ _h_ decrease width    _l_ increase width
                                "~/Documents/todos/"
                                ))
 
-;;(module-load (expand-file-name "~/.emacs.d/liberime.so"))
-;;; im settings
-;; (setq rime-emacs-module-header-root "/usr/local/Cellar/emacs/28.2/include")
-;; (use-package! pyim
-;;  :defer 1
-;;  :config
-;;  (setq pyim-dcache-directory (concat doom-cache-dir "pyim/")
-;;        pyim-page-tooltip 'posframe
-;;        pyim-page-length 8
-;;        default-input-method "pyim")
-;;  (when (modulep! +rime)
-;;    (setq pyim-default-scheme 'rime))
-
-;; (use-package! liberime
-;;  :when (modulep! +rime)
-;;  ; :load-path (lambda()(expand-file-name "~/.emacs.d/pyim"))
-;;  :defer 1
-;;  :config
-;;  (setq liberime-user-data-dir (expand-file-name "pyim/rime" doom-etc-dir))
-;;  (setq pyim-default-scheme 'rime-mspy)
-;;  (liberime-load))
-
 ;; rime settings
 (use-package! rime
   :config
@@ -408,3 +386,85 @@ when toggle off input method, switch to evil-normal-state if current state is ev
         (evil-normal-state)))
   (toggle-input-method))
 (map! "C-\\" 'evil-toggle-input-method)
+
+
+;; LSP settings
+(after! lsp-mode
+  (map! :leader
+        :desc "Diagnostics" "c-" #'lsp-ui-flycheck-list
+        :desc "Imenu" "c," #'lsp-ui-imenu)
+  (setq lsp-headerline-breadcrumb-enable-diagnostics nil
+        lsp-headerline-breadcrumb-enable t
+        ;;用以解决在wsl2 windows terminal中rust项目移动光标导致重复显示行的问题。
+        lsp-lens-enable nil
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-imenu--custom-mode-line-format ""
+        lsp-enable-file-watchers nil
+        ;;用于开启rust类型推断
+        ;; lsp-rust-analyzer-server-display-inlay-hints t
+        +lsp-company-backends
+          (if (modulep! :editor snippets)
+              '(:separate company-capf company-yasnippet :with company-tabnine)
+            'company-capf)))
+        ;; +lsp-company-backends '(company-capf company-yasnippet
+        ;;                                      :with company-tabnine
+        ;;                                      :separate)))
+
+;; Completion settings
+(after! company
+  (map! :i "<tab>" #'company-indent-or-complete-common)
+  (map! :map company-active-map "<tab>" #'company-complete-common)
+  ;; 打字卡顿或者提示卡顿可将数值提高到0.250,emacs >= 28，开启native-comp可将此值修改为0.000
+  (setq company-idle-delay 0.000
+        company-minimum-prefix-length 1
+        company-show-quick-access t))
+
+(use-package! company-tabnine
+  :defer 1
+  :custom
+  (company-tabnine-max-num-results 9)
+  :init
+  (defun company//sort-by-tabnine (candidates)
+    (if (or (functionp company-backend)
+            (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
+        candidates
+      (let ((candidates-table (make-hash-table :test #'equal))
+            candidates-1
+            candidates-2)
+        (dolist (candidate candidates)
+          (if (eq (get-text-property 0 'company-backend candidate)
+                  'company-tabnine)
+              (unless (gethash candidate candidates-table)
+                (push candidate candidates-2))
+            (push candidate candidates-1)
+            (puthash candidate t candidates-table)))
+        (setq candidates-1 (nreverse candidates-1))
+        (setq candidates-2 (nreverse candidates-2))
+        (nconc (seq-take candidates-1 2)
+               (seq-take candidates-2 2)
+               (seq-drop candidates-1 2)
+               (seq-drop candidates-2 2)))))
+
+  (defun lsp-after-open-tabnine ()
+    "Hook to attach to `lsp-after-open'."
+    (setq-local company-tabnine-max-num-results 3)
+    (add-to-list 'company-transformers 'company//sort-by-tabnine t)
+    (add-to-list 'company-backends '(company-capf company-yasnippet :with company-tabnine :separate)))
+  (defun company-tabnine-toggle (&optional enable)
+    "Enable/Disable TabNine. If ENABLE is non-nil, definitely enable it."
+    (interactive)
+    (if (or enable (not (memq 'company-tabnine company-backends)))
+        (progn
+          (add-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
+          (add-to-list 'company-backends #'company-tabnine)
+          (when (bound-and-true-p lsp-mode) (lsp-after-open-tabnine))
+          (message "TabNine enabled."))
+      (setq company-backends (delete 'company-tabnine company-backends))
+      (setq company-backends (delete '(company-capf company-yasnippet :with company-tabnine :separate) company-backends))
+      (remove-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
+      (company-tabnine-kill-process)
+      (message "TabNine disabled.")))
+  :hook
+  (kill-emacs . company-tabnine-kill-process)
+  :config
+  (company-tabnine-toggle t))

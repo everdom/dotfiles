@@ -53,12 +53,18 @@ lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
 lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 -- lsp
-lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
+-- lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.keys.visual_mode["<leader>lf"] = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
-lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
-lvim.keys.normal_mode["gh"] = "<cmd>Lspsaga lsp_finder<CR>"
-lvim.keys.normal_mode["ga"] = "<cmd>Lspsaga code_action<CR>"
-
+-- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
+lvim.keys.normal_mode["gh"] = ":Lspsaga lsp_finder<cr>"
+lvim.keys.normal_mode["ga"] = ":Lspsaga code_action<cr>"
+lvim.keys.normal_mode["gi"] = ":Lspsaga incoming_calls<cr>"
+lvim.keys.normal_mode["go"] = ":Lspsaga outgoing_calls<cr>"
+lvim.keys.normal_mode["gd"] = ":Lspsaga goto_definition<cr>"
+lvim.keys.normal_mode["gn"] = ":Lspsaga rename<cr>"
+lvim.keys.normal_mode["gl"] = ":Lspsaga show_line_diagnostics<cr>"
+lvim.keys.normal_mode["gj"] = ":Lspsaga diagnostics_jump_next<cr>"
+lvim.keys.normal_mode["gk"] = ":Lspsaga diagnostics_jump_prev<cr>"
 -- telescope
 lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
 
@@ -80,7 +86,18 @@ lvim.keys.normal_mode["<leader>k"]  = "<cmd>Telescope keymaps<cr>"
 -- hop
 lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 lvim.keys.normal_mode["F"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
--- lvim.keys.normal_mode["<leader>k"] = "<cmd>HopChar2<cr>"
+lvim.keys.normal_mode[",w"] = "<cmd>HopWord<cr>"
+lvim.keys.normal_mode[",e"] = "<cmd>HopWordAC<cr>"
+lvim.keys.normal_mode[",b"] = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode[",c"] = "<cmd>HopChar1AC<cr>"
+lvim.keys.normal_mode[",C"] = "<cmd>HopChar1BC<cr>"
+lvim.keys.normal_mode[",l"] = "<cmd>HopLine<cr>"
+lvim.keys.normal_mode[",j"] = "<cmd>HopLineAC<cr>"
+lvim.keys.normal_mode[",k"] = "<cmd>HopLineBC<cr>"
+lvim.keys.normal_mode[",v"] = "<cmd>HopVertical<cr>"
+lvim.keys.normal_mode[",/"] = "<cmd>HopPattern<cr>"
+lvim.keys.normal_mode[",f"] = "<cmd>HopChar2CurrentLineAC<cr>"
+lvim.keys.normal_mode[",F"] = "<cmd>HopChar2CurrentLineBC<cr>"
 
 -- yank history
 lvim.keys.normal_mode["<leader>yh"] = "<cmd>Telescope neoclip<cr>"

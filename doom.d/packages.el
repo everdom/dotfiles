@@ -57,7 +57,10 @@
   (package! deferred :recipe (:host github :repo "kiwanami/emacs-deferred"))
   (package! epc :recipe (:host github :repo "kiwanami/emacs-epc")))
 
-;; (package! liberime
-;;   :recipe (:host github :repo "DogLooksGood/liberime" :files ("CMakeLists.txt" "Makefile" "src" "*.el")))
+(package! youdao-dictionary)
+(package! company-box)
+(package! company-tabnine)
+(package! leetcode)
+
 ;; (package! rime
 ;;   :recipe (:host github :repo "DogLooksGood/emacs-rime" :files ("rime.el")))
