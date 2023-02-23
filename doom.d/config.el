@@ -468,3 +468,6 @@ when toggle off input method, switch to evil-normal-state if current state is ev
   (kill-emacs . company-tabnine-kill-process)
   :config
   (company-tabnine-toggle t))
+
+;; youdao
+(map! "C-c y" 'youdao-dictionary-search-at-point-posframe)
