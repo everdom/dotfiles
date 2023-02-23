@@ -367,17 +367,17 @@ lvim.plugins = {
   { -- resize window
     "simeji/winresizer"
   },
-  { -- vim clip on server
-    "wincent/vim-clipper",
-    config = function()
-      vim.cmd([[
-      let g:ClipperAddress="127.0.0.1"
-      let g:ClipperPort=8377
-      let g:ClipperAuto=1
-      call clipper#set_invocation('netcat -c 127.0.0.1 8377')
-    ]] )
-    end
-  },
+  -- { -- vim clip on server
+  --   "wincent/vim-clipper",
+  --   config = function()
+  --     vim.cmd([[
+  --     let g:ClipperAddress="127.0.0.1"
+  --     let g:ClipperPort=8377
+  --     let g:ClipperAuto=1
+  --     call clipper#set_invocation('netcat -c 127.0.0.1 8377')
+  --   ]] )
+  --   end
+  -- },
   { -- log file content highlighting
     "mtdl9/vim-log-highlighting"
   },
@@ -561,6 +561,10 @@ lvim.plugins = {
       require('telescope').load_extension('neoclip')
     end,
   },
+  -- this plugin will disable vim command autocomplete
+  -- {
+  --   "hrsh7th/cmp-nvim-lsp-signature-help",
+  -- },
   {
     'ethanholz/nvim-lastplace'
   },
@@ -589,7 +593,13 @@ lvim.plugins = {
   },
   {
     "cdelledonne/vim-cmake"
-  }
+  },
+  {
+    "voldikss/vim-translator"
+  },
+  {
+    'h-hg/fcitx.nvim'
+  },
 }
 
 

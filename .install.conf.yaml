@@ -43,6 +43,9 @@
     ~/Library/Preferences/clangd: clangd  # macos
     ~/.config/clangd: clangd  # macos
     ~/.doom.d: doom.d
+    ~/.config/i3: i3
+    ~/.config/polybar: polybar
+    ~/.config/tmuxinator: tmuxinator
     # ~/.zfunctions/prompt_spaceship_setup: zsh/prompt/spaceship-prompt/spaceship.zsh
 
 - create:

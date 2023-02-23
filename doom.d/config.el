@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "everdom"
+      user-mail-address "everdom.g@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -89,15 +89,29 @@
                          ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
                          ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
-;; (setq url-proxy-service
-;;       '(("http" . "192.168.0.65:7890")        ;; notice without protocol, do NOT add protoco
-;;         ("https" . "192.168.0.65:7890")))
+(setq url-proxy-service
+      '(("http" . "192.168.0.65:7890")        ;; notice without protocol, do NOT add protoco
+        ("https" . "192.168.0.65:7890")))
 
 ;; (setq indent-tabs-mode t)
 (setq-default tab-width 4)
 (setq tab-width 4)
 
+(setq doom-font (font-spec :family "Sarasa Mono SC Nerd" :size 16)
+      doom-serif-font (font-spec :family "Sarasa Mono SC Nerd")
+      doom-variable-pitch-font (font-spec :family "Sarasa Mono SC Nerd")
+      doom-unicode-font (font-spec :family "Sarasa Mono SC Nerd"))
+      ;; doom-big-font (font-spec :family "Sarasa Mono SC Nerd" :size 24))
+(defun set-fonts ()
+  (interactive)
+  (set-face-attribute 'default nil :font (font-spec :family "Sarasa Mono SC Nerd" :size 16))
+  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Sarasa Mono SC Nerd" :size 16) nil 'prepend)
+  )
+(add-hook! 'window-setup-hook :append 'set-fonts) ;;言
 
+;; (setq line-spacing 1.1)
+;; or if you want to set it globaly
+(setq-default line-spacing 0.1)
 ;; Minimal UI
 (package-initialize)
 (menu-bar-mode -1)
@@ -145,3 +159,140 @@
  "? now ─────────────────────────────────────────────────")
 
 (global-org-modern-mode)
+
+;; window resize settings
+(defhydra doom-window-resize-hydra (:hint nil)
+  "
+             _k_ increase height
+_h_ decrease width    _l_ increase width
+             _j_ decrease height
+"
+  ("h" evil-window-decrease-width)
+  ("j" evil-window-increase-height)
+  ("k" evil-window-decrease-height)
+  ("l" evil-window-increase-width)
+  ("q" nil))
+
+(map!
+    (:prefix "SPC"
+      :desc "Hydra resize" :n "w SPC" #'doom-window-resize-hydra/body))
+
+  ;; 标题栏显示文件全路径
+  (setq frame-title-format
+        '("%S"
+          (buffer-file-name "%f"
+                            (dired-directory dired-directory "%b"))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置开始 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; 文件编码设置
+  ;; 编码设置:utf-8之类，所有的文件全部以utf8保存
+  ;; 设置默认编码
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  ;;设置默认读入文件编码
+  (prefer-coding-system 'utf-8)
+  (prefer-coding-system 'gb2312)
+  ;;设置写入文件编码
+  (setq default-buffer-file-coding-system 'utf-8)
+  ;; 如果不写下面两句，只写
+  (prefer-coding-system 'utf-8)
+  ;; 这一句的话，新建文件以utf-8编码，行末结束符平台相关
+  (prefer-coding-system 'utf-8-dos)
+  (prefer-coding-system 'utf-8-unix)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; org-mode
+  (global-pangu-spacing-mode 0)
+  (set (make-local-variable 'pangu-spacing-real-insert-separtor) nil)
+
+  ;; Plantuml
+  (setq org-plantuml-jar-path "~/Configs/libs/plantuml.jar")
+                                        ; Use fundamental mode when editing plantuml blocks with C-c '
+  ;; (add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
+
+  ;; Ditaa
+  (setq org-ditaa-jar-path "~/Configs/libs/ditaa.jar")
+
+  ;; Display inline images
+  (add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
+
+  ; Make babel results blocks lowercase
+  (setq org-babel-results-keyword "results")
+
+  (defun bh/display-inline-images ()
+    (condition-case nil
+        (org-display-inline-images)
+      (error nil)))
+
+  (org-babel-do-load-languages
+   (quote org-babel-load-languages)
+   (quote ((emacs-lisp . t)
+           (dot . t)
+           (ditaa . t)
+           (R . t)
+           (octave . t)
+           (python . t)
+           (ruby . t)
+           (gnuplot . t)
+           (clojure . t)
+           (sh . t)
+           (ledger . t)
+           (org . t)
+           (plantuml . t)
+           (latex . t)
+           (C . t)
+           (shell . t)
+           (sh . t)
+           )))
+
+  ; Do not prompt to confirm evaluation
+  ; This may be dangerous - make sure you understand the consequences
+  ; of setting this -- see the docstring for details
+  (setq org-confirm-babel-evaluate nil)
+  (setq org-src-fontify-natively t)
+
+  ;; 全局任务清单
+  (setq org-agenda-files (list "~/org/todos/work.org"
+                               "~/org/todos/projects.org"
+                               "~/org/todos/home.org"
+                               "~/org/todos/"
+                               ))
+
+;; Rime input method settings
+(use-package! rime
+  :config
+  (setq rime-inline-ascii-trigger 'shift-l)
+  (setq mode-line-mule-info '((:eval (rime-lighter))))
+  (setq rime-posframe-properties
+        (list :background-color "#333333"
+              :foreground-color "#dcdccc"
+              :font "Sarasa Mono SC Nerd"
+              :internal-border-width 10))
+  :custom
+  (rime-user-data-dir "~/.config/fcitx/rime")
+  (rime-show-candidate 'posframe)
+  (default-input-method "rime")
+  )
+
+(define-key rime-active-mode-map (kbd "M-j") 'rime-inline-ascii)
+(define-key rime-mode-map (kbd "M-j") 'rime-force-enable)
+;; (defun rime-commit1-and-evil-normal ()
+;;   "Commit the 1st item if exists, then go to evil normal state."
+;;   (interactive)
+;;   (rime-commit1)
+;;   (evil-normal-state))
+;; (define-key rime-active-mode-map (kbd "<escape>") 'rime-commit1-and-evil-normal)
+
+(defun evil-toggle-input-method ()
+  "when toggle on input method, switch to evil-insert-state if possible.
+when toggle off input method, switch to evil-normal-state if current state is evil-insert-state"
+  (interactive)
+  (setq default-input-method "rime")
+  (if (not current-input-method)
+      (if (not (string= evil-state "insert"))
+          (evil-insert-state))
+    (if (string= evil-state "insert")
+        (evil-normal-state)))
+  (toggle-input-method))
+
+(global-set-key (kbd "C-\\") 'evil-toggle-input-method)
