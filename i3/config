@@ -115,7 +115,7 @@ for_window [class="Xarchiver"] floating enable
 for_window [class="Genymotion"] floating enable
 for_window [class="Vlc"] floating enable
 for_window [class="VirtualBox"] floating enable
-for_window [class="Nautilus"] floating enable
+# for_window [class="Nautilus"] floating enable
 for_window [class="Catfish"] floating enable
 for_window [class="feh"] floating enable
 

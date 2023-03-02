@@ -12,8 +12,7 @@ package.path = home .. "/.dotfiles/lvim/?.lua"
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = false 
--- lvim.colorscheme = "lunar"
+lvim.format_on_save.enabled = false -- lvim.colorscheme = "lunar"
 -- themes: https://vimcolorschemes.com/
 lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -37,6 +36,7 @@ lvim.keys.normal_mode["H"] = "^"
 lvim.keys.normal_mode["L"] = "$"
 lvim.keys.normal_mode["Q"] = "q"
 lvim.keys.normal_mode["<leader>h"] = ":nohl<cr>"
+-- lvim.keys.normal_mode["<A-o>"] = ":ClangdSwitchSourceHeader<cr>"
 lvim.keys.normal_mode["<leader>j"] = ":ClangdSwitchSourceHeader<cr>"
 lvim.keys.normal_mode["<leader>H"] = ":ClangdTypeHierarchy<cr>"
 lvim.keys.normal_mode["<leader>o"] = ":Vista!!<cr>"
@@ -53,50 +53,68 @@ lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
 lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 -- lsp
-lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
+-- lvim.keys.normal_mode["<leader>lc"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.keys.visual_mode["<leader>lf"] = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
-lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
+-- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
 -- lvim.keys.normal_mode["gh"] = ":lua vim.lsp.buf.hover()<cr>"
 lvim.keys.normal_mode["gh"] = ":Lspsaga lsp_finder<cr>"
 lvim.keys.normal_mode["ga"] = ":Lspsaga code_action<cr>"
 lvim.keys.normal_mode["gi"] = ":Lspsaga incoming_calls<cr>"
 lvim.keys.normal_mode["go"] = ":Lspsaga outgoing_calls<cr>"
 lvim.keys.normal_mode["gd"] = ":Lspsaga goto_definition<cr>"
-lvim.keys.normal_mode["gr"] = ":Lspsaga rename<cr>"
+lvim.keys.normal_mode["gn"] = ":Lspsaga rename<cr>"
 lvim.keys.normal_mode["glc"] = ":Lspsaga show_cursor_diagnostics<cr>"
 lvim.keys.normal_mode["gll"] = ":Lspsaga show_line_diagnostics<cr>"
 lvim.keys.normal_mode["gln"] = ":Lspsaga diagnostics_jump_next<cr>"
 lvim.keys.normal_mode["glp"] = ":Lspsaga diagnostics_jump_prev<cr>"
 
 -- telescope
-lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
+-- lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
 
 -- orverwirte old 's'
 lvim.builtin.which_key.mappings.f   = nil
 lvim.builtin.which_key.mappings.s   = nil
-lvim.keys.normal_mode["<leader>s"]  = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
-lvim.keys.normal_mode["<leader>S"]  = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
-lvim.keys.normal_mode["<leader>ff"] = ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>"
-lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
+-- lvim.keys.normal_mode["<leader>s"]  = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
+-- lvim.keys.normal_mode["<leader>S"]  = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
+
+lvim.builtin.which_key.mappings["s"]  = {":lua require('telescope.builtin').lsp_document_symbols()<cr>", "Document Symbols"}
+lvim.builtin.which_key.mappings["S"]  = {":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "Workspace Symbols"}
+
+lvim.builtin.which_key.mappings["f"] = {
+  name="File",
+  f = {":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find Project Files"},
+  w = {":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>", "Find Word"},
+  e = {":lua require('my_funcs').live_grep_raw({default_text =''})<cr>", "Find"},
+  d = {":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>", "Find In Dir"},
+  r = {":Telescope oldfiles<cr>", "Find Old Files"},
+  -- s = {":lua require('telescope.builtin').lsp_document_symbols()<cr>", "Document Symbols"},
+  -- S  = {":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "Workspace Symbols"}
+}
+-- lvim.keys.normal_mode["<leader>ff"] = ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>"
+-- lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
 lvim.keys.visual_mode["<leader>fw"] = "<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>"
-lvim.keys.normal_mode["<leader>fw"] = ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
-lvim.keys.normal_mode["<leader>fd"] = ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
+-- lvim.keys.normal_mode["<leader>fw"] = ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
+-- lvim.keys.normal_mode["<leader>fd"] = ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
 lvim.keys.normal_mode["<leader>k"]  = "<cmd>Telescope keymaps<cr>"
+
+lvim.builtin.which_key.mappings["gS"]  = {"<cmd>Telescope git_status<cr>", "Status"}
 
 -- hop
 lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 lvim.keys.normal_mode["F"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-lvim.keys.normal_mode[",w"] = "<cmd>HopWordAC<cr>"
-lvim.keys.normal_mode[",W"] = "<cmd>HopWordBC<cr>"
-lvim.keys.normal_mode[",c"] = "<cmd>HopChar1AC<cr>"
-lvim.keys.normal_mode[",C"] = "<cmd>HopChar1BC<cr>"
-lvim.keys.normal_mode[",l"] = "<cmd>HopLine<cr>"
-lvim.keys.normal_mode[",j"] = "<cmd>HopLineAC<cr>"
-lvim.keys.normal_mode[",k"] = "<cmd>HopLineBC<cr>"
+lvim.keys.normal_mode[";W"] = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode[";w"] = "<cmd>HopWordAC<cr>"
+lvim.keys.normal_mode[";b"] = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode[";c"] = "<cmd>HopChar1AC<cr>"
+lvim.keys.normal_mode[";C"] = "<cmd>HopChar1BC<cr>"
+lvim.keys.normal_mode[";l"] = "<cmd>HopLine<cr>"
+lvim.keys.normal_mode[";j"] = "<cmd>HopLineAC<cr>"
+lvim.keys.normal_mode[";k"] = "<cmd>HopLineBC<cr>"
+lvim.keys.normal_mode[";aa"] = "<cmd>HopAnywhere<cr>"
+lvim.keys.normal_mode[";aw"] = "<cmd>HopWord<cr>"
+lvim.keys.normal_mode[";ac"] = "<cmd>HopChar1<cr>"
 -- lvim.keys.normal_mode["<leader>k"] = "<cmd>HopChar2<cr>"
 
--- yank history
-lvim.keys.normal_mode["<leader>yh"] = "<cmd>Telescope neoclip<cr>"
 
 -- auto pairs
 lvim.builtin.autopairs.disable_filetype = { "TelescopePrompt", "spectre_panel", "repl" }
@@ -125,14 +143,14 @@ lvim.builtin.which_key.mappings.d = {
 
 -- dap custom keymaps
 lvim.keys.normal_mode["<F7>"] = "<cmd>lua require'dap'.step_into()<cr>"
+lvim.keys.normal_mode["<C-F7>"] = "<cmd>lua require'dap'.step_out()<cr>"
 lvim.keys.normal_mode["<F8>"] = "<cmd>lua require'dap'.step_over()<cr>"
-lvim.keys.normal_mode["<F4>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
+lvim.keys.normal_mode["<A-F9>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
 lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
-lvim.keys.normal_mode["<A-F5>"] = "<cmd>lua require'dap'.step_out()<cr>"
-lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.terminate()<cr>"
-lvim.keys.normal_mode["<F2>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
+lvim.keys.normal_mode["<F6>"] = "<cmd>lua require'dap'.pause()<cr>"
+lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>"
+lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
 lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
-lvim.keys.normal_mode["<S-F12>"] = "<cmd>lua require'dap'.repl.toggle()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
@@ -163,7 +181,7 @@ lvim.builtin.telescope.defaults.mappings = {
 
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
+lvim.builtin.which_key.mappings["T"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
@@ -174,6 +192,17 @@ lvim.builtin.which_key.mappings["t"] = {
   t = { "<cmd>TodoTrouble<cr>", "Todo" }
 }
 
+lvim.builtin.which_key.mappings["t"] = {
+  name = "Toggle",
+  a = {":ASToggle<cr>", "Auto Save"},
+  -- yank history
+  y = {"<cmd>Telescope neoclip<cr>", "NeoClip"},
+  t = {"<cmd>Telescope<cr>", "Telescope"},
+  b = {"<cmd>Telescope marks<cr>", "Bookmarks"},
+  c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+  r = {"<cmd>Telescope registers<cr>", "Registers"},
+  m = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
+}
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -413,9 +442,9 @@ lvim.plugins = {
       require("todo-comments").setup {}
     end
   },
-  { -- auto save
-    "pocco81/auto-save.nvim"
-  },
+  -- { -- auto save
+  --   "pocco81/auto-save.nvim"
+  -- },
   {
     "p00f/clangd_extensions.nvim",
     after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
