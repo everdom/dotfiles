@@ -182,22 +182,22 @@ _h_ decrease width    _l_ increase width
         '("%S"
           (buffer-file-name "%f"
                             (dired-directory dired-directory "%b"))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置开始 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; 文件编码设置
-  ;; 编码设置:utf-8之类，所有的文件全部以utf8保存
-  ;; 设置默认编码
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  ;;设置默认读入文件编码
-  (prefer-coding-system 'utf-8)
-  (prefer-coding-system 'gb2312)
-  ;;设置写入文件编码
-  (setq default-buffer-file-coding-system 'utf-8)
-  ;; 如果不写下面两句，只写
-  (prefer-coding-system 'utf-8)
-  ;; 这一句的话，新建文件以utf-8编码，行末结束符平台相关
-  (prefer-coding-system 'utf-8-dos)
-  (prefer-coding-system 'utf-8-unix)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置开始 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;   ;; 文件编码设置
+;;   ;; 编码设置:utf-8之类，所有的文件全部以utf8保存
+;;   ;; 设置默认编码
+;;   (set-terminal-coding-system 'utf-8)
+;;   (set-keyboard-coding-system 'utf-8)
+;;   ;;设置默认读入文件编码
+;;   (prefer-coding-system 'utf-8)
+;;   (prefer-coding-system 'gb2312)
+;;   ;;设置写入文件编码
+;;   (setq default-buffer-file-coding-system 'utf-8)
+;;   ;; 如果不写下面两句，只写
+;;   (prefer-coding-system 'utf-8)
+;;   ;; 这一句的话，新建文件以utf-8编码，行末结束符平台相关
+;;   (prefer-coding-system 'utf-8-dos)
+;;   (prefer-coding-system 'utf-8-unix)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -294,5 +294,5 @@ when toggle off input method, switch to evil-normal-state if current state is ev
     (if (string= evil-state "insert")
         (evil-normal-state)))
   (toggle-input-method))
-
-(global-set-key (kbd "C-\\") 'evil-toggle-input-method)
+(if (not (equal window-system nil))
+    (map! "C-\\" #'evil-toggle-input-method))

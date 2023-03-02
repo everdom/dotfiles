@@ -12,7 +12,8 @@ package.path = home .. "/.dotfiles/lvim/?.lua"
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = false -- lvim.colorscheme = "lunar"
+lvim.format_on_save.enabled = false 
+-- lvim.colorscheme = "lunar"
 -- themes: https://vimcolorschemes.com/
 lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -23,6 +24,8 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.timeoutlen = 0
+vim.opt.relativenumber = true
+vim.opt.cursorcolumn = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
