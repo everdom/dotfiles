@@ -33,21 +33,24 @@ exec --no-startup-id bash ~/.config/i3/polybar/launch.sh
 #++++++=Shortcuts=++++++#
 # program launchers
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $m_alt+space exec --no-startup-id rofi -show window
 
 # terminals
-bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+z exec --no-startup-id xfce4-terminal
+# bindsym $mod+Return exec --no-startup-id xfce4-terminal
+# bindsym $mod+z exec --no-startup-id xfce4-terminal
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+z exec --no-startup-id alacritty
 # bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 # bindsym $mod+z exec --no-startup-id i3-sensible-terminal
 
 # browsers
-bindsym $mod+c exec --no-startup-id firefox
+bindsym Ctrl+$m_alt+f exec --no-startup-id firefox
 #bindsym $mod+Shift+c exec --no-startup-id chromium --save-page-as-mhtml
 
 # file explorers
-bindsym $mod+e exec --no-startup-id nautilus
+bindsym Ctrl+$m_alt+n exec --no-startup-id nautilus
+bindsym Ctrl+$m_alt+r exec --no-startup-id ranger
 
 # screenshot
 bindsym Print exec --no-startup-id "scrot -u -q 100 './Pictures/Screenshots/%Y%m%d_%H%M%s_$wx$h.png'"
@@ -55,10 +58,10 @@ bindsym --release Shift+Print exec --no-startup-id "scrot -bs -q 100 './Pictures
 bindsym --release Control+Print exec --no-startup-id "scrot -s -q 100 './Pictures/Screenshots/%Y%m%d_%H%M%s_$wx$h.png'"
 
 #vim
-bindsym $mod+Shift+v exec --no-startup-id xfce4-terminal -e lvim 
+bindsym Ctrl+$m_alt+v exec --no-startup-id xfce4-terminal -e lvim 
 
 # emacs
-bindsym $mod+Shift+e exec --no-startup-id emacsclient -c
+bindsym Ctrl+$m_alt+e exec --no-startup-id emacsclient -c
 
 # VSC
 #bindsym $mod+q exec --no-startup-id code
@@ -147,14 +150,14 @@ font pango:Sarasa Mono SC Nerd 10
 
 #++++++=Workspaces=++++++#
 # putting clients on specific workspaces
-# assign [class="Firefox"] 1
-# assign [class="code"] 3
+assign [class="firefox"] 3
+assign [class="Emacs"] 2
 
 #------=Workspace Control=------#
 # switch to near workspace
 bindsym $mod+Tab workspace next
 bindsym $m_alt+Tab workspace prev
-# bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Shift+Tab workspace prev
 
 
 
@@ -270,8 +273,9 @@ bindsym $mod+t layout tabbed
 bindsym $mod+a layout toggle split
 
 # terminate window
-bindsym $mod+Shift+q kill
+# bindsym $mod+Shift+q kill
 bindsym $mod+Escape kill
+bindsym $mod+c kill
 
 # hide | show window(minus is "-" and plus is "+".)
 bindsym $mod+minus move scratchpad
@@ -330,7 +334,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # power
 set $mode_system select: lock(L) exit(E) reboot(R) poweroff(O) cancel(Esc)
-bindsym $mod+$m_alt+Escape mode "$mode_system"
+bindsym $mod+x mode "$mode_system"
 mode "$mode_system" {
  bindsym l mode "default" exec --no-startup-id betterlockscreen -l blur
  bindsym e exec --no-startup-id i3-msg exit, mode "default"
@@ -352,13 +356,13 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #++++++=Sessions=++++++#
 
 # reload the configuration file
-bindsym $mod+$m_alt+c reload
+bindsym Ctrl+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+$m_alt+r restart
+bindsym Ctrl+Shift++r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+$m_alt+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # i3lock
 mode "i3lock: Return to lock/Escape to Cancel" {
@@ -367,7 +371,7 @@ mode "i3lock: Return to lock/Escape to Cancel" {
  bindsym Escape mode "default"
 }
 
-bindsym $mod+$m_alt+l mode "i3lock: Return to lock/Escape to Cancel"
+bindsym Ctrl+$m_alt+l mode "i3lock: Return to lock/Escape to Cancel"
 
 # wallpaper
 exec --no-startup-id feh --no-fehbg --bg-fill '/usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png'

@@ -25,6 +25,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.timeoutlen = 0
 vim.opt.relativenumber = true
 vim.opt.cursorcolumn = false
+vim.opt.wrap = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -54,7 +55,7 @@ lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 -- lsp
 -- lvim.keys.normal_mode["<leader>lc"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
-lvim.keys.visual_mode["<leader>lf"] = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
+lvim.builtin.which_key.vmappings["lf"] = {"<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format"}
 -- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
 -- lvim.keys.normal_mode["gh"] = ":lua vim.lsp.buf.hover()<cr>"
 lvim.keys.normal_mode["gh"] = ":Lspsaga lsp_finder<cr>"
@@ -69,7 +70,7 @@ lvim.keys.normal_mode["gln"] = ":Lspsaga diagnostics_jump_next<cr>"
 lvim.keys.normal_mode["glp"] = ":Lspsaga diagnostics_jump_prev<cr>"
 
 -- telescope
--- lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
+lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
 
 -- orverwirte old 's'
 lvim.builtin.which_key.mappings.f   = nil
@@ -86,33 +87,31 @@ lvim.builtin.which_key.mappings["f"] = {
   w = {":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>", "Find Word"},
   e = {":lua require('my_funcs').live_grep_raw({default_text =''})<cr>", "Find"},
   d = {":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>", "Find In Dir"},
-  r = {":Telescope oldfiles<cr>", "Find Old Files"},
+  -- r = {":Telescope oldfiles<cr>", "Find Old Files"},
   -- s = {":lua require('telescope.builtin').lsp_document_symbols()<cr>", "Document Symbols"},
   -- S  = {":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "Workspace Symbols"}
 }
 -- lvim.keys.normal_mode["<leader>ff"] = ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>"
 -- lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
-lvim.keys.visual_mode["<leader>fw"] = "<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>"
+lvim.builtin.which_key.vmappings["fw"] = {"<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>", "Find Word In Project"}
 -- lvim.keys.normal_mode["<leader>fw"] = ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
 -- lvim.keys.normal_mode["<leader>fd"] = ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
 lvim.keys.normal_mode["<leader>k"]  = "<cmd>Telescope keymaps<cr>"
 
-lvim.builtin.which_key.mappings["gS"]  = {"<cmd>Telescope git_status<cr>", "Status"}
+lvim.builtin.which_key.mappings["gS"]  = {"<cmd>Telescope git_status<cr>", "Git Status"}
 
 -- hop
 lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 lvim.keys.normal_mode["F"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-lvim.keys.normal_mode[";W"] = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode[";W"] = "<cmd>HopWord<cr>"
 lvim.keys.normal_mode[";w"] = "<cmd>HopWordAC<cr>"
 lvim.keys.normal_mode[";b"] = "<cmd>HopWordBC<cr>"
 lvim.keys.normal_mode[";c"] = "<cmd>HopChar1AC<cr>"
-lvim.keys.normal_mode[";C"] = "<cmd>HopChar1BC<cr>"
+lvim.keys.normal_mode[";C"] = "<cmd>HopChar1<cr>"
 lvim.keys.normal_mode[";l"] = "<cmd>HopLine<cr>"
 lvim.keys.normal_mode[";j"] = "<cmd>HopLineAC<cr>"
 lvim.keys.normal_mode[";k"] = "<cmd>HopLineBC<cr>"
-lvim.keys.normal_mode[";aa"] = "<cmd>HopAnywhere<cr>"
-lvim.keys.normal_mode[";aw"] = "<cmd>HopWord<cr>"
-lvim.keys.normal_mode[";ac"] = "<cmd>HopChar1<cr>"
+lvim.keys.normal_mode[";a"] = "<cmd>HopAnywhere<cr>"
 -- lvim.keys.normal_mode["<leader>k"] = "<cmd>HopChar2<cr>"
 
 
@@ -149,7 +148,7 @@ lvim.keys.normal_mode["<A-F9>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
 lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
 lvim.keys.normal_mode["<F6>"] = "<cmd>lua require'dap'.pause()<cr>"
 lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>"
-lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
+lvim.keys.normal_mode["<F2>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
 lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
 
 -- unmap a default keymapping
@@ -193,7 +192,7 @@ lvim.builtin.which_key.mappings["T"] = {
 }
 
 lvim.builtin.which_key.mappings["t"] = {
-  name = "Toggle",
+  name = "+Toggle",
   a = {":ASToggle<cr>", "Auto Save"},
   -- yank history
   y = {"<cmd>Telescope neoclip<cr>", "NeoClip"},
