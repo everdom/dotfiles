@@ -1,117 +1,135 @@
 --[[
+  },
 lvim is the global options object
 Linters should be
 filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
-local home = os.getenv("HOME")
-package.path = home .. "/.dotfiles/lvim/?.lua"
+local home                             = os.getenv("HOME")
+package.path                           = home .. "/.dotfiles/lvim/?.lua"
 
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
-lvim.log.level = "warn"
-lvim.format_on_save.enabled = false -- lvim.colorscheme = "lunar"
+lvim.log.level                         = "warn"
+-- lvim.format_on_save.enabled = false
+lvim.format_on_save                    = {
+  enabled = true,
+  pattern = "*.lua,*.rs,*.go,*.proto",
+  timeout = 1000,
+}
+-- lvim.colorscheme = "lunar"
 -- themes: https://vimcolorschemes.com/
-lvim.colorscheme = "lunar"
+lvim.colorscheme                       = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
 --  options
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.timeoutlen = 0
-vim.opt.relativenumber = true
-vim.opt.cursorcolumn = false
-vim.opt.wrap = true
+vim.opt.foldlevel                      = 99
+vim.opt.foldmethod                     = "expr"
+vim.opt.foldexpr                       = "nvim_treesitter#foldexpr()"
+vim.opt.timeoutlen                     = 0
+vim.opt.relativenumber                 = true
+vim.opt.cursorcolumn                   = false
+vim.opt.wrap                           = true
+vim.opt.termguicolors                  = true
+
+--lvim.g.neovide_transparency            = 0
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
+lvim.leader                            = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["E"] = ":BufferLineCyclePrev<CR>"
-lvim.keys.normal_mode["R"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["H"] = "^"
-lvim.keys.normal_mode["L"] = "$"
-lvim.keys.normal_mode["Q"] = "q"
-lvim.keys.normal_mode["<leader>h"] = ":nohl<cr>"
+lvim.keys.normal_mode["<C-s>"]         = ":w<cr>"
+lvim.keys.normal_mode["E"]             = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["R"]             = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<tab>"]         = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-tab>"]       = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["H"]             = "^"
+lvim.keys.normal_mode["L"]             = "$"
+lvim.keys.normal_mode["Q"]             = "q"
+lvim.keys.normal_mode["<leader>h"]     = ":nohl<cr>"
 -- lvim.keys.normal_mode["<A-o>"] = ":ClangdSwitchSourceHeader<cr>"
-lvim.keys.normal_mode["<leader>j"] = ":ClangdSwitchSourceHeader<cr>"
-lvim.keys.normal_mode["<leader>H"] = ":ClangdTypeHierarchy<cr>"
-lvim.keys.normal_mode["<leader>o"] = ":Vista!!<cr>"
-lvim.keys.normal_mode["<leader>q"] = ":bd<cr>"
-lvim.keys.normal_mode["q"] = "<Nop>"
-lvim.keys.normal_mode["n"] = "nzzzv"
-lvim.keys.normal_mode["N"] = "Nzzzv"
-lvim.keys.normal_mode["J"] = "mzJ`z"
+lvim.keys.normal_mode["<leader>j"]     = ":ClangdSwitchSourceHeader<cr>"
+lvim.keys.normal_mode["<leader>H"]     = ":ClangdTypeHierarchy<cr>"
+lvim.keys.normal_mode["<leader>o"]     = ":Vista!!<cr>"
+lvim.keys.normal_mode["<leader>q"]     = ":bd<cr>"
+lvim.keys.normal_mode["q"]             = "<Nop>"
+lvim.keys.normal_mode["n"]             = "nzzzv"
+lvim.keys.normal_mode["N"]             = "Nzzzv"
+lvim.keys.normal_mode["J"]             = "mzJ`z"
 
-lvim.keys.visual_mode["p"] = "P"
-lvim.keys.visual_mode["H"] = "^"
-lvim.keys.visual_mode["L"] = "$"
-lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
-lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
+lvim.keys.visual_mode["p"]             = "P"
+lvim.keys.visual_mode["H"]             = "^"
+lvim.keys.visual_mode["L"]             = "$"
+lvim.keys.visual_mode["J"]             = ":m '>+1<CR>gv=gv"
+lvim.keys.visual_mode["K"]             = ":m '<-2<CR>gv=gv"
 
 -- lsp
--- lvim.keys.normal_mode["<leader>lc"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
-lvim.builtin.which_key.vmappings["lf"] = {"<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format"}
+lvim.builtin.which_key.mappings["lc"]  = { ":lua vim.lsp.buf.incoming_calls()<cr>", "Incoming Calls" }
+lvim.builtin.which_key.mappings["lo"]  = { ":lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing Calls" }
+lvim.builtin.which_key.mappings.l.R    = { "<cmd>LspRestart<cr>", "Restart" }
+lvim.builtin.which_key.vmappings["lf"] = { "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format" }
 -- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
 -- lvim.keys.normal_mode["gh"] = ":lua vim.lsp.buf.hover()<cr>"
-lvim.keys.normal_mode["gh"] = ":Lspsaga lsp_finder<cr>"
-lvim.keys.normal_mode["ga"] = ":Lspsaga code_action<cr>"
-lvim.keys.normal_mode["gi"] = ":Lspsaga incoming_calls<cr>"
-lvim.keys.normal_mode["go"] = ":Lspsaga outgoing_calls<cr>"
-lvim.keys.normal_mode["gd"] = ":Lspsaga goto_definition<cr>"
-lvim.keys.normal_mode["gn"] = ":Lspsaga rename<cr>"
-lvim.keys.normal_mode["glc"] = ":Lspsaga show_cursor_diagnostics<cr>"
-lvim.keys.normal_mode["gll"] = ":Lspsaga show_line_diagnostics<cr>"
-lvim.keys.normal_mode["gln"] = ":Lspsaga diagnostics_jump_next<cr>"
-lvim.keys.normal_mode["glp"] = ":Lspsaga diagnostics_jump_prev<cr>"
+lvim.keys.normal_mode["gh"]            = ":Lspsaga lsp_finder<cr>"
+lvim.keys.normal_mode["ga"]            = ":Lspsaga code_action<cr>"
+lvim.keys.normal_mode["gi"]            = ":Lspsaga incoming_calls<cr>"
+lvim.keys.normal_mode["go"]            = ":Lspsaga outgoing_calls<cr>"
+lvim.keys.normal_mode["gd"]            = ":Lspsaga goto_definition<cr>"
+lvim.keys.normal_mode["gn"]            = ":Lspsaga rename<cr>"
+lvim.keys.normal_mode["glc"]           = ":Lspsaga show_cursor_diagnostics<cr>"
+lvim.keys.normal_mode["gll"]           = ":Lspsaga show_line_diagnostics<cr>"
+lvim.keys.normal_mode["gln"]           = ":Lspsaga diagnostics_jump_next<cr>"
+lvim.keys.normal_mode["glp"]           = ":Lspsaga diagnostics_jump_prev<cr>"
 
 -- telescope
-lvim.keys.normal_mode["<leader>r"] = ":Telescope oldfiles<cr>"
+lvim.keys.normal_mode["<leader>r"]     = ":Telescope oldfiles<cr>"
 
 -- orverwirte old 's'
-lvim.builtin.which_key.mappings.f   = nil
-lvim.builtin.which_key.mappings.s   = nil
+lvim.builtin.which_key.mappings.f      = nil
+lvim.builtin.which_key.mappings.s      = nil
 -- lvim.keys.normal_mode["<leader>s"]  = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
 -- lvim.keys.normal_mode["<leader>S"]  = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
 
-lvim.builtin.which_key.mappings["s"]  = {":lua require('telescope.builtin').lsp_document_symbols()<cr>", "Document Symbols"}
-lvim.builtin.which_key.mappings["S"]  = {":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "Workspace Symbols"}
+lvim.builtin.which_key.mappings["s"]   = { ":lua require('telescope.builtin').lsp_document_symbols()<cr>",
+  "Document Symbols" }
+lvim.builtin.which_key.mappings["S"]   = { ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>",
+  "Workspace Symbols" }
 
-lvim.builtin.which_key.mappings["f"] = {
-  name="File",
-  f = {":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find Project Files"},
-  w = {":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>", "Find Word"},
-  e = {":lua require('my_funcs').live_grep_raw({default_text =''})<cr>", "Find"},
-  d = {":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>", "Find In Dir"},
+lvim.builtin.which_key.mappings["f"]   = {
+  name = "File",
+  f = { ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find Project Files" },
+  w = { ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>", "Find Word" },
+  e = { ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>", "Find" },
+  d = {
+    ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>",
+    "Find In Dir" },
   -- r = {":Telescope oldfiles<cr>", "Find Old Files"},
   -- s = {":lua require('telescope.builtin').lsp_document_symbols()<cr>", "Document Symbols"},
   -- S  = {":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "Workspace Symbols"}
 }
 -- lvim.keys.normal_mode["<leader>ff"] = ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>"
 -- lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
-lvim.builtin.which_key.vmappings["fw"] = {"<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>", "Find Word In Project"}
+lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>",
+  "Find Word In Project" }
 -- lvim.keys.normal_mode["<leader>fw"] = ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
 -- lvim.keys.normal_mode["<leader>fd"] = ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
-lvim.keys.normal_mode["<leader>k"]  = "<cmd>Telescope keymaps<cr>"
-
-lvim.builtin.which_key.mappings["gS"]  = {"<cmd>Telescope git_status<cr>", "Git Status"}
+lvim.keys.normal_mode["<leader>k"]     = "<cmd>Telescope keymaps<cr>"
 
 -- hop
-lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
-lvim.keys.normal_mode["F"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-lvim.keys.normal_mode[";W"] = "<cmd>HopWord<cr>"
-lvim.keys.normal_mode[";w"] = "<cmd>HopWordAC<cr>"
-lvim.keys.normal_mode[";b"] = "<cmd>HopWordBC<cr>"
-lvim.keys.normal_mode[";c"] = "<cmd>HopChar1AC<cr>"
-lvim.keys.normal_mode[";C"] = "<cmd>HopChar1<cr>"
-lvim.keys.normal_mode[";l"] = "<cmd>HopLine<cr>"
-lvim.keys.normal_mode[";j"] = "<cmd>HopLineAC<cr>"
-lvim.keys.normal_mode[";k"] = "<cmd>HopLineBC<cr>"
-lvim.keys.normal_mode[";a"] = "<cmd>HopAnywhere<cr>"
+lvim.keys.normal_mode["f"]             =
+"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+lvim.keys.normal_mode["F"]             =
+"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+lvim.keys.normal_mode[";W"]            = "<cmd>HopWord<cr>"
+lvim.keys.normal_mode[";w"]            = "<cmd>HopWordAC<cr>"
+lvim.keys.normal_mode[";b"]            = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode[";c"]            = "<cmd>HopChar1AC<cr>"
+lvim.keys.normal_mode[";C"]            = "<cmd>HopChar1<cr>"
+lvim.keys.normal_mode[";l"]            = "<cmd>HopLine<cr>"
+lvim.keys.normal_mode[";j"]            = "<cmd>HopLineAC<cr>"
+lvim.keys.normal_mode[";k"]            = "<cmd>HopLineBC<cr>"
+lvim.keys.normal_mode[";a"]            = "<cmd>HopAnywhere<cr>"
 -- lvim.keys.normal_mode["<leader>k"] = "<cmd>HopChar2<cr>"
 
 
@@ -144,12 +162,13 @@ lvim.builtin.which_key.mappings.d = {
 lvim.keys.normal_mode["<F7>"] = "<cmd>lua require'dap'.step_into()<cr>"
 lvim.keys.normal_mode["<C-F7>"] = "<cmd>lua require'dap'.step_out()<cr>"
 lvim.keys.normal_mode["<F8>"] = "<cmd>lua require'dap'.step_over()<cr>"
-lvim.keys.normal_mode["<A-F9>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
+lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
 lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
 lvim.keys.normal_mode["<F6>"] = "<cmd>lua require'dap'.pause()<cr>"
-lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>"
+-- lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>"
+lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr>"
 lvim.keys.normal_mode["<F2>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
-lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
+-- lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
@@ -162,15 +181,15 @@ local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
   -- for input mode
   i = {
-    ["<C-j>"] = actions.move_selection_next,
-    ["<C-k>"] = actions.move_selection_previous,
-    ["<C-n>"] = actions.cycle_history_next,
-    ["<C-p>"] = actions.cycle_history_prev,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
   },
   -- for normal mode
   n = {
-    ["<C-j>"] = actions.move_selection_next,
-    ["<C-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
   },
 }
 
@@ -193,15 +212,16 @@ lvim.builtin.which_key.mappings["T"] = {
 
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Toggle",
-  a = {":ASToggle<cr>", "Auto Save"},
+  a = { ":ASToggle<cr>", "Auto Save" },
   -- yank history
-  y = {"<cmd>Telescope neoclip<cr>", "NeoClip"},
-  t = {"<cmd>Telescope<cr>", "Telescope"},
-  b = {"<cmd>Telescope marks<cr>", "Bookmarks"},
-  c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
-  r = {"<cmd>Telescope registers<cr>", "Registers"},
-  m = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
+  y = { "<cmd>Telescope neoclip<cr>", "NeoClip" },
+  t = { "<cmd>Telescope<cr>", "Telescope" },
+  b = { "<cmd>Telescope marks<cr>", "Bookmarks" },
+  c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+  r = { "<cmd>Telescope registers<cr>", "Registers" },
+  m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 }
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -211,6 +231,8 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+-- dap
+lvim.builtin.dap.active = true
 -- cmp
 lvim.builtin.cmp.cmdline.enable = true
 table.insert(lvim.builtin.cmp.sources, {
@@ -256,6 +278,51 @@ lvim.lsp.installer.setup.ensure_installed = {
 -- lvim.lsp.installer.setup.ui.keymaps = {
 --     uninstall_server = "d",
 --     toggle_server_expand = "o",
+-- }
+-- local colors = {
+--     blue   = '#80a0ff',
+--     cyan   = '#79dac8',
+--     black  = '#080808',
+--     white  = '#c6c6c6',
+--     red    = '#ff5189',
+--     violet = '#d183e8',
+--     grey   = '#303030',
+-- }
+
+-- lvim.builtin.lualine.options.theme = {
+--     normal = {
+--         c = { fg = colors.black, bg = colors.violet },
+--         a = { fg = colors.white, bg = colors.grey },
+--         b = { fg = colors.black, bg = colors.white },
+--     },
+--     insert = {
+--         a = { fg = colors.black, bg = colors.blue },
+--     },
+--     visual = {
+--         a = { fg = colors.black, bg = colors.cyan },
+--     },
+--     replace = {
+--         a = { fg = colors.black, bg = colors.cyan },
+--     },
+--     inactive = {
+--         a = { fg = colors.white, bg = colors.black },
+--         b = { fg = colors.white, bg = colors.black },
+--         c = { fg = colors.black, bg = colors.black },
+--     },
+-- }
+-- lvim.builtin.lualine.options.component_separators = '|'
+-- lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
+-- lvim.builtin.lualine.sections = {
+--     lualine_a = {
+--         { 'mode', separator = { left = '' }, right_padding = 2 },
+--     },
+--     lualine_b = { 'filename', 'branch' },
+--     lualine_c = { 'fileformat' },
+--     lualine_x = {},
+--     lualine_y = { 'filetype', 'progress' },
+--     lualine_z = {
+--         { 'location', separator = { right = '' }, left_padding = 2 },
+--     },
 -- }
 
 -- ---@usage disable automatic installation of servers
@@ -330,8 +397,8 @@ formatters.setup {
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
 --     filetypes = { "c", "cpp" },
 --   },
--- }
 
+-- }
 lvim.lsp.null_ls.setup.on_init = function(new_client, _)
   new_client.offset_encoding = "utf-16"
 end
@@ -343,7 +410,8 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-  { -- better quick fix
+  {
+    -- better quick fix
     "kevinhwang91/nvim-bqf",
     config = function()
       require('bqf').setup(
@@ -356,55 +424,57 @@ lvim.plugins = {
       )
     end
   },
-  { -- only works on https://github.com/universal-ctags/ctags
+  {
+    -- only works on https://github.com/universal-ctags/ctags
     "liuchengxu/vista.vim",
     config = function()
-      vim.cmd([[ 
-      let g:vista_sidebar_position = 'vertical topleft' 
-      let g:vista_default_executive = 'nvim_lsp' 
+      vim.cmd([[
+      let g:vista_sidebar_position = 'vertical topleft'
+      let g:vista_default_executive = 'nvim_lsp'
       ]])
     end
   },
   { -- telescope instant searching
     "nvim-telescope/telescope-live-grep-args.nvim"
   },
-  {
-    "ldelossa/litee.nvim",
-    config = function()
-      require("litee.lib").setup({})
-    end
-  },
-  { -- calltree
-    "ldelossa/litee-calltree.nvim",
-    config = function()
-      require("litee.calltree").setup({
-        -- NOTE: the plugin is in-progressing
-        on_open = "pannel", -- pannel | popout
-        hide_cursor = false,
-        keymaps = {
-          expand = "o",
-          collapse = "zc",
-          collapse_all = "zM",
-          jump = "<CR>",
-          jump_split = "s",
-          jump_vsplit = "v",
-          jump_tab = "t",
-          hover = "i",
-          details = "d",
-          close = "X",
-          close_panel_pop_out = "<C-c>",
-          help = "?",
-          hide = "H",
-          switch = "S",
-          focus = "f"
-        },
-      })
-    end
-  },
+  -- {
+  --   "ldelossa/litee.nvim",
+  --   config = function()
+  --     require("litee.lib").setup({})
+  --   end
+  -- },
+  -- { -- calltree
+  --   "ldelossa/litee-calltree.nvim",
+  --   config = function()
+  --     require("litee.calltree").setup({
+  --       -- -- NOTE: the plugin is in-progressing
+  --       -- on_open = "pannel", -- pannel | popout
+  --       -- hide_cursor = false,
+  --       -- keymaps = {
+  --       --   expand = "o",
+  --       --   collapse = "zc",
+  --       --   collapse_all = "zM",
+  --       --   jump = "<CR>",
+  --       --   jump_split = "s",
+  --       --   jump_vsplit = "v",
+  --       --   jump_tab = "t",
+  --       --   hover = "i",
+  --       --   details = "d",
+  --       --   close = "X",
+  --       --   close_panel_pop_out = "<C-c>",
+  --       --   help = "?",
+  --       --   hide = "H",
+  --       --   switch = "S",
+  --       --   focus = "f"
+  --       -- },
+  --     })
+  --   end
+  -- },
   {
     "NLKNguyen/papercolor-theme"
   },
-  { -- hop
+  {
+    -- hop
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
     config = function()
@@ -459,7 +529,7 @@ lvim.plugins = {
         "--recovery-ast",
         "--suggest-missing-includes",
         -- 告诉clangd用那个clang进行编译，路径参考which clang++的路径
-        "--query-driver=/usr/locla/bin/clang++,/usr/bin/g++",
+        "--query-driver=/usr/bin/clang++,/usr/bin/g++",
         "--clang-tidy",
         -- 全局补全（会自动补充头文件）
         "--all-scopes-completion",
@@ -512,17 +582,16 @@ lvim.plugins = {
         textobjects = {
           select = {
             enable = true,
-
             -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
+                  ["af"] = "@function.outer",
+                  ["if"] = "@function.inner",
+                  ["ac"] = "@class.outer",
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+                  ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
             },
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -532,9 +601,9 @@ lvim.plugins = {
             -- and should return the mode ('v', 'V', or '<c-v>') or a table
             -- mapping query_strings to modes.
             selection_modes = {
-              ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V', -- linewise
-              ['@class.outer'] = '<c-v>', -- blockwise
+                  ['@parameter.outer'] = 'v', -- charwise
+                  ['@function.outer'] = 'V',  -- linewise
+                  ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
             -- extended to include preceding or succeeding whitespace. Succeeding
@@ -551,19 +620,19 @@ lvim.plugins = {
             enable = true,
             set_jumps = false, -- whether to set jumps in the jumplist
             goto_next_start = {
-              ["]]"] = "@function.outer",
+                  ["]]"] = "@function.outer",
               -- ["]["] = "@function.outer",
             },
             goto_next_end = {
-              ["]["] = "@function.outer",
+                  ["]["] = "@function.outer",
               -- ["]["] = "@class.outer",
             },
             goto_previous_start = {
-              ["[["] = "@function.outer",
+                  ["[["] = "@function.outer",
               -- ["[]"] = "@function.outer",
             },
             goto_previous_end = {
-              ["[]"] = "@function.outer",
+                  ["[]"] = "@function.outer",
               -- ["[]"] = "@class.outer",
             },
           },
@@ -571,8 +640,8 @@ lvim.plugins = {
             enable = true,
             border = 'none',
             peek_definition_code = {
-              ["<leader>pf"] = "@function.outer",
-              ["<leader>pF"] = "@class.outer",
+                  ["<leader>pf"] = "@function.outer",
+                  ["<leader>pF"] = "@class.outer",
             },
           },
         },
@@ -648,8 +717,75 @@ lvim.plugins = {
   {
     'h-hg/fcitx.nvim'
   },
-}
+  "ray-x/guihua.lua",
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      local notify = require('notify')
+      notify.setup({
+        backgroud_colour = '#000000'
+      })
+      vim.notify = notify
+    end
+  },
+  {
+    "nacro90/numb.nvim",
+    event = "BufRead",
+    config = function()
+      require("numb").setup {
+        show_numbers = true,    -- Enable 'number' for the window while peeking
+        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+      }
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("neodev").setup({
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      })
 
+      local dap, dapui = require("dap"), require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+    dependencies = { "mfussenegger/nvim-dap" }
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("nvim-dap-virtual-text").setup {
+        enabled = true,                     -- enable this plugin (the default)
+        enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+        highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+        highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+        show_stop_reason = true,            -- show stop reason when stopped for exceptions
+        commented = false,                  -- prefix virtual text with comment string
+        only_first_definition = true,       -- only show virtual text at first definition (if there are multiple)
+        all_references = false,             -- show virtual text on all all references of the variable (not only definitions)
+
+        -- experimental features:
+        virt_text_pos = 'eol',  -- position of virtual text, see `:h nvim_buf_set_extmark()`
+        all_frames = false,     -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+        virt_lines = false,     -- show virtual lines instead of virtual text (will flicker!)
+        virt_text_win_col = nil -- position the virtual text at a fixed window column (starting from the first text column) ,
+        -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+      }
+    end,
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+  },
+}
 
 --- dap config
 -- load non-standard json file
@@ -657,6 +793,7 @@ lvim.plugins = {
 -- require('dap.ext.vscode').load_launchjs()
 require("dap.dap-lldb")
 -- require("dap.dap-cppdbg")
+
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("FileType", {

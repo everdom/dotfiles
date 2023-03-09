@@ -12,25 +12,43 @@ dap.adapters.codelldb = {
 }
 
 dap.configurations.cpp = {
-  { -- launch
+  {
+    -- launch
     name = "Launch",
     type = "codelldb",
     request = "launch",
     program = function()
       ---@diagnostic disable-next-line: redundant-parameter
-      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
     end,
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = {},
   },
-  { -- attach
+  {
+    -- launch with arguments
+    name = "Launch with arguments",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      ---@diagnostic disable-next-line: redundant-parameter
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+    args = function()
+      local args_string = vim.fn.input('Arguments: ')
+      return vim.split(args_string, " +")
+    end,
+  },
+  {
+    -- attach
     name = "Attach process",
     type = "codelldb",
     request = "attach",
     processId = require('dap.utils').pick_process,
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/', 'file')
     end,
     cwd = "${workspaceFolder}"
   },
