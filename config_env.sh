@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install -y build-essential vim zsh tmux git python-is-python3 curl wget net-tools python3-pip p7zip-full neofetch htop nnn ranger tmuxinator ripgrep adb cmake libtool libtool-bin libncurses5 python3-venv llvm xclip ctags global lldb librime libboost-all-dev libgoogle-glog-dev libleveldb-dev libmarisa-dev libopencc-dev libyaml-cpp-dev libgtest-dev ibus-rime screen meson bear tree clang
+sudo apt install -y build-essential vim zsh tmux git python-is-python3 curl wget net-tools python3-pip p7zip-full neofetch htop nnn ranger tmuxinator ripgrep adb cmake libtool libtool-bin libncurses5 python3-venv llvm xclip ctags global lldb librime libboost-all-dev libgoogle-glog-dev libleveldb-dev libmarisa-dev libopencc-dev libyaml-cpp-dev libgtest-dev ibus-rime screen meson bear tree clang trash-cli
 snap install btop
 pip install youdao
 pip3 install thefuck --user

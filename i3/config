@@ -356,7 +356,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #++++++=Sessions=++++++#
 
 # reload the configuration file
-bindsym Ctrl+Shift+c reload
+bindsym Ctrl+Shift+l reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Ctrl+Shift++r restart

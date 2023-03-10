@@ -1,5 +1,4 @@
 --[[
-  },
 lvim is the global options object
 Linters should be
 filled in as strings with either
@@ -76,11 +75,24 @@ lvim.keys.normal_mode["ga"]            = ":Lspsaga code_action<cr>"
 lvim.keys.normal_mode["gi"]            = ":Lspsaga incoming_calls<cr>"
 lvim.keys.normal_mode["go"]            = ":Lspsaga outgoing_calls<cr>"
 lvim.keys.normal_mode["gd"]            = ":Lspsaga goto_definition<cr>"
+lvim.keys.normal_mode["gp"]            = ":Lspsaga peek_definition<cr>"
+lvim.keys.normal_mode["gt"]            = ":Lspsaga peek_type_definition<cr>"
 lvim.keys.normal_mode["gn"]            = ":Lspsaga rename<cr>"
 lvim.keys.normal_mode["glc"]           = ":Lspsaga show_cursor_diagnostics<cr>"
 lvim.keys.normal_mode["gll"]           = ":Lspsaga show_line_diagnostics<cr>"
-lvim.keys.normal_mode["gln"]           = ":Lspsaga diagnostics_jump_next<cr>"
-lvim.keys.normal_mode["glp"]           = ":Lspsaga diagnostics_jump_prev<cr>"
+lvim.keys.normal_mode["glb"]           = ":Lspsaga show_buf_diagnostics<cr>"
+
+-- Diagnostic jump
+-- You can use <C-o> to jump back to your previous location
+lvim.keys.normal_mode["[e"]            = "<cmd>Lspsaga diagnostic_jump_prev<CR>"
+lvim.keys.normal_mode["]e"]            = "<cmd>Lspsaga diagnostic_jump_next<CR>"
+
+-- Diagnostic jump with filters such as only jumping to an error
+-- lvim.keys.normal_mode["[E"]            =
+-- "<cmd>lua require('lspsaga.diagnostic').goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>"
+
+-- lvim.keys.normal_mode["]E"]            =
+-- "<cmd>lua require('lspsaga.diagnostic').goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>"
 
 -- telescope
 lvim.keys.normal_mode["<leader>r"]     = ":Telescope oldfiles<cr>"
@@ -217,9 +229,10 @@ lvim.builtin.which_key.mappings["t"] = {
   y = { "<cmd>Telescope neoclip<cr>", "NeoClip" },
   t = { "<cmd>Telescope<cr>", "Telescope" },
   b = { "<cmd>Telescope marks<cr>", "Bookmarks" },
-  c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+  C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
   r = { "<cmd>Telescope registers<cr>", "Registers" },
   m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+  c = { "<cmd>ChatGPT<cr>", "ChatGPT" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -576,7 +589,7 @@ lvim.plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    commit = "c81382328ad47c154261d1528d7c921acad5eae5",
+    after = "nvim-treesitter",
     config = function()
       require 'nvim-treesitter.configs'.setup {
         textobjects = {
@@ -592,6 +605,8 @@ lvim.plugins = {
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
                   ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+              -- You can also use captures from other query groups like `locals.scm`
+                  ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
             },
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -622,6 +637,8 @@ lvim.plugins = {
             goto_next_start = {
                   ["]]"] = "@function.outer",
               -- ["]["] = "@function.outer",
+                  ["]o"] = "@loop.outer",
+              -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
             },
             goto_next_end = {
                   ["]["] = "@function.outer",
@@ -635,6 +652,12 @@ lvim.plugins = {
                   ["[]"] = "@function.outer",
               -- ["[]"] = "@class.outer",
             },
+            goto_next = {
+                  ["]d"] = "@conditional.outer",
+            },
+            goto_previous = {
+                  ["[d"] = "@conditional.outer",
+            },
           },
           lsp_interop = {
             enable = true,
@@ -646,7 +669,8 @@ lvim.plugins = {
           },
         },
       }
-    end
+    end,
+    dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "AckslD/nvim-neoclip.lua",
@@ -703,6 +727,11 @@ lvim.plugins = {
       require("lspsaga").setup({
       })
     end,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      --Please make sure you install markdown and markdown_inline parser
+      { "nvim-treesitter/nvim-treesitter" }
+    }
   },
   {
     "kaicataldo/material.vim",
