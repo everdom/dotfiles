@@ -88,8 +88,8 @@
 
 ;; Set window maximized when boot
 ;; (pushnew! initial-frame-alist '(width . 200) '(height . 55))
-;; (add-hook 'window-setup-hook #'toggle-frame-maximized)
-(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
+(add-hook 'window-setup-hook #'toggle-frame-maximized)
+;; (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
 ;; Set which key delay
 (require 'which-key)
@@ -107,8 +107,8 @@
   (interactive)
   (set-face-attribute 'default nil :font (font-spec :family "Sarasa Term SC Nerd" :size 16))
   ;; (set-fontset-font t 'unicode (font-spec :family "Apple Color Emoji" :size 14) nil 'prepend)
-  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Sarasa Term SC Nerd" :size 16) nil 'prepend)
-  )
+  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Sarasa Term SC Nerd" :size 16) nil 'prepend))
+  
 (add-hook! 'window-setup-hook :append 'set-fonts) ;; 言
  ;; (setq line-spacing 1.1)
 ;; or if you want to set it globaly
@@ -182,10 +182,10 @@ _h_ decrease width    _l_ increase width
       :desc "Hydra resize" :n "w SPC" #'doom-window-resize-hydra/body))
 
   ;; 标题栏显示文件全路径
-  (setq frame-title-format
-        '("%S"
-          (buffer-file-name "%f"
-                            (dired-directory dired-directory "%b"))))
+(setq frame-title-format
+      '("%S"
+        (buffer-file-name "%f"
+                          (dired-directory dired-directory "%b"))))
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置开始 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;   ;; 文件编码设置
 ;;   ;; 编码设置:utf-8之类，所有的文件全部以utf8保存
@@ -206,79 +206,79 @@ _h_ decrease width    _l_ increase width
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 编码设置结束 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; org-mode
-  (global-pangu-spacing-mode 0)
-  (set (make-local-variable 'pangu-spacing-real-insert-separtor) nil)
+(global-pangu-spacing-mode 0)
+(set (make-local-variable 'pangu-spacing-real-insert-separtor) nil)
 
   ;; Plantuml
-  (setq org-plantuml-jar-path "~/Configs/libs/plantuml.jar")
-                                        ; Use fundamental mode when editing plantuml blocks with C-c '
+(setq org-plantuml-jar-path "~/Configs/libs/plantuml.jar")
+                                      ; Use fundamental mode when editing plantuml blocks with C-c '
   ;; (add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
 
   ;; Ditaa
-  (setq org-ditaa-jar-path "~/Configs/libs/ditaa.jar")
+(setq org-ditaa-jar-path "~/Configs/libs/ditaa.jar")
 
   ;; Display inline images
-  (add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
+(add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
 
   ; Make babel results blocks lowercase
-  (setq org-babel-results-keyword "results")
+(setq org-babel-results-keyword "results")
 
-  (defun bh/display-inline-images ()
-    (condition-case nil
-        (org-display-inline-images)
-      (error nil)))
+(defun bh/display-inline-images ()
+  (condition-case nil
+      (org-display-inline-images)
+    (error nil)))
 
-  (org-babel-do-load-languages
-   (quote org-babel-load-languages)
-   (quote ((emacs-lisp . t)
-           (dot . t)
-           (ditaa . t)
-           (R . t)
-           (octave . t)
-           (python . t)
-           (ruby . t)
-           (gnuplot . t)
-           (clojure . t)
-           (sh . t)
-           (ledger . t)
-           (org . t)
-           (plantuml . t)
-           (latex . t)
-           (C . t)
-           (shell . t)
-           (sh . t)
-           )))
+(org-babel-do-load-languages
+ (quote org-babel-load-languages)
+ (quote ((emacs-lisp . t)
+         (dot . t)
+         (ditaa . t)
+         (R . t)
+         (octave . t)
+         (python . t)
+         (ruby . t)
+         (gnuplot . t)
+         (clojure . t)
+         (sh . t)
+         (ledger . t)
+         (org . t)
+         (plantuml . t)
+         (latex . t)
+         (C . t)
+         (shell . t)
+         (sh . t))))
+           
 
   ; Do not prompt to confirm evaluation
   ; This may be dangerous - make sure you understand the consequences
   ; of setting this -- see the docstring for details
-  (setq org-confirm-babel-evaluate nil)
-  (setq org-src-fontify-natively t)
+(setq org-confirm-babel-evaluate nil)
+(setq org-src-fontify-natively t)
 
   ;; 全局任务清单
-  (setq org-agenda-files (list "~/org/todos/work.org"
-                               "~/org/todos/projects.org"
-                               "~/org/todos/home.org"
-                               "~/org/todos/"
-                               ))
+(setq org-agenda-files (list "~/org/todos/work.org"
+                             "~/org/todos/projects.org"
+                             "~/org/todos/home.org"
+                             "~/org/todos/"))
+                               
 
 ;; Rime input method settings
- (use-package! rime
-  :config
-  (setq rime-show-candidate 'posframe)
-  (setq rime-disable-predicates
-        '(rime-predicate-evil-mode-p
-          rime-predicate-after-alphabet-char-p
-          rime-predicate-prog-in-code-p))
-  (setq rime-inline-ascii-trigger 'shift-l)
-  (setq mode-line-mule-info '((:eval (rime-lighter))))
-  (setq rime-posframe-properties
-        (list :font "Sarasa Term SC Nerd"
-              :internal-border-width 10))
-  :custom
-  ;; (rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
-  (rime-user-data-dir "~/.config/fcitx/rime")
-  (default-input-method "rime"))
+(use-package! rime
+ :config
+ (setq rime-show-candidate 'posframe)
+ (setq rime-disable-predicates
+       '(rime-predicate-evil-mode-p
+         rime-predicate-after-alphabet-char-p
+         rime-predicate-prog-in-code-p))
+ (setq rime-inline-ascii-trigger 'shift-l)
+ (setq mode-line-mule-info '((:eval (rime-lighter))))
+ (setq rime-posframe-properties
+       (list :font "Sarasa Term SC Nerd"
+             :internal-border-width 10))
+ :custom
+ ;; (rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
+ (rime-user-data-dir "~/.config/fcitx/rime")
+ (default-input-method "rime"))
 
 (map! :map rime-mode-map "C-`" 'rime-send-keybinding)
 (map! :map rime-active-mode-map "M-j" 'rime-inline-ascii)
