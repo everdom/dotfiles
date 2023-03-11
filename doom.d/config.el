@@ -327,13 +327,13 @@ when toggle off input method, switch to evil-normal-state if current state is ev
         ;;                                      :separate)))
 
 ;; Completion settings
-(after! company
-  (map! :i "<tab>" #'company-indent-or-complete-common)
-  (map! :map company-active-map "<tab>" #'company-complete-common)
-  ;; 打字卡顿或者提示卡顿可将数值提高到 0.250,emacs >= 28，开启 native-comp 可将此值修改为 0.000
-  (setq company-idle-delay 0.000
-        company-minimum-prefix-length 1
-        company-show-quick-access t))
+;; (after! company
+;;   (map! :i "<tab>" #'company-indent-or-complete-common)
+;;   (map! :map company-active-map "<tab>" #'company-complete-common)
+;;   ;; 打字卡顿或者提示卡顿可将数值提高到 0.250,emacs >= 28，开启 native-comp 可将此值修改为 0.000
+;;   (setq company-idle-delay 0.000
+;;         company-minimum-prefix-length 1
+;;         company-show-quick-access t))
 
 (use-package! company-tabnine
   :defer 1

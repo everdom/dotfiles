@@ -155,12 +155,36 @@ chrome() {
   chrome.exe file://wsl.localhost/Ubuntu-20.04`pwd`/$1
 }
 
+# omz
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+# ls
+alias l='ls -lh'
+alias ll='ls -lah'
+alias la='ls -A'
+alias lm='ls -m'
+alias lr='ls -R'
+alias lg='ls -l --group-directories-first'
+
+# git
+alias gcl='git clone --depth 1'
+alias gi='git init'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push origin master'
+
 # alias opencwd="explorer.exe ."
 # alias img="Honeyview.exe"
 # alias typora="Typora.exe"
 alias vim="lvim"
-alias stop="tmuxinator stop dev"
+alias tmstop="tmuxinator stop dev"
+alias tmstart="tmuxinator start dev"
 alias r="ranger"
-alias em="emacs -nw"
-alias emc="emacsclient -nw"
+# alias em="emacs -nw"
+# alias emc="emacsclient -nw"
 alias lzg="lazygit"
+alias px='source ~/.proxy.source'
+alias pxu='unset http_proxy; unset https_proxy'
+alias pxt='curl ipinfo.io'
+
