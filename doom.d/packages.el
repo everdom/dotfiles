@@ -48,3 +48,12 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+(package! pyim)
+(package! rime)
+(package! org-modern)
+(package! youdao-dictionary)
+(package! company-box)
+(package! company-tabnine)
+(package! leetcode)
+

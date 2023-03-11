@@ -19,7 +19,7 @@ lvim.format_on_save                    = {
 }
 -- lvim.colorscheme = "lunar"
 -- themes: https://vimcolorschemes.com/
-lvim.colorscheme                       = "lunar"
+lvim.colorscheme                       = "bluloco-light"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -32,6 +32,9 @@ vim.opt.relativenumber                 = true
 vim.opt.cursorcolumn                   = false
 vim.opt.wrap                           = true
 vim.opt.termguicolors                  = true
+vim.g.transparent_background           = true
+-- lvim.transparent_background            = true
+-- lvim.transparent_window                = true
 
 --lvim.g.neovide_transparency            = 0
 
@@ -271,6 +274,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "yaml",
+  "markdown",
+  "markdown_inline",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -517,6 +522,15 @@ lvim.plugins = {
   },
   { -- theme
     "morhetz/gruvbox"
+  },
+  {
+    'uloco/bluloco.nvim',
+    lazy = false,
+    priority = 1000,
+    dependencies = { 'rktjmp/lush.nvim' },
+    config = function()
+      -- your optional config goes here, see below.
+    end,
   },
   {
     "folke/todo-comments.nvim",
