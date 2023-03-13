@@ -890,6 +890,10 @@ lvim.plugins = {
     },
   },
   {
+    'mg979/vim-visual-multi',
+    branch = 'master'
+  },
+  {
     "jackMort/ChatGPT.nvim",
     commit = "1ebbec2053a5d79bfbffc5291396fdbeea41329b",
     config = function()
