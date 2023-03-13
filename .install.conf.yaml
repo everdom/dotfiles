@@ -39,7 +39,6 @@
     ~/.vsvimrc: vscode/vsvimrc
     ~/.zsh:
     ~/.zshrc:
-    ~/.shell_local_before:
     ~/Library/Preferences/clangd: clangd  # macos
     ~/.config/clangd: clangd  # macos
     ~/.doom.d: doom.d
