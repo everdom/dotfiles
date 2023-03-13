@@ -61,9 +61,9 @@ lvim.keys.normal_mode["N"]             = "Nzzzv"
 lvim.keys.normal_mode["J"]             = "mzJ`z"
 
 -- Translate
-lvim.keys.normal_mode["T"]             = "<cmd>TranslateW<CR>"
-lvim.keys.visual_mode["T"]             = "<cmd>TranslateW<CR>"
-lvim.keys.visual_mode["<leader>T"]     = "<cmd>TranslateR<CR>"
+lvim.keys.normal_mode[";t"]            = "<cmd>TranslateW<CR>"
+lvim.keys.visual_mode[";t"]            = "<cmd>TranslateW<CR>"
+lvim.keys.visual_mode[";r"]            = "<cmd>TranslateR<CR>"
 
 lvim.keys.visual_mode["p"]             = "P"
 lvim.keys.visual_mode["H"]             = "^"
