@@ -241,7 +241,9 @@ lvim.builtin.which_key.mappings["t"] = {
   r = { "<cmd>Telescope registers<cr>", "Registers" },
   m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
   c = { "<cmd>ChatGPT<cr>", "ChatGPT" },
+  M = { "<cmd>MarkdownPreviewToggle<cr>", "MarkdownPreview" }
 }
+
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -894,6 +896,11 @@ lvim.plugins = {
     branch = 'master'
   },
   {
+    'tzachar/cmp-tabnine',
+    build = './install.sh',
+    dependencies = 'hrsh7th/nvim-cmp',
+  },
+  {
     "jackMort/ChatGPT.nvim",
     commit = "1ebbec2053a5d79bfbffc5291396fdbeea41329b",
     config = function()
@@ -906,7 +913,11 @@ lvim.plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim"
     }
-  }
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
 }
 
 --- dap config
