@@ -180,15 +180,17 @@ lvim.builtin.which_key.mappings.d = {
 
 -- dap custom keymaps
 lvim.keys.normal_mode["<F7>"] = "<cmd>lua require'dap'.step_into()<cr>"
-lvim.keys.normal_mode["<C-F7>"] = "<cmd>lua require'dap'.step_out()<cr>"
+-- <F31>: C-F7
+lvim.keys.normal_mode["<F31>"] = "<cmd>lua require'dap'.step_out()<cr>"
 lvim.keys.normal_mode["<F8>"] = "<cmd>lua require'dap'.step_over()<cr>"
 lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
 lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
 lvim.keys.normal_mode["<F6>"] = "<cmd>lua require'dap'.pause()<cr>"
--- lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>"
-lvim.keys.normal_mode["<S-F5>"] = "<cmd>lua require'dap'.terminate()<cr>"
+-- <F17>: S-F5
+lvim.keys.normal_mode["<F17>"] = "<cmd>lua require'dap'.terminate()<cr>"
 lvim.keys.normal_mode["<F2>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
--- lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
+-- <F36>: C-F12
+-- lvim.keys.normal_mode["<F36>"] = "<cmd>lua require'dapui'.toggle()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
@@ -262,7 +264,7 @@ table.insert(lvim.builtin.cmp.sources, {
   name = 'nvim_lsp_signature_help'
 });
 -- gitsigns
-lvim.builtin.gitsigns.opts.current_line_blame = false
+lvim.builtin.gitsigns.opts.current_line_blame = true
 lvim.builtin.gitsigns.opts.current_line_blame_opts.virt_text_pos = "right_align"
 lvim.builtin.gitsigns.opts.current_line_blame_opts.delay = 200
 -- buffer line
@@ -608,6 +610,10 @@ lvim.plugins = {
       require("lvim.lsp.manager").setup("clangd", opts)
     end
   },
+  -- {
+  --   after = "nvim-treesitter",
+  --   'nvim-treesitter/nvim-treesitter-context',
+  -- },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
