@@ -18,7 +18,7 @@ source ~/.zsh/plugins_before.zsh
 source ~/.zsh/settings.zsh
 
 # Custom prompt
-source ~/.zsh/prompt.zsh
+# source ~/.zsh/prompt.zsh
 
 # External plugins (initialized after)
 source ~/.zsh/plugins_after.zsh
@@ -57,11 +57,3 @@ fi
 if [ -f ~/.shell_private ]; then
     source ~/.shell_private
 fi
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-eval $(thefuck --alias)
