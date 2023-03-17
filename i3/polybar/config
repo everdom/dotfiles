@@ -18,10 +18,10 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #77222222
-background-alt = #444
+background = #212B30
+background-alt = #414B50
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = #C4C7C5
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
@@ -30,7 +30,7 @@ alert = #bd2c40
 [bar/mybar]
 monitor = ${env:MONITOR}
 width = 100%
-height = 35
+height = 32
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 7%
@@ -57,8 +57,8 @@ font-0 = Sarasa Mono SC Nerd:size=14:antialias=true;1
 ;; font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm i3
-modules-center = mpd
-modules-right = filesystem memory cpu wlan eth battery temperature pulseaudio date
+; modules-center = mpd
+modules-right = filesystem sep memory cpu sep wlan eth sep battery temperature pulseaudio sep date
 
 tray-position = right
 tray-padding = 1
@@ -111,8 +111,8 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-1 = /home
-mount-2 = /data
+mount-1 = /mnt/e
+mount-2 = /mnt/f
 
 label-mounted = %mountpoint%%{F-}:%percentage_used%%
 ;label-mounted =  %mountpoint%%{F-}:%percentage_used%%
@@ -330,7 +330,7 @@ ramp-signal-foreground = #9f78e1
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 [module/eth]
 type = internal/network
-interface = eth0
+interface = enp0s3
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -536,3 +536,9 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
+
+[module/sep]
+type = custom/text
+content = |
+
+; content-foreground = ${color.sep}

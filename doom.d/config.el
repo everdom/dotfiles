@@ -82,10 +82,96 @@
 ;; (package-initialize) ;; You might already have this line
 
 ;; proxy settings(uncomment when required)
-(setq url-proxy-services
-   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-     ("http" . "127.0.0.1:7890")
-     ("https" . "127.0.0.1:7890")))
+;; (setq url-proxy-services
+;;    '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+;;      ("http" . "192.168.0.65:7890")
+;;      ("https" . "192.168.0.65:7890")))
+
+(defcustom centaur-proxy "192.168.0.65:7890"
+  "Set HTTP/HTTPS proxy."
+  :group 'happyo
+  :type 'string)
+
+(defcustom centaur-socks-proxy "192.168.0.65:7890"
+  "Set HTTP/HTTPS proxy."
+  :group 'happyo
+  :type 'string)
+
+(setq centaur-socks-proxy "192.168.0.65:7890")    ; SOCKS proxy
+
+(setq centaur-proxy "192.168.0.65:7890")          ; HTTP/HTTPS proxy
+
+(defvar socks-noproxy)
+(defvar socks-server)
+
+;; Network Proxy
+(defun proxy-http-show ()
+  "Show HTTP/HTTPS proxy."
+  (interactive)
+  (if url-proxy-services
+      (message "Current HTTP proxy is `%s'" centaur-proxy)
+    (message "No HTTP proxy")))
+
+(defun proxy-http-enable ()
+  "Enable HTTP/HTTPS proxy."
+  (interactive)
+  (setq url-proxy-services
+        `(("http" . ,centaur-proxy)
+          ("https" . ,centaur-proxy)
+          ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
+  (proxy-http-show))
+
+(defun proxy-http-disable ()
+  "Disable HTTP/HTTPS proxy."
+  (interactive)
+  (setq url-proxy-services nil)
+  (proxy-http-show))
+
+(defun proxy-http-toggle ()
+  "Toggle HTTP/HTTPS proxy."
+  (interactive)
+  (if (bound-and-true-p url-proxy-services)
+      (proxy-http-disable)
+    (proxy-http-enable)))
+
+(defun proxy-socks-show ()
+  "Show SOCKS proxy."
+  (interactive)
+  (if (bound-and-true-p socks-noproxy)
+      (message "Current SOCKS%d proxy is %s:%s"
+               (cadddr socks-server) (cadr socks-server) (caddr socks-server))
+    (message "No SOCKS proxy")))
+
+(defun proxy-socks-enable ()
+  "Enable SOCKS proxy."
+  (interactive)
+  (require 'socks)
+  (setq url-gateway-method 'socks
+        socks-noproxy '("localhost"))
+  (let* ((proxy (split-string centaur-socks-proxy ":"))
+         (host (car proxy))
+         (port (string-to-number (cadr proxy))))
+    (setq socks-server `("Default server" ,host ,port 5)))
+  (setenv "all_proxy" (concat "socks5://" centaur-socks-proxy))
+  (proxy-socks-show))
+
+(defun proxy-socks-disable ()
+  "Disable SOCKS proxy."
+  (interactive)
+  (setq url-gateway-method 'native
+        socks-noproxy nil
+        socks-server nil)
+  (setenv "all_proxy" "")
+  (proxy-socks-show))
+
+(defun proxy-socks-toggle ()
+  "Toggle SOCKS proxy."
+  (interactive)
+  (if (bound-and-true-p socks-noproxy)
+      (proxy-socks-disable)
+    (proxy-socks-enable)))
+
+;; (provide 'init-proxy)
 
 ;; Set window maximized when boot
 ;; (pushnew! initial-frame-alist '(width . 200) '(height . 55))
@@ -98,17 +184,17 @@
 (setq which-key-idle-secondary-delay 0.1)
 
 ;; font setting
-;; (setq doom-font (font-spec :family "Sarasa Term SC Nerd" :size 16.0))
-(setq doom-font (font-spec :family "Sarasa Term SC Nerd" :size 16)
-      doom-serif-font (font-spec :family "Sarasa Term SC Nerd")
-      doom-variable-pitch-font (font-spec :family "Sarasa Term SC Nerd")
-      doom-unicode-font (font-spec :family "Sarasa Term SC Nerd"))
-      ;; doom-big-font (font-spec :family "Sarasa Term SC Nerd" :size 24))
+;; (setq doom-font (font-spec :family "Sarasa Mono SC Nerd" :size 16.0))
+(setq doom-font (font-spec :family "Sarasa Mono SC Nerd" :size 16)
+      doom-serif-font (font-spec :family "Sarasa Mono SC Nerd")
+      doom-variable-pitch-font (font-spec :family "Sarasa Mono SC Nerd")
+      doom-unicode-font (font-spec :family "Sarasa Mono SC Nerd"))
+      ;; doom-big-font (font-spec :family "Sarasa Mono SC Nerd" :size 24))
 (defun set-fonts ()
   (interactive)
-  (set-face-attribute 'default nil :font (font-spec :family "Sarasa Term SC Nerd" :size 16))
+  (set-face-attribute 'default nil :font (font-spec :family "Sarasa Mono SC Nerd" :size 16))
   ;; (set-fontset-font t 'unicode (font-spec :family "Apple Color Emoji" :size 14) nil 'prepend)
-  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Sarasa Term SC Nerd" :size 16) nil 'prepend))
+  (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Sarasa Mono SC Nerd" :size 16) nil 'prepend))
   
 (add-hook! 'window-setup-hook :append 'set-fonts) ;; 言
  ;; (setq line-spacing 1.1)
@@ -124,8 +210,8 @@
 ;; (modus-themes-load-operandi)
 
 ;; Choose some fonts
-;; (set-face-attribute 'default nil :family "Sarasa Term SC Nerd")
-;; (set-face-attribute 'org-modern-symbol nil :family "Sarasa Term SC Nerd")
+;; (set-face-attribute 'default nil :family "Sarasa Mono SC Nerd")
+;; (set-face-attribute 'org-modern-symbol nil :family "Sarasa Mono SC Nerd")
 ;; (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
 ;; (set-face-attribute 'org-modern-symbol nil :family "Iosevka Aile")
 
@@ -274,7 +360,7 @@ _h_ decrease width    _l_ increase width
  (setq rime-inline-ascii-trigger 'shift-l)
  (setq mode-line-mule-info '((:eval (rime-lighter))))
  (setq rime-posframe-properties
-       (list :font "Sarasa Term SC Nerd"
+       (list :font "Sarasa Mono SC Nerd"
              :internal-border-width 10))
  :custom
  ;; (rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
@@ -439,3 +525,11 @@ when toggle off input method, switch to evil-normal-state if current state is ev
       :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+;; ChagGPT
+(use-package! mind-wave
+  :init
+  (add-load-path! (expand-file-name "straight/repos/mind-wave/" doom-local-dir))
+  :config
+  (unless (boundp 'python-interpreter)
+    (defvaralias 'python-interpreter 'python-shell-interpreter)))

@@ -79,7 +79,8 @@ function PR_ERROR() {
 }
 
 # The arrow symbol that is used in the prompt
-PR_ARROW_CHAR=">"
+  PR_ARROW_CHAR=">"
+
 
 # The arrow in red (for root) or violet (for regular user)
 function PR_ARROW() {
@@ -104,6 +105,12 @@ function machine_name() {
 }
 
 PROMPT_PYTHON="$(command -v python || command -v python3 || command -v python2)"
+
+function RPR_PROXY() {
+    if [[ $http_proxy ||  $all_proxy ]]; then
+      echo "%{$fg[tea]%}[P]%{$reset_color%}"
+    fi
+}
 
 # Host in a deterministically chosen color
 RPR_SHOW_HOST=true # Set to false to disable host in rhs prompt
@@ -134,7 +141,7 @@ function RPR_AT() {
 
 # Build the rhs prompt
 function RPR_INFO() {
-    echo "$(RPR_USER)$(RPR_AT)$(RPR_HOST)"
+  echo "$(RPR_USER)$(RPR_AT)$(RPR_HOST)$(RPR_PROXY)"
 }
 
 # Set RHS prompt for git repositories
