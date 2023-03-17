@@ -57,4 +57,4 @@
 (package! company-tabnine)
 (package! leetcode)
 (package! mind-wave
-  :recipe (:host github :repo "manateelazycat/mind-wav"))
+  :recipe (:host github :repo "manateelazycat/mind-wave"))
