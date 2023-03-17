@@ -171,7 +171,8 @@
       (proxy-socks-disable)
     (proxy-socks-enable)))
 
-;; (provide 'init-proxy)
+(proxy-http-enable)
+(proxy-socks-enable)
 
 ;; Set window maximized when boot
 ;; (pushnew! initial-frame-alist '(width . 200) '(height . 55))

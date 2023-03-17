@@ -34,6 +34,7 @@
     ~/.config/lvim: lvim
     ~/.config/zellij: zellij
     ~/.config/alacritty: alacritty 
+    ~/.config/kitty:  kitty
     ~/.vimrc_local:
     ~/.ideavimrc:
     ~/.vsvimrc: vscode/vsvimrc
