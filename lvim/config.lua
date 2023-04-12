@@ -264,7 +264,7 @@ table.insert(lvim.builtin.cmp.sources, {
   name = 'nvim_lsp_signature_help'
 });
 -- gitsigns
-lvim.builtin.gitsigns.opts.current_line_blame = true
+lvim.builtin.gitsigns.opts.current_line_blame = false
 lvim.builtin.gitsigns.opts.current_line_blame_opts.virt_text_pos = "right_align"
 lvim.builtin.gitsigns.opts.current_line_blame_opts.delay = 200
 -- buffer line
