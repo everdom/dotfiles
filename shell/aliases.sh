@@ -187,4 +187,5 @@ alias lzg="lazygit"
 alias px='source ~/.proxy.source'
 alias pxu='unset http_proxy; unset https_proxy'
 alias pxt='curl ipinfo.io'
+alias xc='xclip -selection clipboard'
 

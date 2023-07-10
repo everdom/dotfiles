@@ -35,6 +35,8 @@ exec --no-startup-id bash ~/.config/i3/polybar/launch.sh
 # program launchers
 #bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+c exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | xclip -selection clipboard"
+# bindsym $mod+Shift+c exec --no-startup-id rofi -modi calc -show calc -calc-command 'xdotool type --clearmodifiers "{result}" && echo -n "{result}" | xclip -selection clipboard'
 bindsym $m_alt+space exec --no-startup-id rofi -show window
 
 # terminals

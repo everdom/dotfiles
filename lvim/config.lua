@@ -61,9 +61,9 @@ lvim.keys.normal_mode["N"]             = "Nzzzv"
 lvim.keys.normal_mode["J"]             = "mzJ`z"
 
 -- Translate
-lvim.keys.normal_mode[";t"]            = "<cmd>TranslateW<CR>"
-lvim.keys.visual_mode[";t"]            = "<cmd>TranslateW<CR>"
-lvim.keys.visual_mode[";r"]            = "<cmd>TranslateR<CR>"
+lvim.keys.normal_mode[",t"]            = "<cmd>TranslateW<CR>"
+lvim.keys.visual_mode[",t"]            = "<cmd>TranslateW<CR>"
+lvim.keys.visual_mode[",r"]            = "<cmd>TranslateR<CR>"
 
 lvim.keys.visual_mode["p"]             = "P"
 lvim.keys.visual_mode["H"]             = "^"
@@ -75,10 +75,10 @@ lvim.keys.visual_mode["K"]             = ":m '<-2<CR>gv=gv"
 lvim.builtin.which_key.mappings["lc"]  = { ":lua vim.lsp.buf.incoming_calls()<cr>", "Incoming Calls" }
 lvim.builtin.which_key.mappings["lo"]  = { ":lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing Calls" }
 lvim.builtin.which_key.mappings.l.R    = { "<cmd>LspRestart<cr>", "Restart" }
-lvim.builtin.which_key.vmappings["lf"] = { "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format" }
 -- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
 -- lvim.keys.normal_mode["gh"] = ":lua vim.lsp.buf.hover()<cr>"
-lvim.keys.normal_mode["gh"]            = ":Lspsaga lsp_finder<cr>"
+-- lvim.keys.normal_mode["gh"]            = ":Lspsaga hover_doc<cr>"
+lvim.keys.normal_mode["gf"]            = ":Lspsaga lsp_finder<cr>"
 lvim.keys.normal_mode["ga"]            = ":Lspsaga code_action<cr>"
 lvim.keys.normal_mode["gi"]            = ":Lspsaga incoming_calls<cr>"
 lvim.keys.normal_mode["go"]            = ":Lspsaga outgoing_calls<cr>"
@@ -86,9 +86,12 @@ lvim.keys.normal_mode["gd"]            = ":Lspsaga goto_definition<cr>"
 lvim.keys.normal_mode["gp"]            = ":Lspsaga peek_definition<cr>"
 lvim.keys.normal_mode["gt"]            = ":Lspsaga peek_type_definition<cr>"
 lvim.keys.normal_mode["gn"]            = ":Lspsaga rename<cr>"
-lvim.keys.normal_mode["glc"]           = ":Lspsaga show_cursor_diagnostics<cr>"
-lvim.keys.normal_mode["gll"]           = ":Lspsaga show_line_diagnostics<cr>"
-lvim.keys.normal_mode["glb"]           = ":Lspsaga show_buf_diagnostics<cr>"
+lvim.keys.normal_mode["gl"]            = ":Lspsaga show_line_diagnostics<cr>"
+lvim.keys.normal_mode["gsc"]           = ":Lspsaga show_cursor_diagnostics<cr>"
+lvim.keys.normal_mode["gsb"]           = ":Lspsaga show_buf_diagnostics<cr>"
+lvim.keys.normal_mode["gsw"]           = ":Lspsaga show_workspace_diagnostics<cr>"
+lvim.keys.normal_mode["gj"]            = ":Lspsaga diagnostic_jump_next<cr>"
+lvim.keys.normal_mode["gk"]            = ":Lspsaga diagnostic_jump_prev<cr>"
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
@@ -141,15 +144,15 @@ lvim.keys.normal_mode["f"]             =
 "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 lvim.keys.normal_mode["F"]             =
 "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-lvim.keys.normal_mode[";W"]            = "<cmd>HopWord<cr>"
-lvim.keys.normal_mode[";w"]            = "<cmd>HopWordAC<cr>"
-lvim.keys.normal_mode[";b"]            = "<cmd>HopWordBC<cr>"
-lvim.keys.normal_mode[";c"]            = "<cmd>HopChar1AC<cr>"
-lvim.keys.normal_mode[";C"]            = "<cmd>HopChar1<cr>"
-lvim.keys.normal_mode[";l"]            = "<cmd>HopLine<cr>"
-lvim.keys.normal_mode[";j"]            = "<cmd>HopLineAC<cr>"
-lvim.keys.normal_mode[";k"]            = "<cmd>HopLineBC<cr>"
-lvim.keys.normal_mode[";a"]            = "<cmd>HopAnywhere<cr>"
+lvim.keys.normal_mode[",w"]            = "<cmd>HopWord<cr>"
+lvim.keys.normal_mode[",e"]            = "<cmd>HopWordAC<cr>"
+lvim.keys.normal_mode[",b"]            = "<cmd>HopWordBC<cr>"
+lvim.keys.normal_mode[",c"]            = "<cmd>HopChar1AC<cr>"
+lvim.keys.normal_mode[",C"]            = "<cmd>HopChar1<cr>"
+lvim.keys.normal_mode[",l"]            = "<cmd>HopLine<cr>"
+lvim.keys.normal_mode[",j"]            = "<cmd>HopLineAC<cr>"
+lvim.keys.normal_mode[",k"]            = "<cmd>HopLineBC<cr>"
+lvim.keys.normal_mode[",a"]            = "<cmd>HopAnywhere<cr>"
 -- lvim.keys.normal_mode["<leader>k"] = "<cmd>HopChar2<cr>"
 
 
@@ -181,16 +184,18 @@ lvim.builtin.which_key.mappings.d = {
 -- dap custom keymaps
 lvim.keys.normal_mode["<F7>"] = "<cmd>lua require'dap'.step_into()<cr>"
 -- <F31>: C-F7
-lvim.keys.normal_mode["<F31>"] = "<cmd>lua require'dap'.step_out()<cr>"
+lvim.keys.normal_mode["<C-F7>"] = "<cmd>lua require'dap'.step_out()<cr>"
 lvim.keys.normal_mode["<F8>"] = "<cmd>lua require'dap'.step_over()<cr>"
 lvim.keys.normal_mode["<F9>"] = "<cmd>lua require'dap'.run_to_cursor()<cr>"
 lvim.keys.normal_mode["<F5>"] = "<cmd>lua require'dap'.continue()<cr>"
 lvim.keys.normal_mode["<F6>"] = "<cmd>lua require'dap'.pause()<cr>"
 -- <F17>: S-F5
-lvim.keys.normal_mode["<F17>"] = "<cmd>lua require'dap'.terminate()<cr>"
+lvim.keys.normal_mode["<S-F5>"] =
+"<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dap'.close()<cr><cmd>lua require'dapui'.close()<cr>"
 lvim.keys.normal_mode["<F2>"] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
 -- <F36>: C-F12
--- lvim.keys.normal_mode["<F36>"] = "<cmd>lua require'dapui'.toggle()<cr>"
+lvim.keys.normal_mode["<C-F12>"] = "<cmd>lua require'dapui'.toggle()<cr>"
+lvim.keys.normal_mode["<A-h>"] = "<cmd>lua require'dap.ui.widgets'.hover()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
@@ -203,15 +208,15 @@ local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
   -- for input mode
   i = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+    ["<C-n>"] = actions.cycle_history_next,
+    ["<C-p>"] = actions.cycle_history_prev,
   },
   -- for normal mode
   n = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
   },
 }
 
@@ -232,6 +237,25 @@ lvim.builtin.which_key.mappings["T"] = {
   t = { "<cmd>TodoTrouble<cr>", "Todo" }
 }
 
+lvim.builtin.which_key.mappings["C"] = {
+  name = "+ChatGPT",
+  C = { "<cmd>ChatGPT<cr>", "ChatGPT" },
+  A = { "<cmd>ChatGPTActAs<cr>", "Act As" },
+  E = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions" },
+  I = { "<cmd>ChatGPTCompleteCode<cr>", "Complete Code" },
+}
+lvim.builtin.which_key.vmappings["C"] = {
+  name = "+ChatGPT",
+  F = { "<cmd>ChatGPTRun fix_bugs<cr>", "Fix Bugs" },
+  D = { "<cmd>ChatGPTRun docstring<cr>", "Doc String" },
+  C = { "<cmd>ChatGPTRun explain_code<cr>", "Explain Code" },
+  E = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions" },
+  O = { "<cmd>ChatGPTRun optimize_code<cr>", "Optimize Code" },
+  S = { "<cmd>ChatGPTRun summarize<cr>", "Summarize" },
+  T = { "<cmd>ChatGPTRun add_tests<cr>", "Add Tests" },
+  t = { "<cmd>ChatGPTRun translate<cr>", "translate" },
+}
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Toggle",
   a = { ":ASToggle<cr>", "Auto Save" },
@@ -239,10 +263,9 @@ lvim.builtin.which_key.mappings["t"] = {
   y = { "<cmd>Telescope neoclip<cr>", "NeoClip" },
   t = { "<cmd>Telescope<cr>", "Telescope" },
   b = { "<cmd>Telescope marks<cr>", "Bookmarks" },
-  C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+  c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
   r = { "<cmd>Telescope registers<cr>", "Registers" },
   m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-  c = { "<cmd>ChatGPT<cr>", "ChatGPT" },
   M = { "<cmd>MarkdownPreviewToggle<cr>", "MarkdownPreview" }
 }
 
@@ -626,14 +649,14 @@ lvim.plugins = {
             lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-                  ["af"] = "@function.outer",
-                  ["if"] = "@function.inner",
-                  ["ac"] = "@class.outer",
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
-                  ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
               -- You can also use captures from other query groups like `locals.scm`
-                  ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
             },
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -643,9 +666,9 @@ lvim.plugins = {
             -- and should return the mode ('v', 'V', or '<c-v>') or a table
             -- mapping query_strings to modes.
             selection_modes = {
-                  ['@parameter.outer'] = 'v', -- charwise
-                  ['@function.outer'] = 'V',  -- linewise
-                  ['@class.outer'] = '<c-v>', -- blockwise
+              ['@parameter.outer'] = 'v', -- charwise
+              ['@function.outer'] = 'V',  -- linewise
+              ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
             -- extended to include preceding or succeeding whitespace. Succeeding
@@ -662,36 +685,36 @@ lvim.plugins = {
             enable = true,
             set_jumps = false, -- whether to set jumps in the jumplist
             goto_next_start = {
-                  ["]]"] = "@function.outer",
+              ["]]"] = "@function.outer",
               -- ["]["] = "@function.outer",
-                  ["]o"] = "@loop.outer",
+              ["]o"] = "@loop.outer",
               -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
             },
             goto_next_end = {
-                  ["]["] = "@function.outer",
+              ["]["] = "@function.outer",
               -- ["]["] = "@class.outer",
             },
             goto_previous_start = {
-                  ["[["] = "@function.outer",
+              ["[["] = "@function.outer",
               -- ["[]"] = "@function.outer",
             },
             goto_previous_end = {
-                  ["[]"] = "@function.outer",
+              ["[]"] = "@function.outer",
               -- ["[]"] = "@class.outer",
             },
             goto_next = {
-                  ["]d"] = "@conditional.outer",
+              ["]d"] = "@conditional.outer",
             },
             goto_previous = {
-                  ["[d"] = "@conditional.outer",
+              ["[d"] = "@conditional.outer",
             },
           },
           lsp_interop = {
             enable = true,
             border = 'none',
             peek_definition_code = {
-                  ["<leader>pf"] = "@function.outer",
-                  ["<leader>pF"] = "@class.outer",
+              ["<leader>pf"] = "@function.outer",
+              ["<leader>pF"] = "@class.outer",
             },
           },
         },
@@ -911,7 +934,7 @@ lvim.plugins = {
     -- commit = "1ebbec2053a5d79bfbffc5291396fdbeea41329b",
     config = function()
       require("chatgpt").setup({
-       -- optional configuration
+        -- optional configuration
         yank_register = "+",
         edit_with_instructions = {
           diff = false,
@@ -929,83 +952,25 @@ lvim.plugins = {
           question_sign = "", -- 🙂
           answer_sign = "ﮧ", -- 🤖
           max_line_length = 120,
-          sessions_window = {
-            border = {
-              style = "rounded",
-              text = {
-                top = " Sessions ",
-              },
-            },
-            win_options = {
-              winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-            },
-          },
-          keymaps = {
-            close = { "<C-c>" },
-            yank_last = "<C-y>",
-            yank_last_code = "<C-k>",
-            scroll_up = "<C-u>",
-            scroll_down = "<C-d>",
-            toggle_settings = "<C-o>",
-            new_session = "<A-n>",
-            cycle_windows = "<Tab>",
-            select_session = "<Space>",
-            rename_session = "r",
-            delete_session = "d",
-          },
-        },
-        popup_layout = {
-          relative = "editor",
-          position = "50%",
-          size = {
-            height = "80%",
-            width = "80%",
-          },
-        },
-        popup_window = {
-          filetype = "chatgpt",
-          border = {
-            highlight = "FloatBorder",
-            style = "rounded",
-            text = {
-              top = " ChatGPT ",
-            },
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-        },
-        popup_input = {
-          prompt = "  ",
-          border = {
-            highlight = "FloatBorder",
-            style = "rounded",
-            text = {
-              top_align = "center",
-              top = " Prompt ",
-            },
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-          submit = "<Enter>",
-        },
-        settings_window = {
-          border = {
-            style = "rounded",
-            text = {
-              top = " Settings ",
-            },
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
+          -- keymaps = {
+          --   close = { "<C-c>" },
+          --   yank_last = "<C-y>",
+          --   yank_last_code = "<C-k>",
+          --   scroll_up = "<C-u>",
+          --   scroll_down = "<C-d>",
+          --   toggle_settings = "<C-o>",
+          --   new_session = "<C-n>",
+          --   cycle_windows = "<Tab>",
+          --   select_session = "<Space>",
+          --   rename_session = "r",
+          --   delete_session = "d",
+          -- },
         },
         openai_params = {
           model = "gpt-3.5-turbo",
           frequency_penalty = 0,
           presence_penalty = 0,
-          max_tokens = 300,
+          max_tokens = 2048,
           temperature = 0,
           top_p = 1,
           n = 1,
@@ -1017,7 +982,10 @@ lvim.plugins = {
           n = 1,
         },
         actions_paths = {},
-        predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
+        show_quickfixes_cmd = "Trouble quickfix",
+        -- predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
+        predefined_chat_gpt_prompts =
+        "https://raw.githubusercontent.com/everdom/awesome-chatgpt-prompts-zh/main/prompts-zh.csv",
       })
     end,
     dependencies = {
@@ -1029,6 +997,11 @@ lvim.plugins = {
   {
     "iamcco/markdown-preview.nvim",
     build = function() vim.fn["mkdp#util#install"]() end,
+  },
+  {
+    "madox2/vim-ai",
+    config = function()
+    end
   },
 }
 

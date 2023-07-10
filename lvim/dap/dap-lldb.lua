@@ -52,5 +52,28 @@ dap.configurations.cpp = {
     end,
     cwd = "${workspaceFolder}"
   },
+
+  {
+    -- launch
+    name = "Launch current file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      ---@diagnostic disable-next-line: redundant-parameter
+      -- 获取当前文件路径
+      local current_file_path = vim.fn.expand('%:p')
+      local current_file_directory = vim.fn.fnamemodify(current_file_path, ':h')
+      return vim.fn.input("Path to executable: ", current_file_directory .. "/build/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    -- cwd = function()
+    --   -- 获取当前文件路径
+    --   local current_file_path = vim.fn.expand('%:p')
+    --   local current_file_directory = vim.fn.fnamemodify(current_file_path, ':h')
+    --   return current_file_directory
+    -- end,
+    stopOnEntry = false,
+    args = {},
+  },
 }
 dap.configurations.c = dap.configurations.cpp

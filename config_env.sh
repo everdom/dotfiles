@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install -y build-essential vim zsh tmux git python-is-python3 curl wget net-tools python3-pip p7zip-full neofetch htop nnn ranger tmuxinator ripgrep adb cmake libtool libtool-bin libncurses5 python3-venv llvm xclip exuberant-ctags global lldb libboost-all-dev libgoogle-glog-dev libleveldb-dev libmarisa-dev libopencc-dev libyaml-cpp-dev libgtest-dev screen meson bear tree clang trash-cli cargo ncdu bleachbit gparted zathura kchmviewer qutebrowser
+sudo apt install -y build-essential vim zsh tmux git python-is-python3 curl wget net-tools python3-pip p7zip-full neofetch htop nnn ranger tmuxinator ripgrep adb cmake libtool libtool-bin libncurses5 python3-venv llvm xclip exuberant-ctags global lldb libboost-all-dev libgoogle-glog-dev libleveldb-dev libmarisa-dev libopencc-dev libyaml-cpp-dev libgtest-dev screen meson bear tree clang trash-cli cargo ncdu bleachbit gparted zathura kchmviewer qutebrowser expect
 sudo snap install btop
 pip install youdao
 pip install thefuck --user
@@ -24,6 +24,10 @@ make -j$(nproc)
 # Optional. This will install the polybar executable in /usr/local/bin
 sudo make install
 
+#sogou
+curl -sL 'https://keyserver.ubuntu.com/pks/lookup?&op=get&search=0x73BC8FBCF5DE40C6ADFCFFFA9C949F2093F565FF' | sudo apt-key add
+sudo apt-add-repository 'deb http://archive.ubuntukylin.com/ukui focal main'
+sudo apt install sogouimebs
 
 # neovim
 sudo apt-add-repository ppa:neovim-ppa/unstable
