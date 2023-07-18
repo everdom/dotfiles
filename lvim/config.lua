@@ -242,18 +242,21 @@ lvim.builtin.which_key.mappings["C"] = {
   C = { "<cmd>ChatGPT<cr>", "ChatGPT" },
   A = { "<cmd>ChatGPTActAs<cr>", "Act As" },
   E = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions" },
-  I = { "<cmd>ChatGPTCompleteCode<cr>", "Complete Code" },
+  J = { "<cmd>ChatGPTCompleteCode<cr>", "Complete Code" },
 }
 lvim.builtin.which_key.vmappings["C"] = {
   name = "+ChatGPT",
   F = { "<cmd>ChatGPTRun fix_bugs<cr>", "Fix Bugs" },
   D = { "<cmd>ChatGPTRun docstring<cr>", "Doc String" },
   C = { "<cmd>ChatGPTRun explain_code<cr>", "Explain Code" },
+  J = { "<cmd>ChatGPTRun complete_code<cr>", "Complete Code" },
+  X = { "<cmd>ChatGPTRun translate_code<cr>", "Translate Code" },
   E = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions" },
   O = { "<cmd>ChatGPTRun optimize_code<cr>", "Optimize Code" },
   S = { "<cmd>ChatGPTRun summarize<cr>", "Summarize" },
   T = { "<cmd>ChatGPTRun add_tests<cr>", "Add Tests" },
-  t = { "<cmd>ChatGPTRun translate<cr>", "translate" },
+  t = { "<cmd>ChatGPTRun translate<cr>", "Translate" },
+  d = { "<cmd>ChatGPTRun add_code_doc<cr>", "Add Code Doc" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -379,7 +382,7 @@ lvim.lsp.installer.setup.ensure_installed = {
 lvim.lsp.installer.setup.automatic_installation = false
 
 -- disable diagnostics which is super annoying in my case
-lvim.lsp.diagnostics.virtual_text = false
+vim.diagnostic.config({ virtual_text = false })
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
@@ -752,9 +755,9 @@ lvim.plugins = {
       require('telescope').load_extension('neoclip')
     end,
   },
-  {
-    'ethanholz/nvim-lastplace'
-  },
+  -- {
+  --   'ethanholz/nvim-lastplace'
+  -- },
   -- { -- json parser for dap launch.json
   --   -- NOTE: cargo required: https://rustup.rs/
   --   'Joakker/lua-json5',
@@ -849,20 +852,21 @@ lvim.plugins = {
 
       -- You can also do this inside lsp on_attach
       -- note: on_attach deprecated
-      require 'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
+      -- require 'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
+      require 'lsp_signature'.on_attach(cfg) -- no need to specify bufnr if you don't use toggle_key
     end,
   },
-  "ray-x/guihua.lua",
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      local notify = require('notify')
-      notify.setup({
-        backgroud_colour = '#000000'
-      })
-      vim.notify = notify
-    end
-  },
+  -- "ray-x/guihua.lua",
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   config = function()
+  --     local notify = require('notify')
+  --     notify.setup({
+  --       backgroud_colour = '#000000'
+  --     })
+  --     vim.notify = notify
+  --   end
+  -- },
   {
     "nacro90/numb.nvim",
     event = "BufRead",
@@ -947,7 +951,7 @@ lvim.plugins = {
           },
         },
         chat = {
-          welcome_message = WELCOME_MESSAGE,
+          -- welcome_message = WELCOME_MESSAGE,
           loading_text = "Loading, please wait ...",
           question_sign = "", -- 🙂
           answer_sign = "ﮧ", -- 🤖
@@ -967,10 +971,10 @@ lvim.plugins = {
           -- },
         },
         openai_params = {
-          model = "gpt-3.5-turbo",
+          model = "gpt-3.5-turbo-0613",
           frequency_penalty = 0,
           presence_penalty = 0,
-          max_tokens = 2048,
+          max_tokens = 8192,
           temperature = 0,
           top_p = 1,
           n = 1,
@@ -981,7 +985,7 @@ lvim.plugins = {
           top_p = 1,
           n = 1,
         },
-        actions_paths = {},
+        actions_paths = { "~/repo/dotfiles/lvim/my_actions.json", },
         show_quickfixes_cmd = "Trouble quickfix",
         -- predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
         predefined_chat_gpt_prompts =

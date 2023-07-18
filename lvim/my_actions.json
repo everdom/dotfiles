@@ -1,0 +1,47 @@
+{
+  "translate_code": {
+    "type": "chat", 
+    "opts": {
+      "template": "Translate the following code into {{argument}} language. Please pay attention to all grammar-related features in order to make the converted code conform to the corresponding specifications of the {{argument}} language. For example, when converting from C++ to C language, complex results are usually passed as pointer parameters instead of return values.
+:\n\nCode: ```\n{{input}}\n```\n\nTranslated version:\n```{{argument}}",
+      "strategy": "edit", 
+      "params": { 
+        "model": "gpt-3.5-turbo-16k-0613", 
+        "max_tokens": 8192,
+        "stop": [
+          "```" 
+        ]
+      }
+    },
+    "args": {
+      "argument": {
+          "type": "string",
+          "optional": "true",
+          "default": "c"
+      }
+    }
+  },
+
+  "add_code_doc": {
+    "type": "chat", 
+    "opts": {
+      "template": "给这段代码加上说明注释文档，说明代码的作用，用法等：```{{filetype}}\n[insert]\n\n{{input}}\n\n``",
+      "strategy": "prepend", 
+      "params": { 
+        "model": "gpt-3.5-turbo-16k-0613", 
+        "temperature": 0.5,
+        "max_tokens": 8192,
+        "stop": [
+          "```" 
+        ]
+      }
+    },
+    "args": {
+      "argument": {
+          "type": "string",
+          "optional": "true",
+          "default": "c"
+      }
+    }
+  }
+}
