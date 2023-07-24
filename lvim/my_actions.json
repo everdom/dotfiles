@@ -6,7 +6,7 @@
 :\n\nCode: ```\n{{input}}\n```\n\nTranslated version:\n```{{argument}}",
       "strategy": "edit", 
       "params": { 
-        "model": "gpt-3.5-turbo-16k-0613", 
+        "model": "gpt-3.5-turbo-16k", 
         "max_tokens": 8192,
         "stop": [
           "```" 
@@ -28,12 +28,31 @@
       "template": "给这段代码加上说明注释文档，说明代码的作用，用法等：```{{filetype}}\n[insert]\n\n{{input}}\n\n``",
       "strategy": "prepend", 
       "params": { 
-        "model": "gpt-3.5-turbo-16k-0613", 
+        "model": "gpt-3.5-turbo-16k", 
         "temperature": 0.5,
         "max_tokens": 8192,
         "stop": [
           "```" 
         ]
+      }
+    },
+    "args": {
+      "argument": {
+          "type": "string",
+          "optional": "true",
+          "default": "c"
+      }
+    }
+  },
+
+  "ask": {
+    "type": "chat", 
+    "opts": {
+      "template": "请阅读以下内容：{{input}}，我有些问题需要请教你\n",
+      "strategy": "edit", 
+      "params": { 
+        "model": "gpt-3.5-turbo-16k", 
+        "max_tokens": 8192
       }
     },
     "args": {

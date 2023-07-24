@@ -35,7 +35,7 @@ vim.opt.termguicolors                  = true
 vim.g.transparent_background           = true
 -- lvim.transparent_background            = true
 -- lvim.transparent_window                = true
-
+lvim.builtin.which_key.setup.ignore_missing = false
 --lvim.g.neovide_transparency            = 0
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -44,8 +44,8 @@ lvim.leader                            = "space"
 lvim.keys.normal_mode["<C-s>"]         = ":w<cr>"
 lvim.keys.normal_mode["E"]             = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["R"]             = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<tab>"]         = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<S-tab>"]       = ":BufferLineCyclePrev<CR>"
+-- lvim.keys.normal_mode["<tab>"]         = ":BufferLineCycleNext<CR>"
+-- lvim.keys.normal_mode["<S-tab>"]       = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["H"]             = "^"
 lvim.keys.normal_mode["L"]             = "$"
 lvim.keys.normal_mode["Q"]             = "q"
@@ -76,27 +76,27 @@ lvim.builtin.which_key.mappings["lc"]  = { ":lua vim.lsp.buf.incoming_calls()<cr
 lvim.builtin.which_key.mappings["lo"]  = { ":lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing Calls" }
 lvim.builtin.which_key.mappings.l.R    = { "<cmd>LspRestart<cr>", "Restart" }
 -- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
--- lvim.keys.normal_mode["gh"] = ":lua vim.lsp.buf.hover()<cr>"
+lvim.keys.normal_mode["gh"] = {":lua vim.lsp.buf.hover()<cr>", {desc="Hover Doc"}}
 -- lvim.keys.normal_mode["gh"]            = ":Lspsaga hover_doc<cr>"
-lvim.keys.normal_mode["gf"]            = ":Lspsaga lsp_finder<cr>"
-lvim.keys.normal_mode["ga"]            = ":Lspsaga code_action<cr>"
-lvim.keys.normal_mode["gi"]            = ":Lspsaga incoming_calls<cr>"
-lvim.keys.normal_mode["go"]            = ":Lspsaga outgoing_calls<cr>"
-lvim.keys.normal_mode["gd"]            = ":Lspsaga goto_definition<cr>"
-lvim.keys.normal_mode["gp"]            = ":Lspsaga peek_definition<cr>"
-lvim.keys.normal_mode["gt"]            = ":Lspsaga peek_type_definition<cr>"
-lvim.keys.normal_mode["gn"]            = ":Lspsaga rename<cr>"
-lvim.keys.normal_mode["gl"]            = ":Lspsaga show_line_diagnostics<cr>"
-lvim.keys.normal_mode["gsc"]           = ":Lspsaga show_cursor_diagnostics<cr>"
-lvim.keys.normal_mode["gsb"]           = ":Lspsaga show_buf_diagnostics<cr>"
-lvim.keys.normal_mode["gsw"]           = ":Lspsaga show_workspace_diagnostics<cr>"
-lvim.keys.normal_mode["gj"]            = ":Lspsaga diagnostic_jump_next<cr>"
-lvim.keys.normal_mode["gk"]            = ":Lspsaga diagnostic_jump_prev<cr>"
+lvim.keys.normal_mode["gf"]            = {":Lspsaga finder<cr>", {desc="Finder"}}
+lvim.keys.normal_mode["ga"]            = {":Lspsaga code_action<cr>" , {desc="Code Action"}} 
+lvim.keys.normal_mode["gi"]            = {":Lspsaga incoming_calls<cr>" , {desc="Incoming Calls"}} 
+lvim.keys.normal_mode["go"]            = {":Lspsaga outgoing_calls<cr>" , {desc="Outgoing Calls"}} 
+lvim.keys.normal_mode["gd"]            = {":Lspsaga goto_definition<cr>", {desc="Goto Definition"}} 
+lvim.keys.normal_mode["gp"]            = {":Lspsaga peek_definition<cr>", {desc="Peek Definition"}} 
+lvim.keys.normal_mode["gt"]            = {":Lspsaga peek_type_definition<cr>", {desc="Peek Type Definition"}} 
+lvim.keys.normal_mode["gn"]            = {":Lspsaga rename<cr>", {desc="Rename"}} 
+lvim.keys.normal_mode["gl"]            = {":Lspsaga show_line_diagnostics<cr>", {desc="Show Line Diagnostics"}} 
+lvim.keys.normal_mode["gsc"]           = {":Lspsaga show_cursor_diagnostics<cr>", {desc="Show Cursor Diagnostics"}} 
+lvim.keys.normal_mode["gsb"]           = {":Lspsaga show_buf_diagnostics<cr>", {desc="Show Buf Diagnostics"}} 
+lvim.keys.normal_mode["gsw"]           = {":Lspsaga show_workspace_diagnostics<cr>", {desc="Show Workspace Diagnostics"}} 
+lvim.keys.normal_mode["gj"]            = {":Lspsaga diagnostic_jump_next<cr>", {desc="Diagnostic Jump Next"}} 
+lvim.keys.normal_mode["gk"]            = {":Lspsaga diagnostic_jump_prev<cr>", {desc="Diagnostic Jump Prev"}} 
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
-lvim.keys.normal_mode["[e"]            = "<cmd>Lspsaga diagnostic_jump_prev<CR>"
-lvim.keys.normal_mode["]e"]            = "<cmd>Lspsaga diagnostic_jump_next<CR>"
+-- lvim.keys.normal_mode["[e"]            = {"<cmd>Lspsaga diagnostic_jump_prev<CR>", {desc="diagnostic_jump_prev"}}
+-- lvim.keys.normal_mode["]e"]            = {"<cmd>Lspsaga diagnostic_jump_next<CR>", {desc="diagnostic_jump_next"}}
 
 -- Diagnostic jump with filters such as only jumping to an error
 -- lvim.keys.normal_mode["[E"]            =
@@ -106,7 +106,7 @@ lvim.keys.normal_mode["]e"]            = "<cmd>Lspsaga diagnostic_jump_next<CR>"
 -- "<cmd>lua require('lspsaga.diagnostic').goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>"
 
 -- telescope
-lvim.keys.normal_mode["<leader>r"]     = ":Telescope oldfiles<cr>"
+lvim.builtin.which_key.mappings["r"]     = {":Telescope oldfiles<cr>", "Old Files"}
 
 -- orverwirte old 's'
 lvim.builtin.which_key.mappings.f      = nil
@@ -257,6 +257,24 @@ lvim.builtin.which_key.vmappings["C"] = {
   T = { "<cmd>ChatGPTRun add_tests<cr>", "Add Tests" },
   t = { "<cmd>ChatGPTRun translate<cr>", "Translate" },
   d = { "<cmd>ChatGPTRun add_code_doc<cr>", "Add Code Doc" },
+  A = { "<cmd>ChatGPTRun ask<cr>", "Ask" },
+}
+
+lvim.builtin.which_key.mappings["a"] = {
+  name="+AI",
+  a = { ":AI ", "AI Complete" },
+  r = { ":AIRedo<cr>", "AI Redo"},
+  c = { ":AIChat<cr>", "AI Chat" },
+  n = { ":AINewChat<cr>", "AI New Chat" },
+}
+
+lvim.builtin.which_key.vmappings["a"] = {
+  name="+AI",
+  a = { ":AI ", "AI Complete" },
+  r = { ":AIRedo<cr>", "AI Redo"},
+  c = { ":AIChat<cr>", "AI Chat" },
+  e = { ":AIEdit ", "AI Edit" },
+  n = { ":AINewChat<cr>", "AI New Chat" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -272,6 +290,35 @@ lvim.builtin.which_key.mappings["t"] = {
   M = { "<cmd>MarkdownPreviewToggle<cr>", "MarkdownPreview" }
 }
 
+lvim.keys.normal_mode["vaf"] = {":TSTextobjectSelect @function.outer<cr>", {desc="Function Outer"}}
+lvim.keys.normal_mode["vif"] = {":TSTextobjectSelect @function.inner<cr>", {desc="Function Inner"}}
+lvim.keys.normal_mode["vac"] = {":TSTextobjectSelect @class.outer<cr>", {desc="Class Outer"}}
+lvim.keys.normal_mode["vic"] = {":TSTextobjectSelect @class.inner<cr>", {desc = "Class Outer" }}
+lvim.keys.normal_mode["vas"] = {":TSTextobjectSelect @scope<cr>",  {desc = "Language Scope" }}
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local tmux_term = Terminal:new({
+  cmd = "tmux",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+
+function _tmux_term()
+  tmux_term:toggle()
+end
+lvim.keys.normal_mode["<A-`>"] = "<cmd>lua _tmux_term()<cr>" 
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -324,60 +371,6 @@ lvim.lsp.installer.setup.ensure_installed = {
   "pyright",
 }
 
--- -- change UI setting of `LspInstallInfo`
--- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
--- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
--- lvim.lsp.installer.setup.ui.border = "rounded"
--- lvim.lsp.installer.setup.ui.keymaps = {
---     uninstall_server = "d",
---     toggle_server_expand = "o",
--- }
--- local colors = {
---     blue   = '#80a0ff',
---     cyan   = '#79dac8',
---     black  = '#080808',
---     white  = '#c6c6c6',
---     red    = '#ff5189',
---     violet = '#d183e8',
---     grey   = '#303030',
--- }
-
--- lvim.builtin.lualine.options.theme = {
---     normal = {
---         c = { fg = colors.black, bg = colors.violet },
---         a = { fg = colors.white, bg = colors.grey },
---         b = { fg = colors.black, bg = colors.white },
---     },
---     insert = {
---         a = { fg = colors.black, bg = colors.blue },
---     },
---     visual = {
---         a = { fg = colors.black, bg = colors.cyan },
---     },
---     replace = {
---         a = { fg = colors.black, bg = colors.cyan },
---     },
---     inactive = {
---         a = { fg = colors.white, bg = colors.black },
---         b = { fg = colors.white, bg = colors.black },
---         c = { fg = colors.black, bg = colors.black },
---     },
--- }
--- lvim.builtin.lualine.options.component_separators = '|'
--- lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
--- lvim.builtin.lualine.sections = {
---     lualine_a = {
---         { 'mode', separator = { left = '' }, right_padding = 2 },
---     },
---     lualine_b = { 'filename', 'branch' },
---     lualine_c = { 'fileformat' },
---     lualine_x = {},
---     lualine_y = { 'filetype', 'progress' },
---     lualine_z = {
---         { 'location', separator = { right = '' }, left_padding = 2 },
---     },
--- }
-
 -- ---@usage disable automatic installation of servers
 lvim.lsp.installer.setup.automatic_installation = false
 
@@ -421,7 +414,7 @@ require("lvim.lsp.manager").setup("pyright", {
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "black", filetypes = { "python" } },
+  -- { command = "black", filetypes = { "python" } },
   -- { command = "isort", filetypes = { "python" } },
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
@@ -636,15 +629,31 @@ lvim.plugins = {
       require("lvim.lsp.manager").setup("clangd", opts)
     end
   },
-  -- {
-  --   after = "nvim-treesitter",
-  --   'nvim-treesitter/nvim-treesitter-context',
-  -- },
+  {
+    after = "nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter-context',
+    config=function()
+      require'treesitter-context'.setup{
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        line_numbers = true,
+        multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
+        trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+        -- Separator between context and content. Should be a single character string, like '-'.
+        -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+        separator = nil,
+        zindex = 20, -- The Z-index of the context window
+        on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+      }
+    end
+  },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require('nvim-treesitter.configs').setup {
         textobjects = {
           select = {
             enable = true,
@@ -652,14 +661,18 @@ lvim.plugins = {
             lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
+              ["af"] = {query="@function.outer", desc="Function Outer"},
+              ["if"] = {query="@function.inner", desc="Function Inner"},
+              ["ac"] = {query="@class.outer", desc="Class Outer"},
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+              ["ic"] = { query = "@class.inner", desc = "Class Outer" },
               -- You can also use captures from other query groups like `locals.scm`
               ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+              -- ["f"] = {query="@function.outer", desc="Function Outer"},
+              -- ["F"] = {query="@function.inner", desc="Function Inner"},
+              -- ["c"] = {query="@class.outer", desc="Class Outer"},
+              -- ["C"] = { query = "@class.inner", desc = "Class Outer" },
             },
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -712,12 +725,21 @@ lvim.plugins = {
               ["[d"] = "@conditional.outer",
             },
           },
-          lsp_interop = {
+          swap = {
             enable = true,
-            border = 'none',
+            swap_next = {
+              ["gwa"] = "@parameter.inner",
+            },
+            swap_previous = {
+              ["gwA"] = "@parameter.inner",
+            },
+          },
+          lsp_interop = {
+            enable = false,
+            -- border = 'none',
             peek_definition_code = {
-              ["<leader>pf"] = "@function.outer",
-              ["<leader>pF"] = "@class.outer",
+              ["gsf"] = { query = "@function.outer",  desc = "Peak Function Outer" },
+              ["gsc"] = { query = "@class.outer",  desc = "Peak Class Outer" },
             },
           },
         },
@@ -971,7 +993,7 @@ lvim.plugins = {
           -- },
         },
         openai_params = {
-          model = "gpt-3.5-turbo-0613",
+          model = "gpt-3.5-turbo-16k",
           frequency_penalty = 0,
           presence_penalty = 0,
           max_tokens = 8192,
