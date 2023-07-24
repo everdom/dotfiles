@@ -12,3 +12,4 @@ bin/linux/tmux
 
 lvim/lazy-lock.json
 .luarc.json
+tmux/plugins
