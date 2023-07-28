@@ -35,7 +35,6 @@ vim.opt.termguicolors                  = true
 vim.g.transparent_background           = true
 -- lvim.transparent_background            = true
 -- lvim.transparent_window                = true
-lvim.builtin.which_key.setup.ignore_missing = false
 --lvim.g.neovide_transparency            = 0
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -130,6 +129,7 @@ lvim.builtin.which_key.mappings["f"]   = {
   -- r = {":Telescope oldfiles<cr>", "Find Old Files"},
   -- s = {":lua require('telescope.builtin').lsp_document_symbols()<cr>", "Document Symbols"},
   -- S  = {":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", "Workspace Symbols"}
+  s = { ":Spectre <cr>", "Sperctre Replace" },
 }
 -- lvim.keys.normal_mode["<leader>ff"] = ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>"
 -- lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
@@ -284,10 +284,13 @@ lvim.builtin.which_key.mappings["t"] = {
   y = { "<cmd>Telescope neoclip<cr>", "NeoClip" },
   t = { "<cmd>Telescope<cr>", "Telescope" },
   b = { "<cmd>Telescope marks<cr>", "Bookmarks" },
-  c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+  C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
   r = { "<cmd>Telescope registers<cr>", "Registers" },
   m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-  M = { "<cmd>MarkdownPreviewToggle<cr>", "MarkdownPreview" }
+  M = { "<cmd>MarkdownPreviewToggle<cr>", "Markdown Preview" },
+  c = { ":lua lvim.builtin.cmp.active = not lvim.builtin.cmp.active<cr>", "Toggle Nvim-cmp" },
+  s = { ":set scrollbind<cr>", "Sync Scroll ON" },
+  S = { ":set noscrollbind<cr>", "Sync Scroll OFF" },
 }
 
 lvim.keys.normal_mode["vaf"] = {":TSTextobjectSelect @function.outer<cr>", {desc="Function Outer"}}
@@ -296,39 +299,22 @@ lvim.keys.normal_mode["vac"] = {":TSTextobjectSelect @class.outer<cr>", {desc="C
 lvim.keys.normal_mode["vic"] = {":TSTextobjectSelect @class.inner<cr>", {desc = "Class Outer" }}
 lvim.keys.normal_mode["vas"] = {":TSTextobjectSelect @scope<cr>",  {desc = "Language Scope" }}
 
-local Terminal  = require('toggleterm.terminal').Terminal
-local tmux_term = Terminal:new({
-  cmd = "tmux",
-  dir = "git_dir",
-  direction = "float",
-  float_opts = {
-    border = "double",
-  },
-  -- function to run on opening the terminal
-  on_open = function(term)
-    vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
-  end,
-  -- function to run on closing the terminal
-  on_close = function(term)
-    vim.cmd("startinsert!")
-  end,
-})
-
-function _tmux_term()
-  tmux_term:toggle()
-end
-lvim.keys.normal_mode["<A-`>"] = "<cmd>lua _tmux_term()<cr>" 
-
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
+lvim.builtin.terminal.execs = {
+  { "tmux", "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
+  { "tmux", "<M-2>", "Vertical Terminal", "vertical", 0.4 },
+  { "tmux", "<M-3>", "Float Terminal", "float", nil },
+}
 -- nvim tree
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+-- which-key
+lvim.builtin.which_key.setup.ignore_missing = false
 -- dap
 lvim.builtin.dap.active = true
 -- cmp
@@ -777,14 +763,48 @@ lvim.plugins = {
       require('telescope').load_extension('neoclip')
     end,
   },
-  -- {
-  --   'ethanholz/nvim-lastplace'
-  -- },
-  -- { -- json parser for dap launch.json
-  --   -- NOTE: cargo required: https://rustup.rs/
-  --   'Joakker/lua-json5',
-  --   run = './install.sh'
-  -- },
+  {
+    'ethanholz/nvim-lastplace',
+    config =function()
+      require'nvim-lastplace'.setup {
+        lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
+        lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+        lastplace_open_folds = true
+      }
+    end
+  },
+  {
+    "npxbr/glow.nvim",
+    config = function()
+      require('glow').setup({
+        border = "shadow", -- floating window border config
+        style = "dark", -- filled automatically with your current editor background, you can override using glow json style
+        pager = false,
+        width = 150,
+        height = 100,
+        width_ratio = 0.7, -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
+        height_ratio = 0.7,
+      })
+    end,
+    ft = {"markdown"},
+    cmd = "Glow"
+    -- build = "yay -S glow"
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
+      vim.g.mkdp_theme = 'dark'
+    end,
+  },
+
+  { -- json parser for dap launch.json
+    -- NOTE: cargo required: https://rustup.rs/
+    'Joakker/lua-json5',
+    build = './install.sh'
+  },
   {
     "nvim-telescope/telescope-dap.nvim",
     config = function()
@@ -954,6 +974,7 @@ lvim.plugins = {
     'tzachar/cmp-tabnine',
     build = './install.sh',
     dependencies = 'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
   },
   {
     "jackMort/ChatGPT.nvim",
@@ -1029,12 +1050,36 @@ lvim.plugins = {
     config = function()
     end
   },
+  {
+    "windwp/nvim-spectre",
+    event = "BufRead",
+    config = function()
+      require("spectre").setup()
+    end,
+  },
+  { "tpope/vim-repeat" },
+  {
+    "metakirby5/codi.vim",
+    cmd = "Codi",
+  },
+  {
+    'Exafunction/codeium.vim',
+    config = function ()
+        vim.g.codeium_enabled = true -- Enable Codeium by default
+        vim.g.codeium_idle_delay = 100 -- Set the idle delay (in milliseconds)
+      -- Change '<C-g>' here to any keycode you like.
+      -- vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+      -- vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      -- vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      -- vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end
+  },
 }
 
 --- dap config
 -- load non-standard json file
--- require('dap.ext.vscode').json_decode = require 'json5'.parse
--- require('dap.ext.vscode').load_launchjs()
+require('dap.ext.vscode').json_decode = require 'json5'.parse
+require('dap.ext.vscode').load_launchjs()
 require("dap.dap-lldb")
 -- require("dap.dap-cppdbg")
 

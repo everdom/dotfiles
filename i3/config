@@ -42,7 +42,7 @@ bindsym $m_alt+space exec --no-startup-id rofi -show window
 # terminals
 # bindsym $mod+Return exec --no-startup-id xfce4-terminal
 # bindsym $mod+z exec --no-startup-id xfce4-terminal
-bindsym $mod+Return exec --no-startup-id alacritty  
+bindsym $mod+Return exec --no-startup-id alacritty -e tmux
 bindsym $mod+z exec --no-startup-id alacritty  
 # bindsym $mod+Return exec --no-startup-id kitty
 # bindsym $mod+z exec --no-startup-id kitty
@@ -55,11 +55,11 @@ bindsym --release Shift+Print exec --no-startup-id "scrot -bs -q 100 './Pictures
 bindsym --release Control+Print exec --no-startup-id "scrot -s -q 100 './Pictures/Screenshots/%Y%m%d_%H%M%s_$wx$h.png'"
 
 # terminal applications
-bindsym Ctrl+$m_alt+r exec --no-startup-id  alacritty --class="ranger" -e ranger
+bindsym Shift+$m_alt+r exec --no-startup-id  alacritty --class="ranger" -e ranger
 #vim
-bindsym Ctrl+$m_alt+v exec --no-startup-id  alacritty --class="lvim" -e lvim 
-bindsym Ctrl+$m_alt+b exec --no-startup-id  alacritty --class="btop" -e btop 
-bindsym Ctrl+$m_alt+h exec --no-startup-id  alacritty --class="htop" -e htop 
+bindsym Shift+$m_alt+v exec --no-startup-id  alacritty --class="lvim" -e bash -c 'source ~/.proxy.source && lvim' 
+bindsym Shift+$m_alt+b exec --no-startup-id  alacritty --class="btop" -e btop 
+bindsym Shift+$m_alt+h exec --no-startup-id  alacritty --class="htop" -e htop 
 
 # window applications
 # emacs
@@ -363,6 +363,8 @@ exec --no-startup-id xset dpms 1200 1200
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# enable polkit agent to show request root privilege dialog
+exec --no-startup-id "pidof -q lxpolkit || lxpolkit &"
 
 
 #++++++=Sessions=++++++#
