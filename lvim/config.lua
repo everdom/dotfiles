@@ -75,22 +75,25 @@ lvim.builtin.which_key.mappings["lc"]  = { ":lua vim.lsp.buf.incoming_calls()<cr
 lvim.builtin.which_key.mappings["lo"]  = { ":lua vim.lsp.buf.outgoing_calls()<cr>", "Outgoing Calls" }
 lvim.builtin.which_key.mappings.l.R    = { "<cmd>LspRestart<cr>", "Restart" }
 -- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
-lvim.keys.normal_mode["gh"] = {":lua vim.lsp.buf.hover()<cr>", {desc="Hover Doc"}}
+lvim.keys.normal_mode["gh"]            = { ":lua vim.lsp.buf.hover()<cr>", { desc = "Hover Doc" } }
 -- lvim.keys.normal_mode["gh"]            = ":Lspsaga hover_doc<cr>"
-lvim.keys.normal_mode["gf"]            = {":Lspsaga finder<cr>", {desc="Finder"}}
-lvim.keys.normal_mode["ga"]            = {":Lspsaga code_action<cr>" , {desc="Code Action"}} 
-lvim.keys.normal_mode["gi"]            = {":Lspsaga incoming_calls<cr>" , {desc="Incoming Calls"}} 
-lvim.keys.normal_mode["go"]            = {":Lspsaga outgoing_calls<cr>" , {desc="Outgoing Calls"}} 
-lvim.keys.normal_mode["gd"]            = {":Lspsaga goto_definition<cr>", {desc="Goto Definition"}} 
-lvim.keys.normal_mode["gp"]            = {":Lspsaga peek_definition<cr>", {desc="Peek Definition"}} 
-lvim.keys.normal_mode["gt"]            = {":Lspsaga peek_type_definition<cr>", {desc="Peek Type Definition"}} 
-lvim.keys.normal_mode["gn"]            = {":Lspsaga rename<cr>", {desc="Rename"}} 
-lvim.keys.normal_mode["gl"]            = {":Lspsaga show_line_diagnostics<cr>", {desc="Show Line Diagnostics"}} 
-lvim.keys.normal_mode["gsc"]           = {":Lspsaga show_cursor_diagnostics<cr>", {desc="Show Cursor Diagnostics"}} 
-lvim.keys.normal_mode["gsb"]           = {":Lspsaga show_buf_diagnostics<cr>", {desc="Show Buf Diagnostics"}} 
-lvim.keys.normal_mode["gsw"]           = {":Lspsaga show_workspace_diagnostics<cr>", {desc="Show Workspace Diagnostics"}} 
-lvim.keys.normal_mode["gj"]            = {":Lspsaga diagnostic_jump_next<cr>", {desc="Diagnostic Jump Next"}} 
-lvim.keys.normal_mode["gk"]            = {":Lspsaga diagnostic_jump_prev<cr>", {desc="Diagnostic Jump Prev"}} 
+lvim.keys.normal_mode["gf"]            = { ":Lspsaga finder<cr>", { desc = "Finder" } }
+lvim.keys.normal_mode["ga"]            = { ":Lspsaga code_action<cr>", { desc = "Code Action" } }
+lvim.keys.normal_mode["gi"]            = { ":Lspsaga incoming_calls<cr>", { desc = "Incoming Calls" } }
+lvim.keys.normal_mode["go"]            = { ":Lspsaga outgoing_calls<cr>", { desc = "Outgoing Calls" } }
+lvim.keys.normal_mode["gd"]            = { ":Lspsaga goto_definition<cr>", { desc = "Goto Definition" } }
+lvim.keys.normal_mode["gp"]            = { ":Lspsaga peek_definition<cr>", { desc = "Peek Definition" } }
+lvim.keys.normal_mode["gt"]            = { ":Lspsaga peek_type_definition<cr>", { desc = "Peek Type Definition" } }
+lvim.keys.normal_mode["gn"]            = { ":Lspsaga rename<cr>", { desc = "Rename" } }
+lvim.keys.normal_mode["gl"]            = { ":Lspsaga show_line_diagnostics<cr>", { desc = "Show Line Diagnostics" } }
+lvim.keys.normal_mode["gsc"]           = { ":Lspsaga show_cursor_diagnostics<cr>", { desc = "Show Cursor Diagnostics" } }
+lvim.keys.normal_mode["gsb"]           = { ":Lspsaga show_buf_diagnostics<cr>", { desc = "Show Buf Diagnostics" } }
+lvim.keys.normal_mode["gsw"]           = { ":Lspsaga show_workspace_diagnostics<cr>", {
+  desc =
+  "Show Workspace Diagnostics"
+} }
+lvim.keys.normal_mode["gj"]            = { ":Lspsaga diagnostic_jump_next<cr>", { desc = "Diagnostic Jump Next" } }
+lvim.keys.normal_mode["gk"]            = { ":Lspsaga diagnostic_jump_prev<cr>", { desc = "Diagnostic Jump Prev" } }
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
@@ -105,7 +108,7 @@ lvim.keys.normal_mode["gk"]            = {":Lspsaga diagnostic_jump_prev<cr>", {
 -- "<cmd>lua require('lspsaga.diagnostic').goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>"
 
 -- telescope
-lvim.builtin.which_key.mappings["r"]     = {":Telescope oldfiles<cr>", "Old Files"}
+lvim.builtin.which_key.mappings["r"]   = { ":Telescope oldfiles<cr>", "Old Files" }
 
 -- orverwirte old 's'
 lvim.builtin.which_key.mappings.f      = nil
@@ -261,17 +264,17 @@ lvim.builtin.which_key.vmappings["C"] = {
 }
 
 lvim.builtin.which_key.mappings["a"] = {
-  name="+AI",
+  name = "+AI",
   a = { ":AI ", "AI Complete" },
-  r = { ":AIRedo<cr>", "AI Redo"},
+  r = { ":AIRedo<cr>", "AI Redo" },
   c = { ":AIChat<cr>", "AI Chat" },
   n = { ":AINewChat<cr>", "AI New Chat" },
 }
 
 lvim.builtin.which_key.vmappings["a"] = {
-  name="+AI",
+  name = "+AI",
   a = { ":AI ", "AI Complete" },
-  r = { ":AIRedo<cr>", "AI Redo"},
+  r = { ":AIRedo<cr>", "AI Redo" },
   c = { ":AIChat<cr>", "AI Chat" },
   e = { ":AIEdit ", "AI Edit" },
   n = { ":AINewChat<cr>", "AI New Chat" },
@@ -293,11 +296,11 @@ lvim.builtin.which_key.mappings["t"] = {
   S = { ":set noscrollbind<cr>", "Sync Scroll OFF" },
 }
 
-lvim.keys.normal_mode["vaf"] = {":TSTextobjectSelect @function.outer<cr>", {desc="Function Outer"}}
-lvim.keys.normal_mode["vif"] = {":TSTextobjectSelect @function.inner<cr>", {desc="Function Inner"}}
-lvim.keys.normal_mode["vac"] = {":TSTextobjectSelect @class.outer<cr>", {desc="Class Outer"}}
-lvim.keys.normal_mode["vic"] = {":TSTextobjectSelect @class.inner<cr>", {desc = "Class Outer" }}
-lvim.keys.normal_mode["vas"] = {":TSTextobjectSelect @scope<cr>",  {desc = "Language Scope" }}
+lvim.keys.normal_mode["vaf"] = { ":TSTextobjectSelect @function.outer<cr>", { desc = "Function Outer" } }
+lvim.keys.normal_mode["vif"] = { ":TSTextobjectSelect @function.inner<cr>", { desc = "Function Inner" } }
+lvim.keys.normal_mode["vac"] = { ":TSTextobjectSelect @class.outer<cr>", { desc = "Class Outer" } }
+lvim.keys.normal_mode["vic"] = { ":TSTextobjectSelect @class.inner<cr>", { desc = "Class Outer" } }
+lvim.keys.normal_mode["vas"] = { ":TSTextobjectSelect @scope<cr>", { desc = "Language Scope" } }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -306,8 +309,8 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.execs = {
   { "tmux", "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
-  { "tmux", "<M-2>", "Vertical Terminal", "vertical", 0.4 },
-  { "tmux", "<M-3>", "Float Terminal", "float", nil },
+  { "tmux", "<M-2>", "Vertical Terminal",   "vertical",   0.4 },
+  { "tmux", "<M-3>", "Float Terminal",      "float",      nil },
 }
 -- nvim tree
 lvim.builtin.nvimtree.setup.view.side = "right"
@@ -618,19 +621,19 @@ lvim.plugins = {
   {
     after = "nvim-treesitter",
     'nvim-treesitter/nvim-treesitter-context',
-    config=function()
-      require'treesitter-context'.setup{
-        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+    config = function()
+      require 'treesitter-context'.setup {
+        enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
+        max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-        trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = 'outer',     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor',          -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
-        zindex = 20, -- The Z-index of the context window
+        zindex = 20,     -- The Z-index of the context window
         on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
       }
     end
@@ -647,9 +650,9 @@ lvim.plugins = {
             lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ["af"] = {query="@function.outer", desc="Function Outer"},
-              ["if"] = {query="@function.inner", desc="Function Inner"},
-              ["ac"] = {query="@class.outer", desc="Class Outer"},
+              ["af"] = { query = "@function.outer", desc = "Function Outer" },
+              ["if"] = { query = "@function.inner", desc = "Function Inner" },
+              ["ac"] = { query = "@class.outer", desc = "Class Outer" },
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
               ["ic"] = { query = "@class.inner", desc = "Class Outer" },
@@ -724,8 +727,8 @@ lvim.plugins = {
             enable = false,
             -- border = 'none',
             peek_definition_code = {
-              ["gsf"] = { query = "@function.outer",  desc = "Peak Function Outer" },
-              ["gsc"] = { query = "@class.outer",  desc = "Peak Class Outer" },
+              ["gsf"] = { query = "@function.outer", desc = "Peak Function Outer" },
+              ["gsc"] = { query = "@class.outer", desc = "Peak Class Outer" },
             },
           },
         },
@@ -765,10 +768,10 @@ lvim.plugins = {
   },
   {
     'ethanholz/nvim-lastplace',
-    config =function()
-      require'nvim-lastplace'.setup {
-        lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-        lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+    config = function()
+      require 'nvim-lastplace'.setup {
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
         lastplace_open_folds = true
       }
     end
@@ -778,7 +781,7 @@ lvim.plugins = {
     config = function()
       require('glow').setup({
         border = "shadow", -- floating window border config
-        style = "dark", -- filled automatically with your current editor background, you can override using glow json style
+        style = "dark",    -- filled automatically with your current editor background, you can override using glow json style
         pager = false,
         width = 150,
         height = 100,
@@ -786,7 +789,7 @@ lvim.plugins = {
         height_ratio = 0.7,
       })
     end,
-    ft = {"markdown"},
+    ft = { "markdown" },
     cmd = "Glow"
     -- build = "yay -S glow"
   },
@@ -799,12 +802,11 @@ lvim.plugins = {
       vim.g.mkdp_theme = 'dark'
     end,
   },
-
-  { -- json parser for dap launch.json
-    -- NOTE: cargo required: https://rustup.rs/
-    'Joakker/lua-json5',
-    build = './install.sh'
-  },
+  -- { -- json parser for dap launch.json
+  --   -- NOTE: cargo required: https://rustup.rs/
+  --   'Joakker/lua-json5',
+  --   build = './install.sh'
+  -- },
   {
     "nvim-telescope/telescope-dap.nvim",
     config = function()
@@ -866,27 +868,27 @@ lvim.plugins = {
         floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
         -- can be either number or function, see examples
 
-        close_timeout = 4000,                         -- close floating window after ms when laster parameter is entered
-        fix_pos = false,                              -- set to true, the floating window will not auto-close until finish all parameters
-        hint_enable = true,                           -- virtual hint enable
-        hint_prefix = "🐼 ",                        -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+        close_timeout = 4000, -- close floating window after ms when laster parameter is entered
+        fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+        hint_enable = true, -- virtual hint enable
+        hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
         hint_scheme = "String",
         hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
         handler_opts = {
-          border = "rounded"                          -- double, rounded, single, shadow, none, or a table of borders
+          border = "rounded" -- double, rounded, single, shadow, none, or a table of borders
         },
-        always_trigger = false,                       -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
-        auto_close_after = nil,                       -- autoclose signature float win after x sec, disabled if nil.
-        extra_trigger_chars = {},                     -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
-        zindex = 200,                                 -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
-        padding = '',                                 -- character to pad on left and right of signature can be ' ', or '|'  etc
-        transparency = nil,                           -- disabled by default, allow floating win transparent value 1~100
-        shadow_blend = 36,                            -- if you using shadow as border use this set the opacity
-        shadow_guibg = 'Black',                       -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
-        timer_interval = 200,                         -- default timer check interval set to lower value if you want to reduce latency
-        toggle_key = nil,                             -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
-        select_signature_key = nil,                   -- cycle to next signature, e.g. '<M-n>' function overloading
-        move_cursor_key = nil,                        -- imap, use nvim_set_current_win to move cursor between current win and floating
+        always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+        auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+        extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+        zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+        padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+        transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+        shadow_blend = 36, -- if you using shadow as border use this set the opacity
+        shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+        timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
+        toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+        select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
+        move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
       }
 
       -- recommended:
@@ -1064,9 +1066,9 @@ lvim.plugins = {
   },
   {
     'Exafunction/codeium.vim',
-    config = function ()
-        vim.g.codeium_enabled = true -- Enable Codeium by default
-        vim.g.codeium_idle_delay = 100 -- Set the idle delay (in milliseconds)
+    config = function()
+      vim.g.codeium_enabled = true   -- Enable Codeium by default
+      vim.g.codeium_idle_delay = 100 -- Set the idle delay (in milliseconds)
       -- Change '<C-g>' here to any keycode you like.
       -- vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
       -- vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
