@@ -211,15 +211,15 @@ local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
   -- for input mode
   i = {
-    ["<C-j>"] = actions.move_selection_next,
-    ["<C-k>"] = actions.move_selection_previous,
-    ["<C-n>"] = actions.cycle_history_next,
-    ["<C-p>"] = actions.cycle_history_prev,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
   },
   -- for normal mode
   n = {
-    ["<C-j>"] = actions.move_selection_next,
-    ["<C-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
   },
 }
 
@@ -650,14 +650,14 @@ lvim.plugins = {
             lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ["af"] = { query = "@function.outer", desc = "Function Outer" },
-              ["if"] = { query = "@function.inner", desc = "Function Inner" },
-              ["ac"] = { query = "@class.outer", desc = "Class Outer" },
+                  ["af"] = { query = "@function.outer", desc = "Function Outer" },
+                  ["if"] = { query = "@function.inner", desc = "Function Inner" },
+                  ["ac"] = { query = "@class.outer", desc = "Class Outer" },
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Class Outer" },
+                  ["ic"] = { query = "@class.inner", desc = "Class Outer" },
               -- You can also use captures from other query groups like `locals.scm`
-              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+                  ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
               -- ["f"] = {query="@function.outer", desc="Function Outer"},
               -- ["F"] = {query="@function.inner", desc="Function Inner"},
               -- ["c"] = {query="@class.outer", desc="Class Outer"},
@@ -671,9 +671,9 @@ lvim.plugins = {
             -- and should return the mode ('v', 'V', or '<c-v>') or a table
             -- mapping query_strings to modes.
             selection_modes = {
-              ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V',  -- linewise
-              ['@class.outer'] = '<c-v>', -- blockwise
+                  ['@parameter.outer'] = 'v', -- charwise
+                  ['@function.outer'] = 'V',  -- linewise
+                  ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
             -- extended to include preceding or succeeding whitespace. Succeeding
@@ -690,45 +690,45 @@ lvim.plugins = {
             enable = true,
             set_jumps = false, -- whether to set jumps in the jumplist
             goto_next_start = {
-              ["]]"] = "@function.outer",
+                  ["]]"] = "@function.outer",
               -- ["]["] = "@function.outer",
-              ["]o"] = "@loop.outer",
+                  ["]o"] = "@loop.outer",
               -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
             },
             goto_next_end = {
-              ["]["] = "@function.outer",
+                  ["]["] = "@function.outer",
               -- ["]["] = "@class.outer",
             },
             goto_previous_start = {
-              ["[["] = "@function.outer",
+                  ["[["] = "@function.outer",
               -- ["[]"] = "@function.outer",
             },
             goto_previous_end = {
-              ["[]"] = "@function.outer",
+                  ["[]"] = "@function.outer",
               -- ["[]"] = "@class.outer",
             },
             goto_next = {
-              ["]d"] = "@conditional.outer",
+                  ["]d"] = "@conditional.outer",
             },
             goto_previous = {
-              ["[d"] = "@conditional.outer",
+                  ["[d"] = "@conditional.outer",
             },
           },
           swap = {
             enable = true,
             swap_next = {
-              ["gwa"] = "@parameter.inner",
+                  ["gwa"] = "@parameter.inner",
             },
             swap_previous = {
-              ["gwA"] = "@parameter.inner",
+                  ["gwA"] = "@parameter.inner",
             },
           },
           lsp_interop = {
             enable = false,
             -- border = 'none',
             peek_definition_code = {
-              ["gsf"] = { query = "@function.outer", desc = "Peak Function Outer" },
-              ["gsc"] = { query = "@class.outer", desc = "Peak Class Outer" },
+                  ["gsf"] = { query = "@function.outer", desc = "Peak Function Outer" },
+                  ["gsc"] = { query = "@class.outer", desc = "Peak Class Outer" },
             },
           },
         },
@@ -868,27 +868,27 @@ lvim.plugins = {
         floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
         -- can be either number or function, see examples
 
-        close_timeout = 4000, -- close floating window after ms when laster parameter is entered
-        fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
-        hint_enable = true, -- virtual hint enable
-        hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+        close_timeout = 4000,                         -- close floating window after ms when laster parameter is entered
+        fix_pos = false,                              -- set to true, the floating window will not auto-close until finish all parameters
+        hint_enable = true,                           -- virtual hint enable
+        hint_prefix = "🐼 ",                        -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
         hint_scheme = "String",
         hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
         handler_opts = {
-          border = "rounded" -- double, rounded, single, shadow, none, or a table of borders
+          border = "rounded"                          -- double, rounded, single, shadow, none, or a table of borders
         },
-        always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
-        auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
-        extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
-        zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
-        padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
-        transparency = nil, -- disabled by default, allow floating win transparent value 1~100
-        shadow_blend = 36, -- if you using shadow as border use this set the opacity
-        shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
-        timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
-        toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
-        select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
-        move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
+        always_trigger = false,                       -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+        auto_close_after = nil,                       -- autoclose signature float win after x sec, disabled if nil.
+        extra_trigger_chars = {},                     -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+        zindex = 200,                                 -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+        padding = '',                                 -- character to pad on left and right of signature can be ' ', or '|'  etc
+        transparency = nil,                           -- disabled by default, allow floating win transparent value 1~100
+        shadow_blend = 36,                            -- if you using shadow as border use this set the opacity
+        shadow_guibg = 'Black',                       -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+        timer_interval = 200,                         -- default timer check interval set to lower value if you want to reduce latency
+        toggle_key = nil,                             -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+        select_signature_key = nil,                   -- cycle to next signature, e.g. '<M-n>' function overloading
+        move_cursor_key = nil,                        -- imap, use nvim_set_current_win to move cursor between current win and floating
       }
 
       -- recommended:
@@ -1076,12 +1076,15 @@ lvim.plugins = {
       -- vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   },
+  {
+    'christoomey/vim-tmux-navigator'
+  },
 }
 
 --- dap config
 -- load non-standard json file
-require('dap.ext.vscode').json_decode = require 'json5'.parse
-require('dap.ext.vscode').load_launchjs()
+-- require('dap.ext.vscode').json_decode = require 'json5'.parse
+-- require('dap.ext.vscode').load_launchjs()
 require("dap.dap-lldb")
 -- require("dap.dap-cppdbg")
 
