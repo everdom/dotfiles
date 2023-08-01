@@ -172,7 +172,7 @@ alias gcl='git clone --depth 1'
 alias gi='git init'
 alias ga='git add'
 alias gc='git commit -m'
-alias gp='git push origin master'
+alias gp='git push'
 
 # alias opencwd="explorer.exe ."
 # alias img="Honeyview.exe"
@@ -188,4 +188,5 @@ alias px='source ~/.proxy.source'
 alias pxu='unset http_proxy; unset https_proxy'
 alias pxt='curl ipinfo.io'
 alias xc='xclip -selection clipboard'
+alias rm='trash'
 

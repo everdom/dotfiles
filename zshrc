@@ -18,7 +18,7 @@ source ~/.zsh/plugins_before.zsh
 source ~/.zsh/settings.zsh
 
 # Custom prompt
-# source ~/.zsh/prompt.zsh
+source ~/.zsh/prompt.zsh
 
 # External plugins (initialized after)
 source ~/.zsh/plugins_after.zsh
@@ -57,3 +57,5 @@ fi
 if [ -f ~/.shell_private ]; then
     source ~/.shell_private
 fi
+
+

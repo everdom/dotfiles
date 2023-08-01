@@ -47,6 +47,7 @@
     ~/.config/polybar: polybar
     ~/.config/tmuxinator: tmuxinator
     ~/.config/bspwm: bspwm
+    ~/.condarc:
     # ~/.zfunctions/prompt_spaceship_setup: zsh/prompt/spaceship-prompt/spaceship.zsh
 
 - create:
