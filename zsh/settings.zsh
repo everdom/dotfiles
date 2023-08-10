@@ -23,7 +23,7 @@ setopt incappendhistory
 setopt extendedhistory
 
 # Time to wait for additional characters in a sequence
-KEYTIMEOUT=20 # corresponds to 10ms
+KEYTIMEOUT=1 # corresponds to 10ms
 
 # Use vim as the editor
 export EDITOR=vim
@@ -47,5 +47,3 @@ bindkey "^R" history-incremental-search-backward
 
 # Disable shell builtins
 disable r
-
-export BROWSER=qutebrowser
