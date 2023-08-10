@@ -14,6 +14,12 @@
 [submodule "zsh/plugins/zsh-autosuggestions"]
 	path = zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/plugins/git-open"]
+	path = zsh/plugins/git-open
+	url = https://github.com/paulirish/git-open
+[submodule "zsh/plugins/zsh-vi-mode"]
+	path = zsh/plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode
 [submodule "zsh/prompt/spaceship-prompt"]
 	path = zsh/prompt/spaceship-prompt
 	url = https://github.com/spaceship-prompt/spaceship-prompt.git
