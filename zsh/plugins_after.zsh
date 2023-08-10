@@ -42,3 +42,5 @@ fi
 # Choose spaceship prompt -- remain this for spaceship promt
 # autoload -U promptinit; promptinit
 # prompt spaceship
+
+bindkey '\el' autosuggest-accept
