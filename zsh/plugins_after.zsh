@@ -9,6 +9,7 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # z quick jump plugin
 source ~/.zsh/plugins/zsh-z.plugin.zsh
 source ~/.zsh/plugins/sudo/sudo.plugin.zsh
+source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
