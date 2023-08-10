@@ -12,7 +12,7 @@ alias la='ls -A'
 alias l='ls'
 
 # Aliases to protect against overwriting
-alias cp='cp -i'
+alias cp='cp -i -r'
 alias mv='mv -i'
 
 # git related aliases

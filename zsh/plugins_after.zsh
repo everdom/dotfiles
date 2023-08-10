@@ -2,10 +2,13 @@
 
 # Syntax highlighting
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Substring search
+source ~/.zsh/plugins/history-substring-search/history-substring-search.zsh
 # Auto suggestion
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # z quick jump plugin
 source ~/.zsh/plugins/zsh-z.plugin.zsh
+source ~/.zsh/plugins/sudo/sudo.plugin.zsh
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
@@ -44,3 +47,8 @@ fi
 # prompt spaceship
 
 bindkey '\el' autosuggest-accept
+
+# bindkey '\ep' history-search-backward
+# bindkey '\en' history-search-forward
+bindkey '\ep' history-substring-search-up
+bindkey '\en' history-substring-search-down
