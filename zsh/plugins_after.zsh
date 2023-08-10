@@ -11,6 +11,7 @@ source ~/.zsh/plugins/zsh-z.plugin.zsh
 source ~/.zsh/plugins/sudo/sudo.plugin.zsh
 source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 source ~/.zsh/plugins/git-open/git-open.plugin.zsh
+source ~/.zsh/plugins/mch/h
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 

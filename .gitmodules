@@ -29,3 +29,6 @@
 [submodule ".dotbot"]
 	path = .dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "zsh/plugins/mch"]
+	path = zsh/plugins/mch
+	url = https://github.com/dczhu/mch.git
