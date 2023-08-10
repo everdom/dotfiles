@@ -58,8 +58,3 @@ bindkey '\el' autosuggest-accept
 bindkey '\ep' history-substring-search-up
 bindkey '\en' history-substring-search-down
 
-# sudo
-# bind F1 to sudo
-bindkey -M emacs '^[OP' sudo-command-line
-bindkey -M vicmd '^[OP' sudo-command-line
-bindkey -M viins '^[OP' sudo-command-line

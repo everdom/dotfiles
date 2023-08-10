@@ -103,6 +103,12 @@ sudo-command-line() {
 zle -N sudo-command-line
 
 # Defined shortcut keys: [Esc] [Esc]
-bindkey -M emacs '\e\e' sudo-command-line
-bindkey -M vicmd '\e\e' sudo-command-line
-bindkey -M viins '\e\e' sudo-command-line
+# bindkey -M emacs '\e\e' sudo-command-line
+# bindkey -M vicmd '\e\e' sudo-command-line
+# bindkey -M viins '\e\e' sudo-command-line
+
+# bind F1 to sudo
+# how to get key code: run cat and press the key
+bindkey -M emacs '^[OP' sudo-command-line
+bindkey -M vicmd '^[OP' sudo-command-line
+bindkey -M viins '^[OP' sudo-command-line
