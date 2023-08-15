@@ -107,7 +107,7 @@
 [user]
 	useConfigOnly = true
 	email = everdom@gmail.com
-	name = evedom
+	name = everdom
 
 [http]
 	cookieFile = ~/.gitcookies
