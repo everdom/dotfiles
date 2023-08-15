@@ -86,7 +86,7 @@ dap.configurations.cpp = {
       local current_file_name = vim.fn.expand('%:t:r')
       local current_file_path = vim.fn.expand('%:p')
       local current_file_directory = vim.fn.fnamemodify(current_file_path, ':h')
-      return vim.fn.input("Path to executable: ", current_file_directory .. "../build/" .. "test_" .. current_file_name,
+      return vim.fn.input("Path to executable: ", current_file_directory .. "/../build/" .. "test_" .. current_file_name,
         "file")
     end,
     cwd = "${workspaceFolder}",
