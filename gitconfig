@@ -145,3 +145,5 @@
 [protocol]
 	version = 1
 
+[http "https://github.com"]
+	proxy = socks5://127.0.0.1:7890
