@@ -1,6 +1,10 @@
 #!/bin/bash
 if [[ ! -z $WSL_DISTRO_NAME ]];then
 
+unset http_proxy
+unset https_proxy
+unset all_proxy
+
 export TOYS_WSL_WINDOWS_HOST_IP=`cat /etc/resolv.conf|grep nameserver|awk '{print $2}'`
 
 #关闭Windows侧adb server转发，当Windows侧adb server出现异常时执行；
@@ -30,11 +34,4 @@ function adb_restart_server_win() {
     adb_start_server_win
 }
 
-if [ "$1" = "start" ];then
-  adb_start_server_win
-elif [ "$1" = "stop" ];then
-  adb_stop_server_win
-elif [ "$1" = "restart" ];then
-  adb_restart_server_win
-fi
 fi

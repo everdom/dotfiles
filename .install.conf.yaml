@@ -49,6 +49,7 @@
     ~/.config/bspwm: bspwm
     ~/.condarc:
     ~/.proxyrc:
+    ~/.wsladbrc:
     ~/Scripts:
     # ~/.zfunctions/prompt_spaceship_setup: zsh/prompt/spaceship-prompt/spaceship.zsh
 
