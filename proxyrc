@@ -10,7 +10,7 @@ fi
 pxport=7890
  
 PROXY_HTTP="http://${hostip}:${pxport}"
-PROXY_SOCKS="socks://${hostip}:${pxport}"
+PROXY_SOCKS="socks5://${hostip}:${pxport}"
  
 set_proxy(){
     export http_proxy="${PROXY_HTTP}"
@@ -39,6 +39,10 @@ test_setting(){
     curl ipinfo.io
 }
 
+set_github_proxy(){
+  git config --global http.https://github.com.proxy $PROXY_SOCKS
+}
+
 if [ "$1" = "set" ]
 then
     set_proxy
@@ -48,6 +52,9 @@ then
 elif [ "$1" = "test" ]
 then
     test_setting
+elif [ "$1" = "git" ]
+then
+  set_github_proxy
 else
   set_proxy
 fi

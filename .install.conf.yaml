@@ -64,3 +64,4 @@
     git cleanall -f
     shell/plugins/
     zsh/plugins/
+  - bash ./proxyrc git
