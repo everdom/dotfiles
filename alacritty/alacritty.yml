@@ -1,6 +1,8 @@
 # File Path:
 # Windows: C:\Users\Raven\AppData\Roaming\alacritty\alacritty.yml
 # Others: $HOME/.config/alacritty/alacritty.yml
+env:
+  TERM: xterm-256color
 # Colors (One Darker)
 # Note I am using alacritty-ligatures until ligatures make it upstream
 colors:
