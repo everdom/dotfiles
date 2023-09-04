@@ -189,4 +189,6 @@ alias pxu='source ~/.proxyrc unset'
 alias pxt='source ~/.proxyrc test'
 alias xc='xclip -selection clipboard'
 alias rm='trash'
+# alias wsladb='source ~/.wsladbrc'
+alias wsladb='alias adb=adb.exe'
 
