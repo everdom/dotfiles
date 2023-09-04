@@ -184,9 +184,9 @@ alias r="ranger"
 alias em="emacs -nw"
 alias emc="emacsclient -nw"
 alias lzg="lazygit"
-alias px='source ~/.proxy.source'
-alias pxu='unset http_proxy; unset https_proxy; unset all_proxy'
-alias pxt='curl ipinfo.io'
+alias px='source ~/.proxyrc set'
+alias pxu='source ~/.proxyrc unset'
+alias pxt='source ~/.proxyrc test'
 alias xc='xclip -selection clipboard'
 alias rm='trash'
 

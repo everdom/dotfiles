@@ -48,6 +48,7 @@
     ~/.config/tmuxinator: tmuxinator
     ~/.config/bspwm: bspwm
     ~/.condarc:
+    ~/.proxyrc:
     # ~/.zfunctions/prompt_spaceship_setup: zsh/prompt/spaceship-prompt/spaceship.zsh
 
 - create:
