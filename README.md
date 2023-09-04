@@ -10,10 +10,19 @@ machine-specific configuration, is located in [dotfiles-local][dotfiles-local].
 
 Dotfiles uses [Dotbot][dotbot] for installation.
 
-## Screenshots
+Screenshots
+-----------
 ![vim](screenshots/vim.png "vim")
 
 ![emacs](screenshots/emacs.png "emacs")
+
+Install
+-------
+```shell
+git clone https://github.com/everdom/dotfiles.git
+cd dotfiles
+./install
+```
 
 Making Local Customizations
 ---------------------------
