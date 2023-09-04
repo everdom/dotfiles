@@ -1127,7 +1127,7 @@ lvim.plugins = {
       vim.g.codeium_enabled = true   -- Enable Codeium by default
       vim.g.codeium_idle_delay = 100 -- Set the idle delay (in milliseconds)
       -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-y>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<A-l>', function() return vim.fn['codeium#Accept']() end, { expr = true })
       -- vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
       -- vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
       -- vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })

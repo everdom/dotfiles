@@ -182,7 +182,7 @@ alias tmstop="tmuxinator stop dev"
 alias tmstart="tmuxinator start dev"
 alias r="ranger"
 alias em="emacs -nw"
-alias emc="emacsclient -nw"
+alias emc='emacsclient -a="" -nw'
 alias lzg="lazygit"
 alias px='source ~/.proxyrc set'
 alias pxu='source ~/.proxyrc unset'
