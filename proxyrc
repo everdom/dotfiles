@@ -28,8 +28,8 @@ unset_proxy(){
     unset HTTP_PROXY
     unset https_proxy
     unset HTTPS_PROXY
-    unset proxy_socks
-    unset PROXY_SOCKS
+    unset all_proxy
+    unset ALL_PROXY
 }
 
 test_setting(){
