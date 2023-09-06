@@ -299,15 +299,14 @@ lvim.builtin.which_key.mappings["t"]                = {
   -- yank history
   y = { "<cmd>Telescope neoclip<cr>", "NeoClip" },
   t = { "<cmd>TodoTrouble<cr>", "Todo" },
-  T = { ":Todo<cr>", "Todoist" },
+  T = { ":TableModeToggle<cr>", "Toggle TableMode" },
   b = { "<cmd>Telescope marks<cr>", "Bookmarks" },
   r = { "<cmd>Telescope registers<cr>", "Registers" },
   m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
   M = { "<cmd>MarkdownPreviewToggle<cr>", "Markdown Preview" },
   g = { "<cmd>Glow<cr>", "Glow Preview" },
   p = { ":lua lvim.builtin.cmp.active = not lvim.builtin.cmp.active<cr>", "Toggle Nvim-cmp" },
-  s = { ":set scrollbind<cr>", "Sync Scroll ON" },
-  S = { ":set noscrollbind<cr>", "Sync Scroll OFF" },
+  s = { ":lua vim.opt.scrollbind= not vim.opt.scrollbind:get()<cr>", "Toggle Sync Scroll" },
   l = { ":lua lvim.builtin.gitsigns.opts.current_line_blame = not lvim.builtin.gitsigns.opts.current_line_blame<cr>",
     "Line Blame" },
   c = {
@@ -1196,6 +1195,9 @@ lvim.plugins = {
   },
   {
     'SidOfc/mkdx'
+  },
+  {
+    "dhruvasagar/vim-table-mode"
   }
 }
 
@@ -1226,6 +1228,25 @@ require('orgmode').setup({
   }
 })
 
+-- 定义 Lua 函数来检查是否位于行的开头
+-- function isAtStartOfLine(mapping)
+--   local text_before_cursor = vim.fn.getline('.'):sub(1, vim.fn.col('.') - 1)
+--   local mapping_pattern = vim.fn.escape(mapping, '\\')
+--   local comment_pattern = vim.fn.escape(vim.fn.substitute(vim.o.commentstring, '%s.*$', '', ''), '\\')
+--   local pattern = '^' .. ('\v(' .. comment_pattern .. '\v)?') .. '\\s*\\v' .. mapping_pattern .. '\\v$'
+--   return vim.fn.match(text_before_cursor, pattern) ~= -1
+-- end
+
+-- 定义自定义键绑定
+-- vim.api.nvim_set_keymap('i', '||',
+--   '<C-o>:TableModeEnable<CR> <Bar> <Space> <Bar> <Left> <Left>',
+--   { noremap = true, silent = true }
+-- )
+
+-- vim.api.nvim_set_keymap('i', '__',
+--   '<C-o>:silent! TableModeDisable<CR>',
+--   { noremap = true, silent = true }
+-- )
 --- dap config
 -- load non-standard json file
 -- require('dap.ext.vscode').json_decode = require 'json5'.parse
