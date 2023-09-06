@@ -242,16 +242,16 @@ lvim.builtin.telescope.defaults.mappings            = {
 
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"]                = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["T"]                = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
-  t = { "<cmd>TodoTrouble<cr>", "Todo" }
-}
+-- lvim.builtin.which_key.mappings["T"]                = {
+--   name = "+Trouble",
+--   r = { "<cmd>Trouble lsp_references<cr>", "References" },
+--   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+--   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+--   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+--   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+--   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+--   t = { "<cmd>TodoTrouble<cr>", "Todo" }
+-- }
 
 lvim.builtin.which_key.mappings["C"]                = {
   name = "+ChatGPT",
@@ -298,7 +298,8 @@ lvim.builtin.which_key.mappings["t"]                = {
   a = { ":ASToggle<cr>", "Auto Save" },
   -- yank history
   y = { "<cmd>Telescope neoclip<cr>", "NeoClip" },
-  t = { "<cmd>Telescope<cr>", "Telescope" },
+  t = { "<cmd>TodoTrouble<cr>", "Todo" },
+  T = { ":Todo<cr>", "Todoist" },
   b = { "<cmd>Telescope marks<cr>", "Bookmarks" },
   r = { "<cmd>Telescope registers<cr>", "Registers" },
   m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
@@ -324,6 +325,8 @@ lvim.builtin.which_key.mappings["R"]                = {
   R = { "<cmd>TermExec cmd='./run.sh'<cr>", "Run" },
   T = { "<cmd>TermExec cmd='./test.sh'<cr>", "Test" },
 }
+
+lvim.builtin.which_key.vmappings["r"]               = { ":SnipRun<cr>", "SnipRun" }
 
 -- lvim.keys.normal_mode["vaf"]                        = { ":TSTextobjectSelect @function.outer<cr>",
 --   { desc = "Function Outer" } }
@@ -1175,8 +1178,53 @@ lvim.plugins = {
         },
       })
     end
+  },
+  {
+    'nvim-orgmode/orgmode',
+    config = function()
+      require('orgmode').setup {}
+    end
+  },
+  {
+    'akinsho/org-bullets.nvim',
+    config = function()
+      require('org-bullets').setup()
+    end
+  },
+  {
+    'michaelb/sniprun', build = 'sh ./install.sh'
+  },
+  {
+    'SidOfc/mkdx'
   }
 }
+
+-- orgmode
+-- Load custom treesitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
+-- Treesitter configuration
+require('nvim-treesitter.configs').setup {
+  -- If TS highlights are not enabled at all, or disabled via `disable` prop,
+  -- highlighting will fallback to default Vim syntax highlighting
+  highlight = {
+    enable = true,
+    -- Required for spellcheck, some LaTex highlights and
+    -- code block highlights that do not have ts grammar
+    additional_vim_regex_highlighting = { 'org' },
+  },
+  ensure_installed = { 'org' }, -- Or run :TSUpdate org
+}
+
+require('orgmode').setup({
+  org_agenda_files = { '~/org/*', '~/org/**/*' },
+  org_default_notes_file = '~/org/refile.org',
+  mappings = {
+    org = {
+      org_toggle_checkbox = '<A-d>'
+    }
+  }
+})
 
 --- dap config
 -- load non-standard json file
