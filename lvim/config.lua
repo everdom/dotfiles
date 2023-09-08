@@ -1181,6 +1181,14 @@ lvim.plugins = {
     'nvim-orgmode/orgmode',
     config = function()
       require('orgmode').setup {
+        org_agenda_files = { '~/org/*', '~/org/**/*' },
+        org_default_notes_file = '~/org/refile.org',
+        mappings = {
+          org = {
+            org_toggle_checkbox = '<A-x>'
+          }
+        },
+
         org_capture_templates = {
           t = { description = 'Task', template = '* TODO %?\n  %u', target = './todo.org' },
           T = {
@@ -1214,6 +1222,22 @@ lvim.plugins = {
         }
       }
 
+      -- Load custom treesitter grammar for org filetype
+      require('orgmode').setup_ts_grammar()
+
+      -- Treesitter configuration
+      require('nvim-treesitter.configs').setup {
+        -- If TS highlights are not enabled at all, or disabled via `disable` prop,
+        -- highlighting will fallback to default Vim syntax highlighting
+        highlight = {
+          enable = true,
+          -- Required for spellcheck, some LaTex highlights and
+          -- code block highlights that do not have ts grammar
+          additional_vim_regex_highlighting = { 'org' },
+        },
+        ensure_installed = { 'org' }, -- Or run :TSUpdate org
+      }
+
       require("cmp").setup.filetype({ "org" }, {
         sources = {
           { name = "orgmode" },
@@ -1231,39 +1255,15 @@ lvim.plugins = {
     'michaelb/sniprun', build = 'sh ./install.sh'
   },
   {
-    'SidOfc/mkdx'
+    'SidOfc/mkdx',
+    config = function()
+    end
   },
   {
     "dhruvasagar/vim-table-mode"
   }
 }
 
--- orgmode
--- Load custom treesitter grammar for org filetype
-require('orgmode').setup_ts_grammar()
-
--- Treesitter configuration
-require('nvim-treesitter.configs').setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop,
-  -- highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    -- Required for spellcheck, some LaTex highlights and
-    -- code block highlights that do not have ts grammar
-    additional_vim_regex_highlighting = { 'org' },
-  },
-  ensure_installed = { 'org' }, -- Or run :TSUpdate org
-}
-
-require('orgmode').setup({
-  org_agenda_files = { '~/org/*', '~/org/**/*' },
-  org_default_notes_file = '~/org/refile.org',
-  mappings = {
-    org = {
-      org_toggle_checkbox = '<A-x>'
-    }
-  }
-})
 
 -- 定义 Lua 函数来检查是否位于行的开头
 -- function isAtStartOfLine(mapping)
