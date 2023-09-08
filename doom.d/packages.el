@@ -56,5 +56,6 @@
 (package! company-box)
 (package! company-tabnine)
 (package! leetcode)
+(package! ox-hugo)
 (package! mind-wave
   :recipe (:host github :repo "manateelazycat/mind-wave"))
