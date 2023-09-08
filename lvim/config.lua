@@ -52,7 +52,7 @@ lvim.keys.normal_mode["<leader>h"]    = ":nohl<cr>"
 -- lvim.keys.normal_mode["<A-o>"] = ":ClangdSwitchSourceHeader<cr>"
 lvim.keys.normal_mode["<leader>j"]    = ":ClangdSwitchSourceHeader<cr>"
 lvim.keys.normal_mode["<leader>H"]    = ":ClangdTypeHierarchy<cr>"
-lvim.keys.normal_mode["<leader>o"]    = ":Vista!!<cr>"
+lvim.keys.normal_mode["<leader>v"]    = ":Vista!!<cr>"
 lvim.keys.normal_mode["<leader>q"]    = ":bd<cr>"
 lvim.keys.normal_mode["q"]            = "<Nop>"
 lvim.keys.normal_mode["n"]            = "nzzzv"
@@ -307,8 +307,7 @@ lvim.builtin.which_key.mappings["t"]                = {
   g = { "<cmd>Glow<cr>", "Glow Preview" },
   p = { ":lua lvim.builtin.cmp.active = not lvim.builtin.cmp.active<cr>", "Toggle Nvim-cmp" },
   s = { ":lua vim.opt.scrollbind= not vim.opt.scrollbind:get()<cr>", "Toggle Sync Scroll" },
-  l = { ":lua lvim.builtin.gitsigns.opts.current_line_blame = not lvim.builtin.gitsigns.opts.current_line_blame<cr>",
-    "Line Blame" },
+  l = { ":Gitsigns toggle_current_line_blame<cr>", "Line Blame" },
   c = {
     name = "+Color",
     C = { '<cmd> ColorizerToggle<cr>', "Toggle Colorizer" },
@@ -1181,7 +1180,45 @@ lvim.plugins = {
   {
     'nvim-orgmode/orgmode',
     config = function()
-      require('orgmode').setup {}
+      require('orgmode').setup {
+        org_capture_templates = {
+          t = { description = 'Task', template = '* TODO %?\n  %u', target = './todo.org' },
+          T = {
+            description = 'Todo',
+            template = '* TODO %?\n %u',
+            target = '~/org/todo.org'
+          },
+          j = {
+            description = 'Journal',
+            template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
+            target = '~/org/journal.org'
+          },
+          J = {
+            description = 'Journal',
+            template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
+            target = '~/sync/org/journal/%<%Y-%m>.org'
+          },
+          e = 'Event',
+          er = {
+            description = 'recurring',
+            template = '** %?\n %T',
+            target = '~/org/calendar.org',
+            headline = 'recurring'
+          },
+          eo = {
+            description = 'one-time',
+            template = '** %?\n %T',
+            target = '~/org/calendar.org',
+            headline = 'one-time'
+          },
+        }
+      }
+
+      require("cmp").setup.filetype({ "org" }, {
+        sources = {
+          { name = "orgmode" },
+        },
+      })
     end
   },
   {
@@ -1223,7 +1260,7 @@ require('orgmode').setup({
   org_default_notes_file = '~/org/refile.org',
   mappings = {
     org = {
-      org_toggle_checkbox = '<A-d>'
+      org_toggle_checkbox = '<A-x>'
     }
   }
 })
