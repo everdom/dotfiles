@@ -82,8 +82,8 @@ lvim.keys.normal_mode["gh"]           = { ":lua vim.lsp.buf.hover()<cr>", { desc
 -- lvim.keys.normal_mode["gh"]            = ":Lspsaga hover_doc<cr>"
 lvim.keys.normal_mode["gf"]           = { ":Lspsaga finder<cr>", { desc = "Finder" } }
 lvim.keys.normal_mode["ga"]           = { ":Lspsaga code_action<cr>", { desc = "Code Action" } }
-lvim.keys.normal_mode["gi"]           = { ":Lspsaga incoming_calls<cr>",
-  { desc = "Incoming Calls" } }
+-- lvim.keys.normal_mode["gi"]           = { ":Lspsaga incoming_calls<cr>",
+--   { desc = "Incoming Calls" } }
 lvim.keys.normal_mode["go"]           = { ":Lspsaga outgoing_calls<cr>",
   { desc = "Outgoing Calls" } }
 lvim.keys.normal_mode["gd"]           = { ":Lspsaga goto_definition<cr>",
@@ -105,6 +105,8 @@ lvim.keys.normal_mode["gj"]           = { ":Lspsaga diagnostic_jump_next<cr>",
   { desc = "Diagnostic Jump Next" } }
 lvim.keys.normal_mode["gk"]           = { ":Lspsaga diagnostic_jump_prev<cr>",
   { desc = "Diagnostic Jump Prev" } }
+lvim.keys.normal_mode["gi"]           = { ":lua vim.lsp.buf.incoming_calls()<cr>",
+  { desc = "Incoming Calls" } }
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
@@ -563,25 +565,25 @@ lvim.plugins = {
     config = function()
       require("litee.calltree").setup({
         -- -- NOTE: the plugin is in-progressing
-        -- on_open = "pannel", -- pannel | popout
-        -- hide_cursor = false,
-        -- keymaps = {
-        --   expand = "o",
-        --   collapse = "zc",
-        --   collapse_all = "zM",
-        --   jump = "<CR>",
-        --   jump_split = "s",
-        --   jump_vsplit = "v",
-        --   jump_tab = "t",
-        --   hover = "i",
-        --   details = "d",
-        --   close = "X",
-        --   close_panel_pop_out = "<C-c>",
-        --   help = "?",
-        --   hide = "H",
-        --   switch = "S",
-        --   focus = "f"
-        -- },
+        on_open = "popout", -- pannel | popout
+        hide_cursor = false,
+        keymaps = {
+          expand = "l",
+          collapse = "h",
+          collapse_all = "E",
+          jump = "<CR>",
+          jump_split = "<C-x>",
+          jump_vsplit = "<C-v>",
+          jump_tab = "<C-t>",
+          hover = "<C-k>",
+          details = "d",
+          close = "q",
+          close_panel_pop_out = "<C-c>",
+          help = "?",
+          hide = "H",
+          switch = "S",
+          focus = "f"
+        },
       })
     end
   },
