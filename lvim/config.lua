@@ -216,7 +216,7 @@ lvim.keys.normal_mode["<A-h>"]                      = "<cmd>lua require'dap.ui.w
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
 -- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+lvim.keys.normal_mode["<C-q>"]                      = ":qa<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -1261,9 +1261,17 @@ lvim.plugins = {
   },
   {
     "dhruvasagar/vim-table-mode"
-  }
+  },
 }
 
+-- open nvim-tree at startup
+local function open_nvim_tree()
+  -- open the tree
+  require("nvim-tree.api").tree.toggle({
+    focus = false
+  })
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- 定义 Lua 函数来检查是否位于行的开头
 -- function isAtStartOfLine(mapping)
