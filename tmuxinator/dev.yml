@@ -40,14 +40,21 @@ root: ~/
 # attach: false
 
 windows:
-  - editor:
-      layout: main-vertical
+  - code1: 
+    - cd /mnt/g/Projects/LocationSdk
+    - vim
+  - code2: 
+    - cd /mnt/g/Projects/LocationSdk
+    - vim
+  - doc: cd org && vim
+  - board: 
+      layout: a2fd,239x49,0,0{159x49,0,0,3,79x49,160,0[79x9,160,0,8,79x27,160,10,9,79x11,160,38,10]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - vim
         - btop
-        -
-  - server: 
-  - logs: adb logcat -s dsprpc
+        - unimatrix
+        - pxu&&musicfox
+        - dijo
+  - temp: 
