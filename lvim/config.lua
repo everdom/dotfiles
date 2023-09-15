@@ -239,6 +239,29 @@ lvim.builtin.telescope.defaults.mappings            = {
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
 -- lvim.builtin.theme.options.style = "storm"
+lvim.builtin.telescope.defaults.layout_config       = {
+  width = 0.80,
+  height = 0.95,
+  preview_cutoff = 120,
+  prompt_position = "bottom",
+  horizontal = {
+    preview_width = function(_, cols, _)
+      return math.floor(cols * 0.6)
+    end,
+  },
+  vertical = {
+    width = 0.9,
+    height = 0.95,
+    preview_height = 0.5,
+  },
+
+  flex = {
+    horizontal = {
+      preview_width = 0.9,
+    },
+  },
+}
+lvim.builtin.telescope.defaults.layout_strategy     = "horizontal"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"]                = { "<cmd>Telescope projects<CR>", "Projects" }
@@ -1178,6 +1201,9 @@ lvim.plugins = {
     end
   },
   {
+    'Weissle/persistent-breakpoints.nvim'
+  },
+  {
     'nvim-orgmode/orgmode',
     config = function()
       require('orgmode').setup {
@@ -1185,7 +1211,7 @@ lvim.plugins = {
         org_default_notes_file = '~/org/refile.org',
         mappings = {
           org = {
-            org_toggle_checkbox = '<A-x>'
+            org_toggle_checkbox = '<leader>-'
           }
         },
 
