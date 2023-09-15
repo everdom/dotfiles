@@ -40,6 +40,9 @@ if [[ "$(tput colors)" == "256" ]]; then
     ZSH_HIGHLIGHT_STYLES[assign]=fg=037
 fi
 
+# zsh-vi-mode config
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
 # dircolors
 
 # if [[ "$(tput colors)" == "256" ]]; then
