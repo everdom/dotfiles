@@ -66,7 +66,7 @@ if [[ -n $STY ]]; then
 fi
 
 # Go up [n] directories
-up()
+..()
 {
     local cdir="$(pwd)"
     if [[ "${1}" == "" ]]; then
