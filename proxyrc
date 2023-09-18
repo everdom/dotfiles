@@ -40,7 +40,7 @@ test_setting(){
 }
 
 set_github_proxy(){
-  git config --global http.https://github.com.proxy $PROXY_SOCKS
+  git config --file ~/.gitconfig_local http.https://github.com.proxy $PROXY_SOCKS
 }
 
 if [ "$1" = "set" ]
