@@ -78,8 +78,8 @@ lvim.builtin.which_key.mappings["lo"] = { ":lua vim.lsp.buf.outgoing_calls()<cr>
   "Outgoing Calls" }
 lvim.builtin.which_key.mappings.l.R   = { "<cmd>LspRestart<cr>", "Restart" }
 -- lvim.keys.normal_mode["<leader>ln"] = "<cmd>lua vim.lsp.buf.rename()<CR>"
-lvim.keys.normal_mode["gh"]           = { ":lua vim.lsp.buf.hover()<cr>", { desc = "Hover Doc" } }
--- lvim.keys.normal_mode["gh"]            = ":Lspsaga hover_doc<cr>"
+-- lvim.keys.normal_mode["gh"]           = { ":lua vim.lsp.buf.hover()<cr>", { desc = "Hover Doc" } }
+lvim.keys.normal_mode["gh"]           = ":Lspsaga hover_doc<cr>"
 lvim.keys.normal_mode["gf"]           = { ":Lspsaga finder<cr>", { desc = "Finder" } }
 lvim.keys.normal_mode["ga"]           = { ":Lspsaga code_action<cr>", { desc = "Code Action" } }
 -- lvim.keys.normal_mode["gi"]           = { ":Lspsaga incoming_calls<cr>",
@@ -1290,16 +1290,65 @@ lvim.plugins = {
   {
     "dhruvasagar/vim-table-mode"
   },
+  {
+    "Shatur/neovim-session-manager",
+    config = function()
+      local Path = require('plenary.path')
+      local config = require('session_manager.config')
+      require('session_manager').setup({
+        sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.
+        session_filename_to_dir = nil,                               -- Function that replaces symbols into separators and colons to transform filename into a session directory.
+        dir_to_session_filename = nil,                               -- Function that replaces separators and colons into special symbols to transform session directory into a filename. Should use `vim.loop.cwd()` if the passed `dir` is `nil`.
+        autoload_mode = config.AutoloadMode.LastSession,             -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+        autosave_last_session = true,                                -- Automatically save last session on exit and on session switch.
+        autosave_ignore_not_normal = true,                           -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+        autosave_ignore_dirs = {},                                   -- A list of directories where the session will not be autosaved.
+        autosave_ignore_filetypes = {                                -- All buffers of these file types will be closed before the session is saved.
+          'gitcommit',
+          'gitrebase',
+        },
+        autosave_ignore_buftypes = {},    -- All buffers of these bufer types will be closed before the session is saved.
+        autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+        max_path_length = 80,             -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+      })
+
+      local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
+
+      vim.api.nvim_create_autocmd({ 'User' }, {
+        pattern = "SessionLoadPost",
+        group = config_group,
+        callback = function()
+          require('nvim-tree.api').tree.toggle(false, true)
+        end,
+      })
+      vim.api.nvim_create_autocmd({ 'User' }, {
+        pattern = "SessionSavePost",
+        group = config_group,
+        callback = function()
+          require('nvim-tree.api').tree.toggle(false, true)
+        end,
+      })
+      -- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+      --   group = config_group,
+      --   callback = function()
+      --     if vim.bo.filetype ~= 'git'
+      --         and not vim.bo.filetype ~= 'gitcommit'
+      --         and not vim.bo.filetype ~= 'gitrebase'
+      --     then
+      --       require('session_manager').save_current_session()
+      --     end
+      --   end
+      -- })
+    end
+  }
 }
 
--- open nvim-tree at startup
-local function open_nvim_tree()
-  -- open the tree
-  require("nvim-tree.api").tree.toggle({
-    focus = false
-  })
-end
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+-- -- open nvim-tree at startup
+-- local function open_nvim_tree()
+--   -- open the tree
+--   require("nvim-tree.api").tree.toggle(false, true)
+-- end
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- 定义 Lua 函数来检查是否位于行的开头
 -- function isAtStartOfLine(mapping)
