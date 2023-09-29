@@ -1,5 +1,5 @@
 #oh-my-posh init pwsh | Invoke-Expression
-oh-my-posh init pwsh --config 'C:\Users\DEll\AppData\Local\Programs\oh-my-posh\themes\jandedobbeleer.omp.json' | Invoke-Expression
+oh-my-posh init pwsh --config "$Env:LOCALAPPDATA\Programs\oh-my-posh\themes\jandedobbeleer.omp.json" | Invoke-Expression
 #Invoke-Expression (&starship init powershell)
 
 # Set-Alias lvim 'C:\Users\DEll\.local\bin\lvim.ps1'
