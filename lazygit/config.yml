@@ -88,7 +88,7 @@ keybinding:
   universal:
     quit: 'Q'
     quit-alt1: '<c-Q>' # alternative/alias of quit
-    return: '<c-c>' # return to previous menu, will quit if there's nowhere to return
+    return: '<esc>' # return to previous menu, will quit if there's nowhere to return
     # quitWithoutChangingDirectory: 'Q'
     togglePanel: '<tab>' # goto the next panel
     prevItem: '<up>' # go one line up
