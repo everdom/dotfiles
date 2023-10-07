@@ -126,6 +126,8 @@ lvim.builtin.which_key.mappings["r"]  = { ":Telescope oldfiles<cr>", "Old Files"
 -- orverwirte old 's'
 lvim.builtin.which_key.mappings.f     = nil
 lvim.builtin.which_key.mappings.s     = nil
+lvim.builtin.which_key.mappings.x     = { ":q<cr>", "Close Window" }
+lvim.builtin.which_key.mappings.q     = { ":qall<cr>", "Quit" }
 -- lvim.keys.normal_mode["<leader>s"]  = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
 -- lvim.keys.normal_mode["<leader>S"]  = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
 
@@ -174,11 +176,11 @@ lvim.keys.normal_mode[",a"]           = "<cmd>HopAnywhere<cr>"
 
 
 -- auto pairs
-lvim.builtin.autopairs.disable_filetype             = { "TelescopePrompt", "spectre_panel", "repl" }
+lvim.builtin.autopairs.disable_filetype         = { "TelescopePrompt", "spectre_panel", "repl" }
 
 -- dap
-lvim.keys.normal_mode["<F12>"]                      = ":Telescope dap configurations<cr>"
-lvim.builtin.which_key.mappings.d                   = {
+lvim.keys.normal_mode["<F12>"]                  = ":Telescope dap configurations<cr>"
+lvim.builtin.which_key.mappings.d               = {
   name = "Debug",
   h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
   x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
@@ -199,31 +201,31 @@ lvim.builtin.which_key.mappings.d                   = {
 }
 
 -- dap custom keymaps
-lvim.keys.normal_mode["<F7>"]                       = "<cmd>lua require'dap'.step_into()<cr>"
-lvim.keys.normal_mode["<C-F7>"]                     = "<cmd>lua require'dap'.step_out()<cr>"
-lvim.keys.normal_mode["<F31>"]                      = "<cmd>lua require'dap'.step_out()<cr>"
-lvim.keys.normal_mode["<F8>"]                       = "<cmd>lua require'dap'.step_over()<cr>"
-lvim.keys.normal_mode["<F9>"]                       = "<cmd>lua require'dap'.run_to_cursor()<cr>"
-lvim.keys.normal_mode["<F5>"]                       = "<cmd>lua require'dap'.continue()<cr>"
-lvim.keys.normal_mode["<F6>"]                       = "<cmd>lua require'dap'.pause()<cr>"
-lvim.keys.normal_mode["<S-F5>"]                     =
+lvim.keys.normal_mode["<F7>"]                   = "<cmd>lua require'dap'.step_into()<cr>"
+lvim.keys.normal_mode["<C-F7>"]                 = "<cmd>lua require'dap'.step_out()<cr>"
+lvim.keys.normal_mode["<F31>"]                  = "<cmd>lua require'dap'.step_out()<cr>"
+lvim.keys.normal_mode["<F8>"]                   = "<cmd>lua require'dap'.step_over()<cr>"
+lvim.keys.normal_mode["<F9>"]                   = "<cmd>lua require'dap'.run_to_cursor()<cr>"
+lvim.keys.normal_mode["<F5>"]                   = "<cmd>lua require'dap'.continue()<cr>"
+lvim.keys.normal_mode["<F6>"]                   = "<cmd>lua require'dap'.pause()<cr>"
+lvim.keys.normal_mode["<S-F5>"]                 =
 "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dap'.close()<cr><cmd>lua require'dapui'.close()<cr>"
-lvim.keys.normal_mode["<F17>"]                      =
+lvim.keys.normal_mode["<F17>"]                  =
 "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dap'.close()<cr><cmd>lua require'dapui'.close()<cr>"
-lvim.keys.normal_mode["<F2>"]                       = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
-lvim.keys.normal_mode["<C-F12>"]                    = "<cmd>lua require'dapui'.toggle()<cr>"
-lvim.keys.normal_mode["<F36>"]                      = "<cmd>lua require'dapui'.toggle()<cr>"
-lvim.keys.normal_mode["<A-h>"]                      = "<cmd>lua require'dap.ui.widgets'.hover()<cr>"
+lvim.keys.normal_mode["<F2>"]                   = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
+lvim.keys.normal_mode["<C-F12>"]                = "<cmd>lua require'dapui'.toggle()<cr>"
+lvim.keys.normal_mode["<F36>"]                  = "<cmd>lua require'dapui'.toggle()<cr>"
+lvim.keys.normal_mode["<A-h>"]                  = "<cmd>lua require'dap.ui.widgets'.hover()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
 -- override a default keymapping
-lvim.keys.normal_mode["<C-q>"]                      = ":qa<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+lvim.keys.normal_mode["<C-q>"]                  = ":qa<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
-local _, actions                                    = pcall(require, "telescope.actions")
-lvim.builtin.telescope.defaults.mappings            = {
+local _, actions                                = pcall(require, "telescope.actions")
+lvim.builtin.telescope.defaults.mappings        = {
   -- for input mode
   i = {
     ["<C-j>"] = actions.move_selection_next,
@@ -241,7 +243,7 @@ lvim.builtin.telescope.defaults.mappings            = {
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
 -- lvim.builtin.theme.options.style = "storm"
-lvim.builtin.telescope.defaults.layout_config       = {
+lvim.builtin.telescope.defaults.layout_config   = {
   width = 0.80,
   height = 0.95,
   preview_cutoff = 120,
@@ -263,10 +265,12 @@ lvim.builtin.telescope.defaults.layout_config       = {
     },
   },
 }
-lvim.builtin.telescope.defaults.layout_strategy     = "horizontal"
+lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
 
 -- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.mappings["P"]                = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["P"]            = { "<cmd>Telescope projects<CR>", "Projects" }
+
+lvim.builtin.which_key.mappings["T"]            = { "<cmd>Telescope<cr>", "Telescope" }
 -- lvim.builtin.which_key.mappings["T"]                = {
 --   name = "+Trouble",
 --   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -278,14 +282,14 @@ lvim.builtin.which_key.mappings["P"]                = { "<cmd>Telescope projects
 --   t = { "<cmd>TodoTrouble<cr>", "Todo" }
 -- }
 
-lvim.builtin.which_key.mappings["C"]                = {
+lvim.builtin.which_key.mappings["C"]            = {
   name = "+ChatGPT",
   C = { "<cmd>ChatGPT<cr>", "ChatGPT" },
   A = { "<cmd>ChatGPTActAs<cr>", "Act As" },
   E = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions" },
   J = { "<cmd>ChatGPTCompleteCode<cr>", "Complete Code" },
 }
-lvim.builtin.which_key.vmappings["C"]               = {
+lvim.builtin.which_key.vmappings["C"]           = {
   name = "+ChatGPT",
   F = { "<cmd>ChatGPTRun fix_bugs<cr>", "Fix Bugs" },
   D = { "<cmd>ChatGPTRun docstring<cr>", "Doc String" },
@@ -301,7 +305,7 @@ lvim.builtin.which_key.vmappings["C"]               = {
   A = { "<cmd>ChatGPTRun ask<cr>", "Ask" },
 }
 
-lvim.builtin.which_key.mappings["a"]                = {
+lvim.builtin.which_key.mappings["a"]            = {
   name = "+AI",
   a = { ":AI ", "AI Complete" },
   r = { ":AIRedo<cr>", "AI Redo" },
@@ -309,7 +313,7 @@ lvim.builtin.which_key.mappings["a"]                = {
   n = { ":AINewChat<cr>", "AI New Chat" },
 }
 
-lvim.builtin.which_key.vmappings["a"]               = {
+lvim.builtin.which_key.vmappings["a"]           = {
   name = "+AI",
   a = { ":AI ", "AI Complete" },
   r = { ":AIRedo<cr>", "AI Redo" },
@@ -318,7 +322,7 @@ lvim.builtin.which_key.vmappings["a"]               = {
   n = { ":AINewChat<cr>", "AI New Chat" },
 }
 
-lvim.builtin.which_key.mappings["t"]                = {
+lvim.builtin.which_key.mappings["t"]            = {
   name = "+Toggle",
   a = { ":ASToggle<cr>", "Auto Save" },
   -- yank history
@@ -339,17 +343,20 @@ lvim.builtin.which_key.mappings["t"]                = {
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     p = { "<cmd>PickColor<cr>", "Pick Color" },
     P = { "<cmd>PickColorInsert<cr>", "Pick Color Insert" },
-  }
+  },
+  C = { "<cmd>CodiNew<cr>", "Codi" }
 }
 
-lvim.builtin.which_key.mappings["R"]                = {
+lvim.builtin.which_key.mappings["R"]            = {
   name = "+Run",
   B = { "<cmd>TermExec cmd='./build.sh'<cr>", "Build" },
   R = { "<cmd>TermExec cmd='./run.sh'<cr>", "Run" },
   T = { "<cmd>TermExec cmd='./test.sh'<cr>", "Test" },
 }
 
-lvim.builtin.which_key.vmappings["r"]               = { ":SnipRun<cr>", "SnipRun" }
+lvim.builtin.which_key.vmappings["R"]           = { ":SnipRun<cr>", "SnipRun" }
+lvim.builtin.which_key.mappings["oR"]           = { "ggvG:SnipRun<cr>", "SnipRun File" }
+
 
 -- lvim.keys.normal_mode["vaf"]                        = { ":TSTextobjectSelect @function.outer<cr>",
 --   { desc = "Function Outer" } }
@@ -426,7 +433,10 @@ lvim.builtin.treesitter.ensure_installed = {
   "json",
   "lua",
   "python",
+  "java",
+  "rust",
   "yaml",
+  "toml",
   "markdown",
   "markdown_inline",
 }
