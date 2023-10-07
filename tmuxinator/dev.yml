@@ -42,18 +42,20 @@ root: ~/
 windows:
   - code1: 
     - cd /mnt/g/Projects/LocationSdk
-    - vim
+    - vim .
   - code2: 
     - cd /mnt/g/Projects/LocationSdk
-    - vim
-  - doc: cd org && vim
+    - vim .
+  - doc: cd org && vim .
   - board: 
-      layout: a2fd,239x49,0,0{159x49,0,0,3,79x49,160,0[79x9,160,0,8,79x27,160,10,9,79x11,160,38,10]}
+      layout: 7951,239x49,0,0{89x49,0,0,3,69x49,90,0[69x24,90,0,28,69x24,90,25,27],79x49,160,0[79x12,160,0,5,79x26,160,13,6,79x9,160,40,7]} 
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - htop
+        - calcurse
+        -
         - unimatrix
         - pxu&&musicfox
         - dijo
