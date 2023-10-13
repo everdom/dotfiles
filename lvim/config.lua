@@ -215,7 +215,7 @@ lvim.keys.normal_mode["<F17>"]                  =
 lvim.keys.normal_mode["<F2>"]                   = "<cmd>lua require'dap'.toggle_breakpoint()<cr>"
 lvim.keys.normal_mode["<C-F12>"]                = "<cmd>lua require'dapui'.toggle()<cr>"
 lvim.keys.normal_mode["<F36>"]                  = "<cmd>lua require'dapui'.toggle()<cr>"
-lvim.keys.normal_mode["<A-h>"]                  = "<cmd>lua require'dap.ui.widgets'.hover()<cr>"
+lvim.keys.normal_mode["<A-/>"]                  = "<cmd>lua require'dap.ui.widgets'.hover()<cr>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "q")
