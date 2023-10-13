@@ -191,4 +191,4 @@ alias xc='xclip -selection clipboard'
 alias rm='trash'
 # alias wsladb='source ~/.wsladbrc'
 alias wsladb='alias adb=adb.exe'
-
+alias clctrash='sudo rm -rf ~/.local/share/Trash/*'
