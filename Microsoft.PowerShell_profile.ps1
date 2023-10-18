@@ -6,6 +6,19 @@ oh-my-posh init pwsh --config "$Env:LOCALAPPDATA\Programs\oh-my-posh\themes\jand
 Set-Alias vim lvim
 Set-Alias lzg lazygit
 
+function SetProxy(){
+  $Env:http_proxy="http://127.0.0.1:7890";$Env:https_proxy="http://127.0.0.1:7890"
+}
+function UnsetProxy(){
+  Remove-Item Env:http_proxy;Remove-Item Env:https_proxy
+}
+function TestProxy(){
+  curl ipinfo.io
+}
+Set-Alias px SetProxy
+Set-Alias pxu UnsetProxy
+Set-Alias pxt TestProxy
+
 $Env:EDITOR="nvim"
 Set-PSReadlineOption -EditMode Vi
 # 如果想区分两种模式的光标:
