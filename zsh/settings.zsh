@@ -23,9 +23,11 @@ setopt incappendhistory
 setopt extendedhistory
 
 # Time to wait for additional characters in a sequence.
-# NOTE: keep this above ~10ms — KEYTIMEOUT=1 makes vi mode mis-chunk pasted
-# text (last char's case flips, leading chars drop after a few pastes).
-KEYTIMEOUT=10 # corresponds to 100ms
+# NOTE: keep this at 50 (500ms). Lower values look fine in a plain shell but
+# break under tmux + fast paste: vi mode mis-chunks the pasted byte stream
+# (last char's case flips, leading chars drop). 1 (10ms) and 10 (100ms) both
+# reproduced it; 50 is the smallest value verified robust.
+KEYTIMEOUT=50 # corresponds to 500ms
 
 # Use vim as the editor
 export EDITOR=vim
