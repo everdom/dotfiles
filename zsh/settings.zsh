@@ -22,8 +22,10 @@ setopt appendhistory
 setopt incappendhistory
 setopt extendedhistory
 
-# Time to wait for additional characters in a sequence
-KEYTIMEOUT=1 # corresponds to 10ms
+# Time to wait for additional characters in a sequence.
+# NOTE: keep this above ~10ms — KEYTIMEOUT=1 makes vi mode mis-chunk pasted
+# text (last char's case flips, leading chars drop after a few pastes).
+KEYTIMEOUT=10 # corresponds to 100ms
 
 # Use vim as the editor
 export EDITOR=vim
