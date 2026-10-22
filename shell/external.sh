@@ -9,3 +9,10 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 
 # Vagrant
 VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+path_prepend "$BUN_INSTALL/bin"
+
+# bun completions
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"

@@ -6,6 +6,7 @@ clash/cache.db
 debugger/
 
 lazygit/state.yml
+lazygit/github_pull_requests.json
 
 bin/linux/clangd
 bin/linux/tmux
