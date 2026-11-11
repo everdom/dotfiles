@@ -59,3 +59,5 @@ if [ -f ~/.shell_private ]; then
 fi
 
 
+
+. "$HOME/.local/bin/env"
