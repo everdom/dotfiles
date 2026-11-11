@@ -39,8 +39,20 @@ test_setting(){
     curl ipinfo.io
 }
 
+# 只有代理真的能连上时才写入配置。
+#
+# 写一个连不上的代理进去，git 不会回退直连，而是直接报
+# "Failed to connect to github.com port 443 via <host>:7890" —— 症状看着像
+# 网络坏了，很难联想到是这条配置在作祟。所以先探测，不通就不写，
+# 并顺手把之前留下的失效配置清掉。
 set_github_proxy(){
-  git config --file ~/.gitconfig_local http.https://github.com.proxy $PROXY_SOCKS
+  if curl -sS -m 5 -x "$PROXY_SOCKS" https://github.com -o /dev/null 2>/dev/null; then
+    git config --file ~/.gitconfig_local http.https://github.com.proxy "$PROXY_SOCKS"
+    echo "[proxyrc] 已设置 github 代理: $PROXY_SOCKS"
+  else
+    git config --file ~/.gitconfig_local --unset-all http.https://github.com.proxy 2>/dev/null
+    echo "[proxyrc] 代理不可用 ($PROXY_SOCKS)，已清除 github 代理配置，改走直连" >&2
+  fi
 }
 
 if [ "$1" = "set" ]
